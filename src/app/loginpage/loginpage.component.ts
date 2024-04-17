@@ -16,9 +16,7 @@ export class LoginpageComponent implements OnInit {
   show:any
   msg:any
   rslt:any;
-  constructor(private captchaService:CaptchaService,
-    // private leginsrv:LoginserviceService,
-    private router:Router,private route:ActivatedRoute) { }
+  constructor(private captchaService:CaptchaService,private leginsrv:LoginserviceService,private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.user1= this.route.snapshot.params['id']
@@ -72,26 +70,26 @@ export class LoginpageComponent implements OnInit {
       return;
     }
     $('#msg1').hide();
-    // this.leginsrv.signin(username,password).subscribe((data:any)=>{
-    //     console.log(data);
-    //   this.rslt=data;
-    //   if(this.rslt.status==200){
-    //     sessionStorage.setItem('user', JSON.stringify(this.rslt.data));
-    //     this.msg=this.rslt.message;
-    //     $('#msg1').show();
-    //   }else if(this.rslt.status==404){
-    //     this.msg=this.rslt.message;
-    //     $('#msg1').show();
-    //   }else if(this.rslt.status==400){
-    //     this.msg=this.rslt.message;
-    //     $('#msg1').show();
-    //   }else{
-    //     this.msg="Somethig Went Wrong";
-    //     $('#msg1').show();
-    //   }
-    // },
-    // (error:any) => console.log(error)
-    // );
+    this.leginsrv.signin(username,password).subscribe((data:any)=>{
+        console.log(data);
+      this.rslt=data;
+      if(this.rslt.status==200){
+        sessionStorage.setItem('user', JSON.stringify(this.rslt.data));
+        this.msg=this.rslt.message;
+        $('#msg1').show();
+      }else if(this.rslt.status==404){
+        this.msg=this.rslt.message;
+        $('#msg1').show();
+      }else if(this.rslt.status==400){
+        this.msg=this.rslt.message;
+        $('#msg1').show();
+      }else{
+        this.msg="Somethig Went Wrong";
+        $('#msg1').show();
+      }
+    },
+    (error:any) => console.log(error)
+    );
   }
   captref(){
     var component = this;

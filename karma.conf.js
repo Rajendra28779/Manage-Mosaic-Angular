@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/manage-mosaic'),
+      dir: require('path').join(__dirname, './coverage/landingpage'),
       subdir: '.',
       reporters: [
         { type: 'html' },

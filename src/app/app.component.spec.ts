@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Manage_Mosaic'`, () => {
+  it(`should have as title 'Landingpage'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Manage_Mosaic');
+    expect(app.title).toEqual('Landingpage');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Manage_Mosaic app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('Landingpage app is running!');
   });
 });

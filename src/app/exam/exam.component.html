@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="card shadow-sm mt-3 mt-xl-4 " style="background-color:rgb(193, 247, 229) ;">
+    <div class="card-header">
+      <h5 class="mb-0">Insurance Claim Details</h5>
+  </div>
+  <div class="card-body shadow">
+
+        <div style="margin-left: 40ch; margin-right: 40ch;">
+          <label><b>Select Hospital</b></label>
+          <select class="form-select" id="batch" (change)="getdoctor()">
+            <option value="">-Select-</option>
+            <ng-container *ngFor="let v of hosplist">
+              <option value={{v.hospid}}>{{v.hospnme}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div style="margin-left: 40ch; margin-right: 40ch;">
+          <label><b>Select Doctor</b></label>
+          <select class="form-select" id="tech" (change)="getpetient()">
+            <option value="">-Select-</option>
+            <ng-container *ngFor="let v of doclist">
+              <option value={{v.docid}}>{{v.doctname}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div style="margin-left: 40ch; margin-right: 40ch;">
+          <label><b>Select Patient</b></label>
+          <select class="form-select" id="emp" (change)="getpatdetails()">
+            <option value="">-Select-</option>
+            <ng-container *ngFor="let v of patlist">
+              <option value={{v.patid}}>{{v.patname}}</option>
+            </ng-container>
+          </select>
+        </div><br>
+        <b><p style="margin-left: 40ch;">Insurance Name : {{insname}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scheme Name :{{insscmname}} </p></b>
+
+        <div style="margin-left: 40ch; margin-right: 40ch;">
+          <label><b>Select Admission Date</b></label>
+          <input type="date" placeholder="enter here" class="form-control" id="mark" >
+        </div><br>
+        <div style="margin-left: 40ch; margin-right: 40ch;">
+          <label><b>Select Discharge Date</b></label>
+          <input type="date" placeholder="enter here" class="form-control" id="mark1" >
+        </div><br>
+        <div style="margin-left: 40ch; margin-right: 40ch;">
+          <label><b>Enter Total Expenses</b></label>
+          <input type="text" placeholder="enter here" class="form-control" id="mark2" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" >
+        </div><br>
+
+        <div style="margin-left: 40ch; margin-right: 40ch;">
+          <input type="button" value="save" class="btn btn-success" (click)="save()">
+          </div>
+  </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card shadow-sm mt-3 mt-xl-4 " style="background-color:rgb(193, 247, 229) ;">
+    <div class="card-header">
+      <h5 class="mb-0">Insurance Claim Details</h5>
+  </div>
+  <div class="card-body shadow">
+    <table class="table table-striped" mb-0>
+      <thead>
+        <tr>
+          <th>SL NO.</th>
+            <th>Doctor Name</th>
+            <th>Patient Name</th>
+            <th>Insurance Name</th>
+            <th>Scheme Name</th>
+            <th>Admission Date</th>
+            <th>Discharge Date</th>
+            <th>Total</th>
+            <th>Insured</th>
+            <th>Payble</th>
+            <th>pdf</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let v of nainlist ,index as i">
+        <td>{{i+1}}</td>
+        <td>{{v.doctorname}}</td>
+        <td>{{v.patientname}}</td>
+        <td>{{v.scheme}}</td>
+        <td>{{v.scmeidname}}</td>
+        <td>{{v.addmissing}}</td>
+        <td>{{v.discharge}}</td>
+        <td>{{v.total}}</td>
+        <td>{{v.inmsured}}</td>
+        <td>{{v.pay}}</td>
+        <td><a href="" (click)="pdf(v)">Certificate</a> </td>
+      </tr>
+
+    </tbody>
+    </table>
+    <!-- <input type="button" value="pdf" class="btn btn-success" (click)="pdf()"> -->
+  </div>
+</div>

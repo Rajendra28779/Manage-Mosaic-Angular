@@ -1,0 +1,97 @@
+
+<div class="container">
+  <div class="card shadow-sm mt-3 mt-xl-4 " style="background-color:rgb(193, 247, 229) ;">
+    <div class="card-header">
+      <h5 class="mb-0">Mark Entry Form</h5>
+  </div>
+  <div class="card-body shadow">
+
+        <div style="margin-left: 40ch; margin-right: 40ch;">
+          <label><b>Select Batch</b></label>
+          <select class="form-select" id="batch">
+            <option value="">-Select-</option>
+            <ng-container *ngFor="let v of batchlist">
+              <option value={{v.batchid}}>{{v.batchname}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div style="margin-left: 40ch; margin-right: 40ch;">
+          <label><b>Select Technology</b></label>
+          <select class="form-select" id="tech" (change)="getemplist()">
+            <option value="">-Select-</option>
+            <ng-container *ngFor="let v of techlist">
+              <option value={{v.techid}}>{{v.techname}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div style="margin-left: 40ch; margin-right: 40ch;">
+          <label><b>Select Employee Name</b></label>
+          <select class="form-select" id="emp">
+            <option value="">-Select-</option>
+            <ng-container *ngFor="let v of emplist">
+              <option value={{v.empid}}>{{v.empname}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div style="margin-left: 40ch; margin-right: 40ch;">
+          <label><b>Enter Mark</b></label>
+          <input type="text" placeholder="enter here" class="form-control" id="mark" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="3">
+        </div><br>
+        <div style="margin-left: 40ch; margin-right: 40ch;">
+          <input type="button" value="save" class="btn btn-success" (click)="save()">
+          </div>
+  </div>
+  </div>
+</div>
+<div class="container">
+  <div class="card shadow-sm mt-3 mt-xl-4 " style="background-color:rgb(193, 247, 229) ;">
+    <div class="card-header">
+      <h5 class="mb-0">Mark Sheet</h5>
+      <div style="margin-left: 40ch; margin-right: 40ch;">
+        <label><b>Select Batch</b></label>
+        <select class="form-select" id="batch1">
+          <option value="">-Select-</option>
+          <ng-container *ngFor="let v of batchlist">
+            <option value={{v.batchid}}>{{v.batchname}}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div style="margin-left: 40ch; margin-right: 40ch;">
+        <input type="button" value="save" class="btn btn-success" (click)="search()">
+        </div>
+  </div>
+  <div class="card-body shadow">
+    <table class="table table-striped" mb-0>
+      <thead>
+        <tr>
+          <th>SL NO.</th>
+            <th>Batch Name</th>
+            <th>Batch Start Date</th>
+            <th>Technology name</th>
+            <th>Employee Name</th>
+            <th>Employee Phone</th>
+            <th>Mark</th>
+            <th>Grade</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let v of data1 ,index as i">
+        <td>{{i+1}}</td>
+        <td>{{v.batchname}}</td>
+        <td>{{v.startdate}}</td>
+        <td>{{v.tech}}</td>
+        <td>{{v.emp}}</td>
+        <td>{{v.pho}}</td>
+        <td>{{v.mark}}</td>
+        <td>{{v.grade}}</td>
+        <td>{{v.status}}</td>
+      </tr>
+
+    </tbody>
+    </table>
+    <input type="button" value="pdf" class="btn btn-success" (click)="pdf()">
+  </div>
+</div>
+
+</div>

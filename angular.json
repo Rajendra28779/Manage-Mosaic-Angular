@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Manage_Mosaic": {
+    "Landingpage": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/manage-mosaic",
+            "outputPath": "dist/landingpage",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Manage_Mosaic:build:production"
+              "browserTarget": "Landingpage:build:production"
             },
             "development": {
-              "browserTarget": "Manage_Mosaic:build:development"
+              "browserTarget": "Landingpage:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Manage_Mosaic:build"
+            "browserTarget": "Landingpage:build"
           }
         },
         "test": {

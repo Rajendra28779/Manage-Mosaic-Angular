@@ -13,9 +13,7 @@ rslt:any
 theswal:any;
 gen:any;
 user:any
-  constructor(
-    // private leginsrv:LoginserviceService,
-    private route:Router) { }
+  constructor(private leginsrv:LoginserviceService,private route:Router) { }
 
   ngOnInit(): void {
     $('#msg').hide();
@@ -99,14 +97,14 @@ let object ={
 
 }
 
-    // this.leginsrv.login(object).subscribe((data:any)=>{
-    //     this.rslt=data;
-    //     if(this.rslt.statuscode==200){
-    //       this.route.navigate(['login/1']);
-    //     }
-    // },
-    // (error) => console.log(error)
-    // );
+    this.leginsrv.login(object).subscribe((data:any)=>{
+        this.rslt=data;
+        if(this.rslt.statuscode==200){
+          this.route.navigate(['login/1']);
+        }
+    },
+    (error) => console.log(error)
+    );
 
 
   }
@@ -118,22 +116,22 @@ let object ={
       $('#msg').show();
       return;
     }
-    // this.leginsrv.checkusername(user).subscribe((data:any)=>{
-    //   console.log(data);
+    this.leginsrv.checkusername(user).subscribe((data:any)=>{
+      console.log(data);
 
-    //   this.user=data;
-    //   if(this.user.statuscode==200){
-    //     this.theswal=this.user.message;
-    //   $('#msg1').show();
-    //   $('#msg').hide();
-    //   }else if(this.user.statuscode==401){
-    //     this.theswal=this.user.message;
-    //     $('#msg').show();
-    //     $('#msg1').hide();
-    //   }
-    // },
-    // (error) => console.log(error)
-    // );
+      this.user=data;
+      if(this.user.statuscode==200){
+        this.theswal=this.user.message;
+      $('#msg1').show();
+      $('#msg').hide();
+      }else if(this.user.statuscode==401){
+        this.theswal=this.user.message;
+        $('#msg').show();
+        $('#msg1').hide();
+      }
+    },
+    (error) => console.log(error)
+    );
 
   }
 
