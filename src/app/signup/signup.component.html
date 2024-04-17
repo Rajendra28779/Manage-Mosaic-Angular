@@ -1,0 +1,102 @@
+ <div class="login-wrapp h-100"><br>
+<!--
+      <div class="row">
+        <div class="col-lg-5">
+           <div class="img-wrapp h-100 container">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi aspernatur consequuntur sequi iure culpa magni exercitationem cum in quo natus atque aut quam cumque esse iste, recusandae dolores modi libero nam, illum est voluptatum, quidem excepturi incidunt. Assumenda accusantium perspiciatis expedita amet magni. Velit, doloremque. Quia nobis, assumenda molestias deleniti voluptates corrupti, modi ratione quasi, iure necessitatibus quos. Autem ex praesentium nihil commodi repellendus nostrum, est necessitatibus quidem. Maiores libero cum sapiente, voluptate esse necessitatibus quasi! Hic temporibus accusamus earum sunt soluta magni cumque quos excepturi ipsum qui aut saepe ipsa quo esse pariatur corrupti cum, id voluptate vitae vel ea voluptatum quae nesciunt! Ullam consequuntur unde, quaerat nihil sunt tempora nulla voluptatum doloribus aut architecto iusto, accusantium fuga blanditiis sint. Laudantium, possimus nobis nulla error officia magnam aut sed perferendis quos, corrupti ut. Omnis non impedit in, illum deleniti voluptatem facilis fugit voluptates inventore velit vero. Quibusdam ullam nostrum odio soluta eligendi numquam at iusto aliquid mollitia. Numquam eveniet tenetur modi qui velit obcaecati laboriosam delectus deleniti tempore cupiditate debitis, laudantium ab voluptatum at, omnis optio, animi suscipit illo quos amet repellat corrupti eius nulla cum. Ea eius quos, vel commodi laborum eos praesentium dolorem numquam minima atque veritatis voluptatibus possimus nesciunt obcaecati ab id eaque provident enim veniam error voluptatem blanditiis? Enim recusandae reiciendis dolorem dolores dignissimos cupiditate quas consectetur autem itaque a ut eveniet quos vel, repellendus debitis delectus, nam eum neque facilis. Ratione vitae ipsum cum quo laborum dolore odit minima, accusamus ex dolor deleniti natus modi ut consequatur illo, aliquam inventore voluptas tempore ad harum nostrum dignissimos quibusdam! Alias in tempora, ex atque et blanditiis repudiandae qui officia impedit sed? Corporis quaerat mollitia hic aperiam veritatis dolores sequi nulla! Fuga voluptates labore eveniet pariatur atque saepe. Culpa nesciunt velit temporibus est non consequuntur. Soluta, non!
+           </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-4 col-xxl-4">
+                <div class="mb-xl-3">
+                  <label for="EnterFunctionName" class="form-label">Global Name<span class="text-danger">*</span></label>
+                    <input class="form-control" type="text" placeholder="Enter Global Name" formControlName="globalname" autocomplete="off" id="globalname" maxlength="40"
+                    onkeyup="this.value=this.value.replace(/[^a-zA-Z-_ ]/g,'');">
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+ -->
+
+<div class="container register shadow">
+  <div class="row">
+      <div class="col-md-3 register-left">
+          <img src="../../assets/img/Annotation 2023-03-12 092855.png" alt=""/>
+          <h3 style="color: #014d4e;">Welcome</h3>
+          <h5 style="color: #014d4e;">THE LITTLE HANGER</h5>
+          <!-- <p style="color: white;"><b>PEHNO ESE CELEBRITY JESE .</b></p> -->
+          <input type="submit" name="" value="Login" routerLink="/login" /><br/>
+      </div>
+      <div class="col-md-9 register-right">
+          <!-- <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+              <li class="nav-item">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="/signup" role="tab" aria-controls="home" aria-selected="true">Employee</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Hirer</a>
+              </li>
+          </ul> -->
+          <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                  <h3 class="register-heading">Sign Up</h3>
+                  <div class="row register-form">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <input type="text" class="form-control" placeholder="First Name *" id="fname" name="fname" />
+                          </div><br>
+                          <div class="form-group">
+                            <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" id="phone" name="phone" class="form-control" placeholder="Your Phone *"  />
+                        </div><br>
+                          <div class="form-group">
+                              <input type="text" class="form-control" placeholder="User Name *" id="user" name="user"  (blur)="checkusername()" autocomplete="off" />
+                          </div><br>
+                          <div class="form-group">
+                            <div class="maxl" id="gender" name="gender">
+                                <label class="radio inline">
+                                    <input type="radio" name="gender" value="m" (click)="check('m')">
+                                    <span> Male </span>
+                                </label>&nbsp;&nbsp;
+                                <label class="radio inline">
+                                    <input type="radio" name="gender" value="f" (click)="check('f')">
+                                    <span>Female </span>
+                                </label>
+                            </div>
+                        </div><br>
+                        <div id="msg" style="background-color: rgb(214, 68, 57); border-radius: 1rem; color:white ;"><i class="bi bi-x-circle" style="margin-left: 2ch;"></i>
+                          {{theswal}}
+                        </div>
+                        <div id="msg1" style="background-color: rgb(49, 143, 49); border-radius: 1rem; color:white ;"><i class="bi bi-check2-circle" style="margin-left: 2ch;"></i>
+                          {{theswal}}
+                        </div>
+
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Last Name *" id="lname" name="lname" />
+                        </div><br>
+                        <div class="form-group">
+                              <input type="email" class="form-control" placeholder="Your Email *" id="email" name="email" />
+                          </div><br>
+                          <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password *" id="password" name="password" />
+                        </div><br>
+                        <div class="form-group">
+                          <input type="password" class="form-control"  placeholder="Confirm Password *" id="cpass" name="cpass" />
+                      </div><br>
+
+                          <input type="submit" class="btnRegister" (click)="signup()"  value="Register"/>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+</div>
+<br>
+</div>
