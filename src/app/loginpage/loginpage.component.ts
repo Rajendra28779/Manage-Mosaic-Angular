@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CaptchaService } from '../services/captcha.service';
+import { EncryptService } from '../services/encrypt.service';
 import { LoginserviceService } from '../services/loginservice.service';
 declare let $: any;
 
@@ -16,7 +17,10 @@ export class LoginpageComponent implements OnInit {
   show:any
   msg:any
   rslt:any;
-  constructor(private captchaService:CaptchaService,private leginsrv:LoginserviceService,private router:Router,private route:ActivatedRoute) { }
+  constructor(private captchaService:CaptchaService,
+    private leginsrv:LoginserviceService,
+    private router:Router,private route:ActivatedRoute,
+    private enctserv:EncryptService) { }
 
   ngOnInit(): void {
     this.user1= this.route.snapshot.params['id']
@@ -70,13 +74,14 @@ export class LoginpageComponent implements OnInit {
       return;
     }
     $('#msg1').hide();
-    this.leginsrv.signin(username,password).subscribe((data:any)=>{
-        console.log(data);
+    username=this.enctserv.OnEncrypt(username);
+    password=this.enctserv.OnEncrypt(password);
+    this.leginsrv.login(username,password).subscribe((data:any)=>{
       this.rslt=data;
       if(this.rslt.status==200){
-        sessionStorage.setItem('user', JSON.stringify(this.rslt.data));
-        this.msg=this.rslt.message;
-        $('#msg1').show();
+        sessionStorage.setItem('user', JSON.stringify(this.rslt.user));
+        sessionStorage.setItem('token', JSON.stringify(this.rslt.auth));
+        this.router.navigate(['/dashboard']);
       }else if(this.rslt.status==404){
         this.msg=this.rslt.message;
         $('#msg1').show();
@@ -87,12 +92,10 @@ export class LoginpageComponent implements OnInit {
         this.msg="Somethig Went Wrong";
         $('#msg1').show();
       }
-    },
-    (error:any) => console.log(error)
-    );
+    });
   }
   captref(){
-    var component = this;
+    let component = this;
     $('#loginCaptchaImg').html(this.captchaService.getCaptcha());
     $('#loginRefreshCaptcha').click(function () {
       $('#loginCaptchaImg').html(component.captchaService.getCaptcha());
@@ -131,8 +134,6 @@ google.accounts.id.prompt((notification: PromptMomentNotification) => {});
 
 }
 async handleCredentialResponse(response: any) {
-  // Here will be your response from Google.
-  console.log(response);
 }
 
 }

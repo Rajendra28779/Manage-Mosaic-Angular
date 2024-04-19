@@ -1,0 +1,145 @@
+<div class="form-cointainer">
+  <div class="main-tab">
+    <div class="row justify-content-between">
+      <div class="col-lg-12">
+        <ul class="nav nav-tabs ">
+          <li class="nav-item">
+            <a routerLinkActive="active" class="nav-link active">Home tour</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-cointainer bg-transparent p-0 border-0" *ngIf="homedetails.length==0">
+    <div class="content-box bg-transparent border-0 pt-2" id="printArea">
+      <h3 class="text-muted text-center my-2">You Don't Have any House for Rent ! Add Your House Details. &nbsp;
+        <i class="bi bi-plus-circle" style="color:rgb(83, 164, 231);" (click)="addhome()"
+          title="Add New House Details"></i>
+      </h3>
+    </div>
+  </div>
+  <div class="form-cointainer bg-transparent p-0 border-0" *ngIf="homedetails.length!=0">
+    <div class="content-box bg-transparent border-0 pt-2" id="printArea">
+      <h3 class="text-muted text-center my-2">This All Your House Details. Add New House Details. &nbsp;
+        <i class="bi bi-plus-circle" style="color:rgb(83, 164, 231);" (click)="addhome()"
+          title="Add New House Details"></i>
+      </h3>
+    </div>
+  </div>
+  <div class="container">
+    <div class="col-lg-12" *ngIf="showfield">
+      <div class="card shadow-sm mt-2 mt-xl-4 ">
+        <div class="card-header">
+          <h5 class="mb-0">House Details</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-6 col-xxl-6">
+              <div class="mb-xl-3">
+                <label for="EnterFunctionName" class="form-label">House Name<span class="text-danger">*</span></label>
+                <input class="form-control" type="text" placeholder="Enter House Name" autocomplete="off" id="house"
+                  maxlength="100" onkeyup="this.value=this.value.replace(/[^a-zA-Z-_ ]/g,'');">
+              </div>
+            </div>
+            <div class="col-lg-6 col-xxl-6">
+              <div class="mb-xl-3">
+                <label for="EnterFunctionName" class="form-label">House location<span
+                    class="text-danger">*</span></label>
+                <input class="form-control" type="text" placeholder="Enter House location" autocomplete="off"
+                  id="location" maxlength="100">
+              </div>
+            </div>
+            <div class="col-lg-2 col-xxl-2">
+              <div class="mb-xl-3">
+                <label for="EnterFunctionName" class="form-label">No of Room<span class="text-danger">*</span></label>
+                <input class="form-control" type="text" placeholder="Enter No of Room" autocomplete="off" id="room"
+                  maxlength="3" onkeyup="this.value=this.value.replace(/[^0-9 ]/g,'');">
+              </div>
+            </div>
+            <div class="col-lg-8 col-xxl-8"></div>
+            <div class="col-lg-2 col-xxl-2" style="text-align:end;">
+              <div class="mb-xl-3">
+                <input type="button" value="Add" (click)="savedetails()" class="btn btn-success"
+                  style="margin-top:28px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-container *ngFor="let house of homedetails">
+      <div class="card shadow-sm mt-2 mt-xl-4 ">
+        <div class="card-header">
+          <h5 class="mb-0"><a (click)="getroomdetails(house)" title="Get Room list" data-bs-toggle="modal"
+            data-bs-target="#exampleModal1"><i class="bi bi-list-check me-2"></i></a>{{house.homeName}}</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-3 col-xxl-3">
+              <div class="mb-xl-3">
+                <b>Total No of Room : {{house.noofroom}}</b>
+              </div>
+            </div>
+            <div class="col-lg-3 col-xxl-3">
+              <div class="mb-xl-3">
+                <b>Total Room Available : {{house.noofroom}}</b>
+              </div>
+            </div>
+            <div class="col-lg-4 col-xxl-4">
+              <div class="mb-xl-3">
+                <b>Room Address : {{house.homeLocation}}</b>
+              </div>
+            </div>
+            <div class="col-lg-2 col-xxl-2" style="text-align:end;">
+              <div class="mb-xl-3">
+                <a class="btn btn-outline-primary btn-sm me-1" (click)="edit(house)"><i class="bi bi-pencil"></i></a>
+                <a class="btn btn-outline-danger btn-sm" (click)="delete(house)">
+                  <i class="bi bi-trash3"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="max-width: 65%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          <span>Room Details</span>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive" >
+        <table class="table table-striped">
+          <caption></caption>
+          <thead>
+            <tr>
+              <th>Sl No</th>
+              <th>Room no</th>
+              <th>Alotted Person Name</th>
+              <th>Room rent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of roomdetails | filter:txtsearchDate; index as j">
+              <td>{{j+1}}</td>
+              <td>{{item.roomNo}}</td>
+              <td><input class="form-control" type="text" placeholder="Enter Person Name" autocomplete="off" id="{{'p'+item.id}}"
+                maxlength="100" onkeyup="this.value=this.value.replace(/[^a-zA-Z-_ ]/g,'');" (blur)="getperson(item.id)"></td>
+              <td><input class="form-control" type="text" placeholder="Enter Rent Amount" autocomplete="off" id="{{'r'+item.id}}"
+                maxlength="10" onkeyup="this.value=this.value.replace(/[^0-9 ]/g,'');" (blur)="getrent(item.id)"></td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="button" value="Submit Details" (click)="submitdetails()" class="btn btn-success" style="text-align: end;">
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { LoginserviceService } from '../services/loginservice.service';
 declare let $: any;
 
@@ -32,6 +33,7 @@ user:any
     let user=$('#user').val();
     let pass=$('#password').val();
     let cpass=$('#cpass').val();
+    let address=$('#address').val();
     let gender=this.gen;
     if (fname==null || fname== "" || fname==undefined){
       this.theswal="Please Fill FirstName";
@@ -74,33 +76,42 @@ user:any
       return;
     }
 
-    if (!(pass==cpass)){
+    if (address==null || address== "" || address==undefined){
+      this.theswal="Please Enter Address";
+      $('#msg').show();
+      return;
+    }
+
+    if (pass!=cpass){
       this.theswal="Password And Confirm Password Should Be Same";
       $('#msg').show();
       return;
     }
-    if(!(this.user.statuscode==200)){
+    if(this.user.statuscode!=200){
       this.theswal=this.user.message;
       $('#msg').show();
     }
 
-
 $('#msg').hide();
 let object ={
-  fastName:fname,
-  username:user,
+  firstName:fname,
+  userName:user,
   lastName:lname,
   mobileNo:phone,
-  emailId:email,
+  email:email,
   password:pass,
   gender:gender,
-
+  address:address,
 }
-
-    this.leginsrv.login(object).subscribe((data:any)=>{
+    this.leginsrv.signin(object).subscribe((data:any)=>{
         this.rslt=data;
-        if(this.rslt.statuscode==200){
-          this.route.navigate(['login/1']);
+        if(this.rslt.status==200){
+          this.swal("Success","SignUp Successful","success")
+          this.route.navigate(['/login']);
+        }else if(this.rslt.status==406){
+          this.swal("Error",this.rslt.message,"error")
+        }else{
+          this.swal("Error", "Something Went Wrong ! Please Try After Sometime !", 'error');
         }
     },
     (error) => console.log(error)
@@ -110,29 +121,37 @@ let object ={
   }
 
   checkusername(){
-        let user=$('#user').val();
+    let user=$('#user').val().toString().trim().toLowerCase();
     if (user==null || user== "" || user==undefined){
       this.theswal="Please Fill UserName";
       $('#msg').show();
       return;
     }
     this.leginsrv.checkusername(user).subscribe((data:any)=>{
-      console.log(data);
-
       this.user=data;
-      if(this.user.statuscode==200){
+      if(this.user.status==200){
         this.theswal=this.user.message;
       $('#msg1').show();
       $('#msg').hide();
-      }else if(this.user.statuscode==401){
+      }else if(this.user.status==401){
         this.theswal=this.user.message;
         $('#msg').show();
         $('#msg1').hide();
+      }else{
+        this.swal("Error", "Something Went Wrong ! Please Try After Sometime !", 'info');
       }
     },
     (error) => console.log(error)
     );
 
+  }
+
+  swal(title: any, text: any, icon: any) {
+    Swal.fire({
+      icon: icon,
+      title: title,
+      text: text
+    });
   }
 
 }

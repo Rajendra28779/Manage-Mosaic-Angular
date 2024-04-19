@@ -1,20 +1,15 @@
 import { environment } from "src/environments/environment";
 
 let baseUrl = environment.baseUrl;
-export const loginUrl = baseUrl + "/tlh/signupuser";
-export const checkusername = baseUrl + "/tlh/checkusername";
-export const signin = baseUrl + "/tlh/signin";
-export const getbatchlist = baseUrl + "/tlh/getbatchlist";
-export const gettechlist = baseUrl + "/tlh/gettechlist";
-export const getemplist = baseUrl + "/tlh/getemplist";
-export const saveemployee = baseUrl + "/tlh/saveemployee";
-export const search = baseUrl + "/tlh/search";
+export const loginUrl = baseUrl + "/login/loginapi";
 
+export const checkusername = baseUrl + "/api/checkusername";
+export const signinuser = baseUrl + "/api/createUser";
 
-export const hoslist = baseUrl + "/tlh/hoslist";
-export const doclist = baseUrl + "/tlh/doclist";
-export const getlist = baseUrl + "/tlh/getlist";
-export const patlist = baseUrl + "/tlh/patlist";
-export const savedata = baseUrl + "/tlh/savedata";
+export const addhomedetails = baseUrl + "/api/addhomedetails";
+export const gethomedetails = baseUrl + "/api/gethomedetails";
+export const getroomdetails = baseUrl + "/api/getroomdetails";
+export const inactiveroomdetails = baseUrl + "/api/inactiveroomdetails";
+export const submitdetails = baseUrl + "/api/submitdetails";
 
 

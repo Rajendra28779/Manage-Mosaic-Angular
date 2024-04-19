@@ -23,6 +23,7 @@
     "jquery": "^3.6.4",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.28",
+    "ngx-ui-loader": "^13.0.0",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.7.3",
     "tslib": "^2.3.0",
