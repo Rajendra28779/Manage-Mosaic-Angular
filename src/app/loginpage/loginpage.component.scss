@@ -1,7 +1,23 @@
 .login-wrapp {
-  background: #bbc4cc url(../../assets/img/login-bg.jpg) center;
+  background: #ffffff url(../../assets/img/slider-left-dec.png) center;
   background-size: cover;
+  width: 100vw; /* Full width for both mobile and desktop */
+  height: 100vh; /* Full height for both mobile and desktop */
+  display: flex; /* To center content inside */
+  justify-content: center; /* Horizontal center */
+  align-items: center; /* Vertical center */
 }
+
+.login-wrapp .right-image img {
+  max-width: 480px;
+  border-radius: 20px;
+}
+
+.login-wrapp .left-content .white-button a {
+  background-color: #4b8ef1;
+  color: #fff !important;
+}
+
 .login-box {
   border-radius: 2rem;
 
@@ -12,8 +28,6 @@
       position: absolute;
       top: 0.4rem;
       left: .8rem;
-      top: .2rem;
-      // color: rgba($link-color, .8);
   }
 
   &.password {
@@ -33,4 +47,23 @@
   }
   }
 }
+
+.download-app {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically (if necessary) */
+  gap: 20px; /* Optional: Add space between the two images */
+  margin-top: 2ch;
+}
+
+.download-app img {
+  width: 150px; /* Ensure images are responsive */
+  height: auto;
+}
+
+.download-app img:hover {
+  width: 160px; /* Ensure images are responsive */
+  height: auto;
+}
+
 

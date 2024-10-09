@@ -130,14 +130,18 @@
             <tr *ngFor="let item of roomdetails | filter:txtsearchDate; index as j">
               <td>{{j+1}}</td>
               <td>{{item.roomNo}}</td>
-              <td><input class="form-control" type="text" placeholder="Enter Person Name" autocomplete="off" id="{{'p'+item.id}}"
+              <td *ngIf="showdtls"><input class="form-control" type="text" placeholder="Enter Person Name" autocomplete="off" id="{{'p'+item.id}}"
                 maxlength="100" onkeyup="this.value=this.value.replace(/[^a-zA-Z-_ ]/g,'');" (blur)="getperson(item.id)"></td>
-              <td><input class="form-control" type="text" placeholder="Enter Rent Amount" autocomplete="off" id="{{'r'+item.id}}"
+              <td *ngIf="showdtls"><input class="form-control" type="text" placeholder="Enter Rent Amount" autocomplete="off" id="{{'r'+item.id}}"
                 maxlength="10" onkeyup="this.value=this.value.replace(/[^0-9 ]/g,'');" (blur)="getrent(item.id)"></td>
+              <td *ngIf="!showdtls && item.allotperson!=null">{{item.allotperson}}</td>
+              <td *ngIf="!showdtls && item.allotperson==null">N/A</td>
+              <td *ngIf="!showdtls && item.roomrent!=null">₹ {{item.roomrent | currency:'':''}}</td>
+              <td *ngIf="!showdtls && item.roomrent==null">N/A</td>
             </tr>
           </tbody>
         </table>
-        <input type="button" value="Submit Details" (click)="submitdetails()" class="btn btn-success" style="text-align: end;">
+        <input type="button" value="Submit Details" *ngIf="showdtls" (click)="submitdetails()" class="btn btn-success" style="text-align: end;">
       </div>
       </div>
     </div>

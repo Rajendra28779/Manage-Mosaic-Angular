@@ -1,0 +1,113 @@
+<div class="main-tab px-0 mb-2">
+  <div class="container" style="margin-top: 3ch;">
+    <div class="dashboard-text">
+      <h1>Hello, <span>Rajendra</span>! Welcome to <span>Manage Mosaic.</span></h1>
+      <p>Manage Mosaic is a versatile mobile app designed to simplify and enhance the way people
+        manage various aspects of their lives. We understand that balancing everyday tasks like rental
+        management, trip planning, and event organization can be overwhelming. That’s why we created Manage
+        Mosaic. A single platform that brings together all these essential tools, allowing you to stay organized,
+        reduce stress, and enjoy more time with the things that matter most.</p>
+    </div>
+    <div class="d-flex col-md-12 col-lg-12 col-sm-12 col-12 px-0">
+      <div class="card-tab">
+        <a class="card1" [routerLink]="['/rentmanage/innerpage']" routerLinkActive="router-link-active"
+          title="Rent Management">
+          <div class="d-flex f-col">
+            <div class="icon_tabp"> <span><i class="fa fa-building"></i></span> </div>
+            <div class="cardpk-txt"> HomeRent Management </div>
+          </div>
+          <div class="go-corner">
+            <div class="go-arrow">
+              <i class="bi bi-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="card-tab">
+        <a class="card1" [routerLink]="['/unblock-package']" routerLinkActive="router-link-active"
+          title="Unblock Package">
+          <div class="d-flex f-col">
+            <div class="icon_tabp"> <span><i class="fa fa-cab"></i></span> </div>
+            <div class="cardpk-txt"> Trip Management </div>
+          </div>
+          <div class="go-corner">
+            <div class="go-arrow">
+              <i class="bi bi-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="card-tab">
+        <a class="card1" [routerLink]="['/unblock-package']" routerLinkActive="router-link-active"
+          title="Unblock Package">
+          <div class="d-flex f-col">
+            <div class="icon_tabp"> <span><i class="fa fa-calendar"></i></span> </div>
+            <div class="cardpk-txt"> Event Management </div>
+          </div>
+          <div class="go-corner">
+            <div class="go-arrow">
+              <i class="bi bi-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper" style="margin-top: 3ch;">
+    <div class="vertical-bar-container">
+      <div class="fill occupied" [ngStyle]="{ height: occupiedPercentage + '%' }"></div>
+      <div class="fill advance" [ngStyle]="{ height: advancePercentage + '%' }"></div>
+      <div class="fill remaining" [ngStyle]="{ height: vacanciesPercentage + '%' }"></div>
+    </div>
+        <div class="legend me-3">
+            <div class="legend-item">
+                <span class="legend-color total"></span>
+                <span>Total Room ({{ totalRooms }})</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color occupied"></span>
+                <span>Occupied Rooms ({{ occupied }})</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color advance"></span>
+                <span>Advanced Reservations ({{ advance }})</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color remaining"></span>
+                <span>Available Rooms ({{ vacancies }})</span>
+            </div>
+        </div>
+
+      <div class="legend me-3">
+        <i class="bi bi-emoji-expressionless" style="color:rgb(26, 157, 167);" *ngIf="paidrent<=20"></i>
+        <i class="bi bi-emoji-frown" style="color:rgb(151, 66, 221);" *ngIf="paidrent>20 && paidrent<=50"></i>
+        <i class="bi bi-emoji-smile" style="color:#ec5475;" *ngIf="paidrent>50 && paidrent<=75"></i>
+        <i class="bi bi-emoji-heart-eyes" style="color:#15e253;" *ngIf="paidrent>75 && paidrent<=100"></i>
+        <div class="horizontal-bar-container">
+          <div class="horizontal-bar-fill" [ngStyle]="{ width: paidrent + '%' }"></div>
+        </div>
+        <div class="percentage-text"><span style="color: #3182da; font-size: 20px;">{{ paidrent }}%</span> of the total rent amount is paid by the tenant..</div>
+      </div>
+
+      <div class="legend me-2">
+        <i class="bi bi-cash-coin" style="color:rgb(219, 140, 20);"></i>
+        <div class="eraning-text">Overall Earnings Up to Now : <span>{{totalearn}}</span></div>
+        <div class="eraning-text">Earnings for This Year : <span>{{monthearn}}</span></div>
+        <div class="eraning-text">Earnings for This Month : <span>{{yearhearn}}</span></div>
+      </div>
+
+      <div class="legend me-2">
+        <i class="bi bi-calendar-check" style="color:rgb(236, 90, 46);"></i>
+        <div class="booking-text">Advance Reservations : <span>{{advbook}}</span></div>
+        <div class="booking-text">Upcoming Vacant Rooms : <span>{{upcmgvncy}}</span></div>
+      </div>
+
+      <div class="legend me-2">
+        <i class="bi bi-building-gear" style="color:rgb(155, 68, 68); margin-left: 3ch;"></i>
+        <div class="compl-text" style="color:rgb(241, 47, 47); font-size: 22px; font-weight: 700;">28</div>
+        <div class="compl-text">Complaints Pending Resolution</div>
+      </div>
+
+    </div>
+</div>

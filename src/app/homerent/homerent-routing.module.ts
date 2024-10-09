@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddroomComponent } from './addroom/addroom.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomedetailsComponent } from './homedetails/homedetails.component';
 import { HomerentComponent } from './homerent.component';
+import { UserDashbordComponent } from './user-dashbord/user-dashbord.component';
 
 const routes: Routes =[{
   path: '', component: HomerentComponent, children: [
-  { path: 'innerpage', component:DashboardComponent  },
+  { path: 'userdashboard', component:UserDashbordComponent  },
   { path: 'hosmedetails', component:HomedetailsComponent  },
   { path: 'roomalert', component:AddroomComponent  },
 ]}];

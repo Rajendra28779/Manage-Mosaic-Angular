@@ -46,7 +46,8 @@ export class HomerentserviceService {
     let options = {
       headers: headers,
       params:{
-        userid:userid
+        userid:userid,
+        housedetails:housedetails,
       }
     };
     let fullUrl =getroomdetails;

@@ -17,15 +17,9 @@ user:any
   constructor(private leginsrv:LoginserviceService,private route:Router) { }
 
   ngOnInit(): void {
-    $('#msg').hide();
-    $('#msg1').hide();
-  }
-  check(no:any){
-      this.gen=no;
   }
 
   signup(){
-    $('#msg1').hide();
     let fname=$('#fname').val();
     let lname=$('#lname').val();
     let email=$('#email').val();
@@ -33,8 +27,6 @@ user:any
     let user=$('#user').val();
     let pass=$('#password').val();
     let cpass=$('#cpass').val();
-    let address=$('#address').val();
-    let gender=this.gen;
     if (fname==null || fname== "" || fname==undefined){
       this.theswal="Please Fill FirstName";
       $('#msg').show();
@@ -70,42 +62,23 @@ user:any
       $('#msg').show();
       return;
     }
-    if (gender==null || gender== "" || gender==undefined){
-      this.theswal="Please Select Gender";
-      $('#msg').show();
-      return;
-    }
-
-    if (address==null || address== "" || address==undefined){
-      this.theswal="Please Enter Address";
-      $('#msg').show();
-      return;
-    }
 
     if (pass!=cpass){
       this.theswal="Password And Confirm Password Should Be Same";
-      $('#msg').show();
       return;
     }
-    if(this.user.statuscode!=200){
-      this.theswal=this.user.message;
-      $('#msg').show();
-    }
 
-$('#msg').hide();
 let object ={
   firstName:fname,
   userName:user,
   lastName:lname,
   mobileNo:phone,
   email:email,
-  password:pass,
-  gender:gender,
-  address:address,
+  password:pass
 }
     this.leginsrv.signin(object).subscribe((data:any)=>{
         this.rslt=data;
-        if(this.rslt.status==200){
+        if(data.status==200){
           this.swal("Success","SignUp Successful","success")
           this.route.navigate(['/login']);
         }else if(this.rslt.status==406){
@@ -116,8 +89,6 @@ let object ={
     },
     (error) => console.log(error)
     );
-
-
   }
 
   checkusername(){

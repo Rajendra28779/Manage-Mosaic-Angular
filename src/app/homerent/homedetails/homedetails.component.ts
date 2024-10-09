@@ -16,6 +16,7 @@ export class HomedetailsComponent implements OnInit {
   roomdetails:any=[];
   housedetails:any;
   gethomedetails: any;
+  showdtls: boolean=true;
 
   constructor(private homerentserv:HomerentserviceService) { }
 
@@ -102,23 +103,26 @@ export class HomedetailsComponent implements OnInit {
   getroomdetails(data:any){
     this.housedetails=data.detailsid
     this.roomdetails=[];
-    this.homerentserv.getroomdetails(this.housedetails,this.user.userid).subscribe((data:any)=>{
-      this.roomdetails=data.record;
+    this.homerentserv.getroomdetails(this.housedetails,this.user.userid).subscribe((response:any)=>{
+      this.roomdetails=response.record;
+      if(this.roomdetails.length==0){
+        let noofroom=data.noofroom;
+        for(let i=0;i<noofroom;i++){
+          let object={
+            id:i+1,
+            roomNo:"Room No "+(i+1),
+            allotperson:'',
+            roomrent:''
+          }
+          this.roomdetails.push(object);
+        }
+        this.showdtls=true;
+      }else{
+        this.showdtls=false;
+      }
     },
     (error:any) => console.log(error)
     );
-    if(this.roomdetails.length==0){
-      let noofroom=data.noofroom;
-      for(let i=0;i<noofroom;i++){
-        let object={
-          id:i+1,
-          roomNo:"Room No "+(i+1),
-          allotperson:'',
-          roomrent:''
-        }
-        this.roomdetails.push(object);
-      }
-    }
   }
 
   getperson(id:any){

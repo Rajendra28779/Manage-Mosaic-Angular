@@ -8,11 +8,11 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { SignupComponent } from './signup/signup.component';
 import { OtpverifyComponent } from './otpverify/otpverify.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { UserDashbordComponent } from './user-dashbord/user-dashbord.component';
 import { AddComponent } from './add/add.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { HomerentComponent } from './homerent/homerent.component';
-import { FilterPipe } from './filter.pipe';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +22,10 @@ import { FilterPipe } from './filter.pipe';
     SignupComponent,
     OtpverifyComponent,
     PagenotfoundComponent,
-    UserDashbordComponent,
     AddComponent,
-    FilterPipe,
     HomerentComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
