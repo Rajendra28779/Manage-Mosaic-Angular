@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddroomComponent } from './addroom/addroom.component';
-import { HomedetailsComponent } from './homedetails/homedetails.component';
 import { HomerentComponent } from './homerent.component';
 import { UserDashbordComponent } from './user-dashbord/user-dashbord.component';
 
 const routes: Routes =[{
   path: '', component: HomerentComponent, children: [
   { path: 'userdashboard', component:UserDashbordComponent  },
-  { path: 'hosmedetails', component:HomedetailsComponent  },
-  { path: 'roomalert', component:AddroomComponent  },
+
+  { path: 'homerentmanage', loadChildren: () => import('./rentmanage/rentmanage.module').then(h => h.RentmanageModule) },
 ]}];
 
 @NgModule({

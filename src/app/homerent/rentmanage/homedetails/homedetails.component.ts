@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-import { HomerentserviceService } from '../services/homerentservice.service';
+import { HomerentserviceService } from '../../services/homerentservice.service';
 declare let $: any;
 
 @Component({
