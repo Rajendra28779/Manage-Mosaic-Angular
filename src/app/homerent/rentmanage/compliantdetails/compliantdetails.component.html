@@ -1,0 +1,85 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <p style="font-weight: 500; font-size: 17px;">Complaints Dashboard</p><hr>
+  <div class="backtab-container">
+    <div class="tab-container">
+      <div class="tab">
+        <div class="tab-content">
+          <i class="fas fa-exclamation-circle tab-icon" style="color: #da361a;"></i>
+          <div class="tab-number" style="color: #f5563a;">150</div>
+        </div>
+        <div class="tab-label">Complaints Received</div>
+      </div>
+      <div class="tab" >
+        <div class="tab-content">
+          <i class="fas fa-check-circle tab-icon" style="color: #24aa3a;"></i>
+          <div class="tab-number" style="color: #22db41;">120</div>
+        </div>
+        <div class="tab-label">Complaints Resolved</div>
+      </div>
+      <div class="tab" >
+        <div class="tab-content">
+          <i class="fas fa-sync tab-icon" style="color: #389bc9;"></i>
+          <div class="tab-number" style="color: #37c9e2;">10</div>
+        </div>
+        <div class="tab-label">Complaints In Progress</div>
+      </div>
+      <div class="tab" >
+        <div class="tab-content">
+          <i class="fas fa-comment-dots tab-icon " style="color: #4024bb;"></i>
+          <div class="tab-number" style="color: #5f3ff1;">20</div>
+        </div>
+        <div class="tab-label">Feedback</div>
+      </div>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-7" style="margin-top: 10px"> </div>
+  <div class="col-5 search-bar form-control" style="max-width: 400px;">
+      <i class="bi bi-search search-icon"></i>
+      <input type="text" placeholder="Search..." id="txtsearchDate " name="txtsearchDate "
+      [(ngModel)]="txtsearchDate" maxlength="20"/>
+  </div>
+</div>
+<div class="table-container">
+  <table class="custom-table">
+    <caption></caption>
+    <thead>
+      <tr>
+        <th>Tenant Name</th>
+        <th>Room No</th>
+        <th>Complaint</th>
+        <th>Time</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tenant of tenantData | filter:txtsearchDate">
+        <td >
+          <div style="color: #0664c9; font-size: 18px; font-weight: 600;"> {{ tenant.tenantName }} </div>
+          <div style="font-size: 15px; font-weight: 500;"><i class="bi bi-telephone-fill"></i> {{ tenant.mobile }} </div>
+        </td>
+        <td >
+          <div style="font-size: 18px; font-weight: 600;">Room {{ tenant.roomNo }} </div>
+          <div style="font-size: 15px; font-weight: 500;">{{ tenant.house }} </div>
+        </td>
+        <td>{{ tenant.complaint }}</td>
+        <td>{{ tenant.time | date: 'short' }}</td>
+        <td *ngIf="tenant.status == 2" Class="reopen" >Re-open</td>
+        <td *ngIf="tenant.status == 0" Class="pending">Pending</td>
+      </tr>
+      <tr *ngIf="tenantData?.length==0">
+        <td colspan="10" style="text-align:center;"><strong class="text-danger">No data found</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- status
+  1-pending
+  0 resolved
+  2 re-onpen -->
+
+</div>
+
+
+</div>

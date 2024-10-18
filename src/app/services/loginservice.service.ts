@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class LoginserviceService {
 
+
   constructor(private http: HttpClient) { }
 
   login(username:any,password:any) {
@@ -48,6 +49,18 @@ export class LoginserviceService {
       headers: headers,
     };
     let fullUrl =signinuser;
+    return this.http.post(fullUrl,object,options)
+  }
+
+  sendmail(object:any) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
+    let options = {
+      headers: headers,
+    };
+    let fullUrl =loginUrl;
     return this.http.post(fullUrl,object,options)
   }
 }

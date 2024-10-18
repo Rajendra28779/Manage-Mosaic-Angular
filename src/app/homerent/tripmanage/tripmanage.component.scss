@@ -1,0 +1,38 @@
+.dashboard-text{
+  text-align: center;
+  background: #ffffff url(../../../assets/img/services-left-dec.png) center no-repeat;
+  background-size: cover;
+}
+.dashboard-text h1{
+  font-size: 45px;
+  font-weight: 700;
+}
+.dashboard-text span{
+  font-size: 40px;
+  font-weight: 700;
+  color: #4295ec;
+}
+
+.dashboard-text p{
+  font-size: 17px;
+  font-weight: 400;
+  font-style: italic;
+}
+
+download-app {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically (if necessary) */
+  gap: 20px; /* Optional: Add space between the two images */
+}
+
+.download-app img {
+  width: 150px; /* Ensure images are responsive */
+  height: auto;
+}
+
+.download-app img:hover {
+  width: 170px; /* Ensure images are responsive */
+  height: auto;
+}
+

@@ -1,0 +1,111 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <p style="font-weight: 500; font-size: 17px;">Add UserDetails</p><hr>
+  <div class="row col-lg-10">
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">Name<span class="text-danger">*</span></label>
+          <input class="form-control" type="text" placeholder="Enter Full Name" autocomplete="off" id="fullname" maxlength="40">
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">Age<span class="text-danger">*</span></label>
+          <input class="form-control" type="text" placeholder="Enter Age" autocomplete="off" id="age" maxlength="3"
+          onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" >
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">Mobile No<span class="text-danger">*</span></label>
+          <input class="form-control" type="text" placeholder="Enter Mobile No" autocomplete="off" id="mobile" maxlength="12"
+          onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" >
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">Alternate Mobile No<span class="text-danger"></span></label>
+          <input class="form-control" type="text" placeholder="Enter Alternate Mobile No" autocomplete="off" id="alternate" maxlength="12"
+          onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" >
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">No Of Member<span class="text-danger">*</span></label>
+          <input class="form-control" type="text" placeholder="Enter No Of Member" autocomplete="off" id="member" maxlength="1"
+          onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" >
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">Member Mobile No<span class="text-danger"></span></label>
+          <input class="form-control" type="text" placeholder="Member Mobile No" autocomplete="off" id="othmobile" maxlength="2"
+          onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" >
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">Select House<span class="text-danger">*</span></label>
+          <select class="form-select" name="house" id="house">
+              <option value="" selected>Select House</option>
+              <ng-container *ngFor="let item of houselist">
+                  <option value={{item.districtcode}}>{{item.districtname}}</option>
+              </ng-container>
+          </select>
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">Select Room<span class="text-danger">*</span></label>
+          <select class="form-select" name="house" id="house">
+            <option value="" selected>Select House</option>
+            <ng-container *ngFor="let item of roomlist">
+                <option value={{item.districtcode}}>{{item.districtname}}</option>
+            </ng-container>
+        </select>
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">Rent Amount<span class="text-danger">*</span></label>
+          <input class="form-control" type="text" placeholder="Enter Rent Amount" autocomplete="off" id="rent" maxlength="7"
+          onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" >
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">Advance Amount<span class="text-danger">*</span></label>
+          <input class="form-control" type="text" placeholder="Enter Advance Amount" autocomplete="off" id="adv" maxlength="7"
+          onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" >
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">Effective Date<span class="text-danger">*</span></label>
+          <input type="text" class="form-control datepicker" autocomplete="off" placeholder="Effective Date" id="date" name="date">
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">Aadhar Details<span class="text-danger">*</span></label>
+          <input type="file" class="form-control" id="othdoc" accept=".pdf,.jpg,.jpeg"  (change)="handleFileInput($event,1)" required>
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">Rent Aggrement<span class="text-danger">*</span></label>
+          <input type="file" class="form-control" id="othdoc" accept=".pdf,.jpg,.jpeg"  (change)="handleFileInput($event,1)" required>
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">Other Documents<span class="text-danger"></span></label>
+          <input type="file" class="form-control" id="othdoc" accept=".pdf,.jpg,.jpeg"  (change)="handleFileInput($event,1)" required>
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4" style="margin-top: 30px;">
+      <input type="button" value="Save" class="btn btn-primary me-2" style="width: 48%;" (click)="submit()">
+      <input type="button" value="Reset" class="btn btn-info" style="width: 48%;" (click)="resetVal()">
+    </div>
+  </div>
+</div>

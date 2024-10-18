@@ -1,0 +1,55 @@
+<div class="container-fluid p-0" >
+  <div class="row about1st" style="margin-top: 5ch;">
+    <div class="col-11">
+      <p class="head">For any query</p>
+      <p class="head">feel free to reach out by drop a message.</p>
+    </div>
+    <div class="col-1">
+      <div class="social-icons" style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+        <a href="#" style="text-decoration: none;"><i class="bi bi-facebook "></i></a>
+        <a href="#" style="text-decoration: none;"><i class="bi bi-twitter"></i></a>
+        <a href="#" style="text-decoration: none;"><i class="bi bi-instagram"></i></a>
+        <a href="#" style="text-decoration: none;"><i class="bi bi-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row about1st" style="margin-top: 5ch;">
+      <div class="col-lg-4 col-md-12 col-sm-12">
+        <label for="EnterMobileno" class="form-label" style="font-size: 20px; font-weight: 400;">Name<span class="text-danger">*</span></label>
+        <input class="form-control" type="text" placeholder="Enter Name " autocomplete="off" maxlength="50" id="name">
+      </div>
+      <div class="col-lg-4 col-md-12 col-sm-12">
+        <label for="EnterMobileno" class="form-label" style="font-size: 20px; font-weight: 400;">Phone no<span class="text-danger">*</span></label>
+        <input class="form-control" type="text" placeholder="Enter Phone no " autocomplete="off" maxlength="13" id="phone" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+      </div>
+      <div class="col-lg-4 col-md-12 col-sm-12">
+        <label for="EnterMobileno" class="form-label" style="font-size: 20px; font-weight: 400;">Email<span class="text-danger">*</span></label>
+        <input class="form-control" type="text" placeholder="Enter Email " autocomplete="off" maxlength="70" id="email">
+      </div>
+      <div class="col-12" style="margin-top: 1ch;">
+        <label for="EnterMobileno" class="form-label" style="font-size: 20px; font-weight: 400;">Message<span class="text-danger">*</span></label>
+        <textarea class="form-control" type="text" rows="4" placeholder="Enter Message " autocomplete="off" maxlength="300" id="message"></textarea>
+      </div>
+      <div class="col-lg-3 col-md-12 col-sm-12" style="margin-top: 1ch;">
+        <button class="btn btn-primary" (click)="onsubmit()" style="font-size: 20px; font-weight: 500;  width: 100%;">Send</button>
+      </div>
+  </div>
+
+  <div class="row" style="background-color: #bad7f7; margin-top: 5ch;">
+    <div class="col-lg-5 col-md-6 col-sm-12">
+      <div class="mapdata">
+        <h4>Contact Us</h4>
+          <p><i class="bi bi-telephone-forward-fill me-4"></i>6370178554</p>
+          <p><i class="bi bi-envelope-at-fill me-4"></i>managemosaic@gmail.com</p>
+          <p><i class="bi bi-geo-alt-fill me-4"></i>Hanspal Bhubaneswar,
+            Odisha-752115</p>
+      </div>
+    </div>
+    <div class="col-lg-7 col-md-6 col-sm-12">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119770.0561864422!2d85.85555315594189!3d20.266536716773356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a1d7ca64e279%3A0xdc0c6b942fd57bcf!2sThanapati%20store!5e0!3m2!1sen!2sin!4v1726934940947!5m2!1sen!2sin"
+       width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</div>
+

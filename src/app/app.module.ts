@@ -13,6 +13,8 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { HomerentComponent } from './homerent/homerent.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ContactusComponent } from './contactus/contactus.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { FooterComponent } from './footer/footer.component';
     AddComponent,
     HomerentComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ContactusComponent,
   ],
   imports: [
     BrowserModule,

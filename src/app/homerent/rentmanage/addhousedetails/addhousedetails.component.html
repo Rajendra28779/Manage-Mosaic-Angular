@@ -1,0 +1,37 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <p style="font-weight: 500; font-size: 17px;">House Details</p><hr>
+  <div class="main-tab px-0 mb-2 col-md-11 row">
+    <div class="page-center">
+      <div class="card">
+        <div class="card-details">
+          <i class="bi bi-plus-circle"></i>
+          <p>Add New Details</p>
+        </div>
+      </div>
+    </div>
+    <ng-container *ngFor="let record of records">
+      <div class="container col-md-4" style="margin-top: 1ch;">
+        <div class="d-flex px-0 ">
+          <div class="card-tab">
+            <a class="card1" [routerLink]="['/rentmanage/homerentmanage/dashboard']"
+              routerLinkActive="router-link-active" title="Rent Management">
+              <div class="d-flex f-col">
+                <div class="icon_tabp"> <span><i class="bi bi-house-door-fill"></i></span> </div>
+                <div class="cardpk-txt"> {{record.name}}</div>
+              </div>
+              <div class="d-flex f-col">
+                <div class="cardpk-txt1" style="margin-left:10ch; margin-top:-2ch; "> {{record.gender}}</div>
+              </div>
+              <div class="go-corner">
+                <div class="go-arrow">
+                  <i class="bi bi-arrow-right"></i>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+.content {
+  margin-left: 250px; /* Adjust according to your sidebar width */
+  padding: 20px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
+}
+
+
+.card {
+  max-width: 100%;
+  padding: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  border: none;
+  background-color: #eff1f3;
+  border-radius: 20px 30px 0 30px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border: 2px solid #95bfec;
+  box-shadow: 0 6px 12px #95bfec(0, 123, 255, 0.5);
+}
+
+.card-details {
+  margin-bottom: 10px;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-size: 24px;
+  color: #007bff;
+}
+
+.card:hover .arrow{
+  position: absolute;
+  font-size: 24px;
+  transition: 0.4s;
+  display: flex;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  background-color: #007bff;
+  border-radius: 32px 0 4px 0;
+  color: white;
+  margin-right: -5px;
+}
+
+.bi-arrow-right {
+  cursor: pointer;
+}
+
+.card-details p{
+  margin-bottom: -1px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.card-details h4{
+  color: #3267a0;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 600;
+}
+
+.badge.bg-danger {
+  color: #e94d4d;
+  background-color: #f7cfcf !important;
+  text-align: center;
+  border-radius: 20px;
+  margin-top: 5px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-container {
+  display: flex;                /* Use flexbox for layout */
+  align-items: center;         /* Center items vertically */
+  gap: 10px;                   /* Optional: space between items */
+}
+
+.search-bar {
+  display: flex;               /* Use flexbox for the search bar */
+  align-items: center;         /* Center icon and input */
+}
+
+.search-icon {
+  color: rgb(58, 56, 56);                 /* Color for the search icon */
+  margin-right: 5px;          /* Space between icon and input */
+}
+
+input[type="text"] {
+  border: none;                /* Remove border */
+  outline: none;               /* Remove outline on focus */
+  flex: 1;                     /* Allow input to grow */
+  padding: 5px;                /* Padding for input */
+  font-size: 16px;             /* Font size for input */
+}

@@ -1,0 +1,88 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <p style="font-weight: 500; font-size: 17px;">People Are Reaching Out</p><hr>
+  <div class="table-container example-container">
+    <table class="custom-table">
+      <caption></caption>
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Mobile No</th>
+          <th>email Id</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tenant of connectfrommail | filter:txtsearchDate">
+          <td >{{ tenant.tenantName }}</td>
+          <td >{{tenant.mobile}}</td>
+          <td>{{ tenant.complaint }}</td>
+          <td>{{ tenant.time | date: 'short' }}</td>
+        </tr>
+        <tr *ngIf="connectfrommail?.length==0">
+          <td colspan="10" style="text-align:center;"><strong class="text-danger">No data found</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row" >
+    <div class="col-6">
+      <p style="font-weight: 500; font-size: 17px;">Upcoming Occupied Rooms</p><hr>
+      <div class="table-container example-container">
+        <table class="custom-table tbl01">
+          <caption></caption>
+          <thead>
+            <tr>
+              <th>Room Details</th>
+              <th>Occupied From</th>
+              <th>Confirmation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tenant of bookroomData | filter:txtsearchDate">
+              <td >
+                <div style="font-size: 18px; font-weight: 600;"> {{ tenant.roomDetails }} </div>
+                <div style="font-size: 15px; font-weight: 500;">{{ tenant.house }} </div>
+              </td>
+              <td >{{tenant.vacantFrom}}</td>
+              <td *ngIf="tenant.alertStatus == 1"><span class="badge bg-danger">No</span></td>
+              <td *ngIf="tenant.alertStatus == 2"><span class="badge bg-success">Yes</span></td>
+            </tr>
+            <tr *ngIf="bookroomData?.length==0">
+              <td colspan="10" style="text-align:center;"><strong class="text-danger">No data found</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-6">
+      <p style="font-weight: 500; font-size: 17px;">Upcoming Vacancies</p><hr>
+      <div class="table-container example-container">
+        <table class="custom-table tbl02">
+          <caption></caption>
+          <thead>
+            <tr>
+              <th>Room Details</th>
+              <th>Vacant From</th>
+              <th>Alert Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tenant of vacentroomData | filter:txtsearchDate">
+              <td >
+                <div style="font-size: 18px; font-weight: 600;"> {{ tenant.roomDetails }} </div>
+                <div style="font-size: 15px; font-weight: 500;">{{ tenant.house }} </div>
+              </td>
+              <td>{{ tenant.vacantFrom }}</td>
+              <td *ngIf="tenant.alertStatus == 1"><span class="badge bg-danger">No</span></td>
+              <td *ngIf="tenant.alertStatus == 0"><span class="badge bg-success">Yes</span></td>
+            </tr>
+            <tr *ngIf="vacentroomData?.length==0">
+              <td colspan="10" style="text-align:center;"><strong class="text-danger">No data found</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

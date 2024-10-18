@@ -1,0 +1,50 @@
+.about1st{
+  margin-left: 12ch;
+  margin-right: 12ch;
+}
+@media (max-width: 768px) {
+  .about1st{
+    margin-left: 3ch;
+    margin-right: 3ch;
+  }
+}
+
+.head {
+  font-size: 55px;
+  font-family: 'Times New Roman', serif;
+  margin-top: -1ch;
+}
+
+.social-icons {
+  display: flex; /* Flexbox to align icons in one line */
+  /* gap: 15px;  */
+ }
+
+ .social-icons i {
+  font-size: 20px; /* Adjust the size of the icons */
+  color: #3267a0; /* Change the icon color */
+  padding: 15px; /* Add padding inside the icons */
+  background: rgba(223, 220, 220, 0.634); /* Semi-transparent white background */
+  border-radius: 50%; /* Make the background circular */
+ }
+
+ .mapdata {
+  margin: 10ch;
+ }
+
+ .mapdata h4{
+  font-size: 40px;
+  color: #3267a0;
+  font-family: 'Times New Roman', serif;
+ }
+
+ .mapdata i{
+  font-size: 20px;
+  color: #3267a0;
+ }
+
+ .mapdata p{
+  font-size: 20px;
+  color: #3267a0;
+ }
+

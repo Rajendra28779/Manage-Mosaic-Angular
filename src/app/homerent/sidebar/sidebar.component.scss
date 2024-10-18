@@ -1,0 +1,78 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #3267a0;//4cb683
+  padding: 20px;
+  position: fixed;
+  border-radius: 0 30px 0 0;
+}
+
+.logo {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center align items vertically */
+  margin-bottom: 20px; /* Space below the logo */
+}
+
+.logo i {
+  color: white;
+  font-size: 40px;
+}
+
+.logo h4 {
+  color: white;
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif, sans-serif;
+}
+
+.logo p {
+  color: white;
+}
+
+.nav-links {
+  list-style-type: none;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 15px 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a:hover {
+  color: #ddd;
+}
+
+.nav-links i {
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.nav-links span {
+  font-size: 16px;
+  margin-left: 1ch;
+  max-width: 240px;
+  // font-family: 'Times New Roman', Times, serif, sans-serif;
+}
+
+.help-text {
+  text-align: center;
+  color: #ffffff; /* Muted text color */
+  font-size: 15px;
+  position: fixed;
+  padding: 10px;
+  bottom: 0;
+  border-top: 0.3px solid #525252; /* Line above the text */
+  max-width: 200px;
+}
+
+
+
+
+
