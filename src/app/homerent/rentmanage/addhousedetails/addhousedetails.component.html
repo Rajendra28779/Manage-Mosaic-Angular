@@ -1,20 +1,21 @@
 <app-sidebar></app-sidebar>
 <div class="content">
-  <p style="font-weight: 500; font-size: 17px;">House Details</p><hr>
+  <p style="font-weight: 600; font-size: 17px; font-family: 'Playfair Display', serif;">House Details</p><hr>
   <div class="main-tab px-0 mb-2 col-md-11 row">
     <div class="page-center">
+      <a (click)="housedetails(0)" style="text-decoration: none;">
       <div class="card">
         <div class="card-details">
           <i class="bi bi-plus-circle"></i>
-          <p>Add New Details</p>
+            <p style="font-family: 'Times New Roman', Times, serif; font-weight: 600;">Add New Details</p>
         </div>
-      </div>
+      </div></a>
     </div>
     <ng-container *ngFor="let record of records">
       <div class="container col-md-4" style="margin-top: 1ch;">
         <div class="d-flex px-0 ">
           <div class="card-tab">
-            <a class="card1" [routerLink]="['/rentmanage/homerentmanage/dashboard']"
+            <a class="card1" (click)="housedetails(record.houseid)"
               routerLinkActive="router-link-active" title="Rent Management">
               <div class="d-flex f-col">
                 <div class="icon_tabp"> <span><i class="bi bi-house-door-fill"></i></span> </div>

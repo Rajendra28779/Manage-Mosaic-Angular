@@ -4,13 +4,15 @@
   left: 0;
   width: 100%;
   height: 50px;
-  background-color: #cedceb;
-  color: #007bff;
-  font-weight: 500;
+  background-color: #BADFE7;
+  color: #388087;
+  font-weight: 600;
+  font-size: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  letter-spacing: 2px;
   // margin-left: 250px;
 }

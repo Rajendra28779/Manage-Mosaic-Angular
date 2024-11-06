@@ -1,7 +1,7 @@
 .sidebar {
   width: 250px;
   height: 100vh;
-  background-color: #3267a0;//4cb683
+  background-color: #388087;//4cb683
   padding: 20px;
   position: fixed;
   border-radius: 0 30px 0 0;
@@ -20,8 +20,8 @@
 
 .logo h4 {
   color: white;
-  margin: 0;
-  font-family: 'Times New Roman', Times, serif, sans-serif;
+  margin-left: 5px;
+  font-family: 'Playfair Display', serif;
 }
 
 .logo p {
@@ -58,7 +58,7 @@
   font-size: 16px;
   margin-left: 1ch;
   max-width: 240px;
-  // font-family: 'Times New Roman', Times, serif, sans-serif;
+  font-family: 'Playfair Display', serif;
 }
 
 .help-text {

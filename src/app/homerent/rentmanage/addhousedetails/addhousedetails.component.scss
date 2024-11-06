@@ -14,7 +14,7 @@
     overflow: hidden;
     top: 0;
     right: 0;
-    background-color: #3182da;
+    background-color: #388087;
     border-radius: 0 4px 0 32px;
   }
 
@@ -45,7 +45,7 @@
       z-index: -1;
       top: -16px;
       right: -16px;
-      background: #3182da;
+      background: #388087;
       height: 32px;
       width: 32px;
       border-radius: 32px;
@@ -76,7 +76,7 @@
       }
 
       .icon_tabp {
-        background: #4295ec;
+        background: #6FB3B8;
         color: rgba(255, 255, 255);
         [class^="icon-"] {
           color: var(--white);
@@ -87,7 +87,7 @@
 }
 
 .icon_tabp [class^="icon-"] {
-  color: #3182da;
+  color: #388087;
 }
 
 .main-tab .d-flex {
@@ -96,11 +96,11 @@
 
 .card1.router-link-active{
 
-  .icon_tabp{background: #3182da;
+  .icon_tabp{background: #388087;
     span{color: #fff;}
   }
 
-  background: #3182da;
+  background: #388087;
   color: var(--white);
 
   .cardpk-txt {
@@ -141,11 +141,11 @@
   align-items: center;
   display: flex;
   color: var(--dark);
-  font-family: 'Times New Roman', Times, serif, sans-serif;
+  font-family: 'Playfair Display', serif;
 }
 
 .main-tab .active a {
-  background: #3182da;
+  background: #388087;
   color: var(--white);
 }
 .page-center {
@@ -154,8 +154,8 @@
   align-items: center;      /* Vertically center */
 }
 .card{
-  border: 1px solid lightblue;
-  background-color: aliceblue;
+  border: 1px solid #BADFE7;
+  background-color: #F6F6F2;
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 255, 0.2);
@@ -165,7 +165,7 @@
 }
 .card:hover {
   transform: scale(1.05);
-  border-color: #3182da;
+  border-color: #388087;
 }
 .card-details{
   height: 100px;

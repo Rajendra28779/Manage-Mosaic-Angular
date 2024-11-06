@@ -2,3 +2,288 @@
   margin-left: 250px; /* Adjust according to your sidebar width */
   padding: 20px;
 }
+
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.total {
+  background-color: #FFCE56;
+}
+
+.occupied {
+  background-color: #36A2EB;
+}
+
+.advance {
+background-color: #FF6384;
+}
+
+.remaining {
+  background-color: #84fadc;
+}
+
+.vertical-bar-container {
+width: 30px; /* Width of the bar */
+height: 140px; /* Total height of the bar */
+border: 1px solid #ccc;
+display: flex;
+flex-direction: column-reverse; /* Fill from bottom to top */
+background-color: rgb(185, 185, 185);
+}
+
+.fill {
+width: 100%; /* Full width of the bar */
+}
+
+.wrapper {
+display: flex;          /* Enables Flexbox for horizontal alignment */
+align-items: flex-start; /* Aligns items at the top */
+gap: 20px;              /* Adds space between the bar and the legend */
+}
+
+.tabdata{
+  align-items: center;
+  text-align: center;
+}
+
+.tabdata i{
+font-size: 36px;
+color: #FF6384;
+text-align: center;
+}
+
+.horizontal-bar-container {
+width: 100%;  /* Width of the bar */
+height: 10px;  /* Height of the bar */
+background-color: rgb(204, 199, 199);  /* The base color for the remaining part */
+position: relative;
+border-radius: 10px;  /* Rounded corners */
+overflow: hidden;
+}
+
+.horizontal-bar-fill {
+height: 100%;
+background-color: rgb(68, 248, 68);
+position: absolute;
+left: 0;  /* Starts filling from the left */
+border-radius: 10px 0 0 10px;  /* Round left corners for a neat finish */
+}
+
+.percentage-text{
+width: 100%;
+text-align: center;
+font-style: italic;
+font-weight: 500;
+}
+
+.eraning-text{
+width: 100%;
+font-style: italic;
+text-align: center;
+font-weight: 500;
+}
+.eraning-text span{
+font-style: italic;
+font-weight: 500;
+font-size: 18px;
+text-align: center;
+color: #e63956;
+}
+
+.booking-text{
+width: 100%;
+font-style: italic;
+text-align: center;
+font-weight: 500;
+}
+
+.booking-text span{
+font-style: italic;
+font-weight: 500;
+font-size: 18px;
+color: #9d26ec;
+}
+
+.compl-text{
+width: 100%;
+font-style: italic;
+font-weight: 500;
+text-align: center;
+}
+
+.card {
+  display: block;
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px 10px;
+  margin: 0px auto;
+  text-decoration: none;
+  z-index: 0;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px 3px #2423231a;
+  border-bottom: 2px solid #2423231a;
+  transition: transform 0.25s ease-out;
+  height: 180px;
+  background-color: #f8f8f8;
+}
+
+.card-body {
+  display: flex;          /* Enables Flexbox for horizontal alignment */
+  align-items: flex-start; /* Aligns items at the top */
+  gap: 20px;              /* Adds space between the bar and the legend */
+  text-align: center;
+  }
+
+.card-header {
+  font-size: 20px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+}
+
+.search-bar {
+  display: flex;               /* Use flexbox for the search bar */
+  align-items: center;         /* Center icon and input */
+}
+
+.search-icon {
+  color: rgb(58, 56, 56);                 /* Color for the search icon */
+  margin-right: 5px;          /* Space between icon and input */
+}
+
+input[type="text"] {
+  border: none;                /* Remove border */
+  outline: none;               /* Remove outline on focus */
+  flex: 1;                     /* Allow input to grow */
+  padding: 5px;                /* Padding for input */
+  font-size: 16px;             /* Font size for input */
+}
+
+.housedimg{
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-top: 2ch;
+}
+
+.housed-text{
+  // font-style: italic;
+  width: 100%;
+  font-weight: 500;
+  text-align: center;
+  }
+
+
+  .tab-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+
+  .tab-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    align-items: center;
+  }
+
+  .tab-container hr{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .tab-left {
+    flex: 1;
+  }
+
+  .tab-left span {
+    font-weight: 500;
+  }
+
+  .tab-right span {
+    font-weight: 500;
+  }
+
+  .tab-left .name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #388087;
+  }
+
+  .tab-right {
+    // display: flex;
+    text-align: end;
+    justify-content: space-between;
+  }
+
+  .doc-icons {
+    margin-right: 15px;
+  }
+
+  .doc-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }
+
+  .mobile {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+  }
+
+  .room-house {
+    margin-right: 15px;
+    font-size: 14px;
+    color: #666;
+  }
+
+  .due-info {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+  }
+
+  .due-info span {
+    font-size: 14px;
+    margin-bottom: 2px;
+    color: #333;
+  }
+
+  @media (max-width: 768px) {
+    .tab-right {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .due-info {
+      text-align: left;
+      margin-top: 10px;
+    }
+  }
+
+  .example-container {
+    height: 250px;
+    max-width: 100%;
+    overflow: auto;
+  }

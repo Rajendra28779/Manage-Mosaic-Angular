@@ -1,6 +1,6 @@
 <app-sidebar></app-sidebar>
 <div class="content">
-  <p style="font-weight: 500; font-size: 17px;">Complaints Dashboard</p><hr>
+  <p style="font-weight: 600; font-size: 17px; font-family: 'Playfair Display', serif;">Complaints Dashboard</p><hr>
   <div class="backtab-container">
     <div class="tab-container">
       <div class="tab">
@@ -57,7 +57,7 @@
     <tbody>
       <tr *ngFor="let tenant of tenantData | filter:txtsearchDate">
         <td >
-          <div style="color: #0664c9; font-size: 18px; font-weight: 600;"> {{ tenant.tenantName }} </div>
+          <div style="color: #388087; font-size: 18px; font-weight: 600;"> {{ tenant.tenantName }} </div>
           <div style="font-size: 15px; font-weight: 500;"><i class="bi bi-telephone-fill"></i> {{ tenant.mobile }} </div>
         </td>
         <td >

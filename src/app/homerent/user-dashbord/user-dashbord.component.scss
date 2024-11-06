@@ -136,16 +136,17 @@
 
   .dashboard-text{
     text-align: center;
-    background: #ffffff url(../../../assets/img/services-left-dec.png) center no-repeat;
+    // background: #ffffff url(../../../assets/img/services-left-dec.png) center no-repeat;
     background-size: cover;
     margin-bottom: 5ch;
+    border-radius: 50px 0 0 5px;
   }
 
-  .dashboard-text h1{
-    font-size: 45px;
+  .dashboard-text h2{
+    font-size: 30px;
     font-weight: 700;
   }
-  .dashboard-text span{
+  .dashboard-text .headcard span{
     font-size: 40px;
     font-weight: 700;
     color: #4295ec;
@@ -157,120 +158,187 @@
     font-style: italic;
   }
 
-.legend {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    margin: 5px 0;
-    font-style: italic;
-    font-weight: 500;
-}
-
-.legend-color {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    border-radius: 50%;
-}
-
-.total {
-    background-color: #FFCE56;
-}
-
-.occupied {
-    background-color: #36A2EB;
-}
-
-.advance {
-  background-color: #FF6384;
-}
-
-.remaining {
-    background-color: #84fadc;
-}
-
-.vertical-bar-container {
-  width: 30px; /* Width of the bar */
-  height: 140px; /* Total height of the bar */
-  border: 1px solid #ccc;
-  display: flex;
-  flex-direction: column-reverse; /* Fill from bottom to top */
-  margin-left: 3ch;
-}
-
-.fill {
-  width: 100%; /* Full width of the bar */
-}
-
-.wrapper {
-  display: flex;          /* Enables Flexbox for horizontal alignment */
-  align-items: flex-start; /* Aligns items at the top */
-  gap: 20px;              /* Adds space between the bar and the legend */
-}
-
-.legend i{
-  font-size: 36px;
-  margin-left: 4ch;
-  color: #FF6384;
-}
-
-.horizontal-bar-container {
-  width: 200px;  /* Width of the bar */
-  height: 10px;  /* Height of the bar */
-  background-color: rgb(204, 199, 199);  /* The base color for the remaining part */
+.headcard{
+  display: block;
   position: relative;
-  border-radius: 10px;  /* Rounded corners */
+  width: 90%;
+  border-radius: 30px;
+  margin: 0px auto;
+  text-decoration: none;
+  z-index: 0;
   overflow: hidden;
+  border: 2px solid #2423231a;
+  box-shadow: 0px 4px 6px 3px #2423231a;
+  background-color: white;
 }
 
-.horizontal-bar-fill {
-  height: 100%;
-  background-color: rgb(68, 248, 68);
+.card {
+  display: block;
+  position: relative;
+  width: 100%;
+  border-radius: 15px;
+  padding: 10px 10px;
+  margin: 0px auto;
+  text-decoration: none;
+  z-index: 0;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px 3px #2423231a;
+  border-bottom: 2px solid #2423231a;
+  transition: transform 0.25s ease-out;
+  margin-top: 5ch;
+  margin-bottom: 5ch;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: #3182da;
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(3);
+    transform-origin: 50% 50%;
+    transition: transform 0.25s ease-out;
+  }
+
+  &:hover {
+    &:before {
+      transform: scale(27);
+    }
+
+    .cardpk-txt {
+      transition: all 1s ease-out;
+      color: rgba(255, 255, 255);
+    }
+
+    .icon_tabp {
+      background: #4295ec;
+      color: rgba(255, 255, 255);
+      [class^="icon-"] {
+        color: var(--white);
+      }
+    }
+  }
+}
+
+.card-body {
+  background-color: white;
+  height: 300px;
+  text-align: center;
+}
+
+.tebtext{
   position: absolute;
-  left: 0;  /* Starts filling from the left */
-  border-radius: 10px 0 0 10px;  /* Round left corners for a neat finish */
-}
-
-.percentage-text{
-  width: 200px;
+  bottom: 0;
+  width: 80%;
+  padding: 10px;
   text-align: center;
-  font-style: italic;
-  font-weight: 500;
+
+  h3{
+    font-family: 'Times New Roman', Times, serif;
+    color: #388087;
+  }
+  h5{
+    font-family: 'Playfair Display', serif;
+  }
+
+  p{
+    font-size: 14px;
+  }
 }
 
-.eraning-text{
-  width: 300px;
-  font-style: italic;
-  font-weight: 500;
-}
-.eraning-text span{
-  font-style: italic;
-  font-weight: 500;
-  font-size: 18px;
-  color: #e63956;
+.image-container {
+  display: flex;
+  justify-content: center; /* Centers the image horizontally */
+  align-items: center;     /* Centers the image vertically if needed */
+
+  img {
+    object-fit: cover;        /* Keeps the aspect ratio of the image */
+    height: 200px;
+    width: 100%;         /* Sets the size of the image */
+  }
 }
 
-.booking-text{
-  width: 230px;
-  font-style: italic;
-  font-weight: 500;
-}
-
-.booking-text span{
-  font-style: italic;
-  font-weight: 500;
-  font-size: 18px;
-  color: #9d26ec;
-}
-
-.compl-text{
-  width: 160px;
-  font-style: italic;
-  font-weight: 500;
+.bgstickimg{
+  background-image: url('../../../assets/img/overlay-bg.jpg'); /* Replace with your image path */
+  background-size: cover; /* Adjusts the image to cover the entire section */
+  background-position: center;
+  backdrop-filter: blur(35px); /* Blur effect */
+  padding: 20px;
+  width: 100%; /* Adjust width as needed */
+  // display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-attachment: fixed; /* Keeps the background fixed as the user scrolls */
   text-align: center;
+
+  p{
+    font-weight: 500;
+    color: white;
+    font-size: 25px;
+    font-family: 'Playfair Display', serif;
+  }
+
 }
+
+.about{
+  h1{
+    text-align:left;
+    font-family: 'Playfair Display', serif;
+    font-weight: bolder;
+  }
+  p{
+    text-align: justify;
+  }
+}
+
+.aboutimg{
+  max-width: 100%;
+  height:350px;
+  // border: 2px solid ;
+  // border-color: #388087;
+  // border-radius: 10px;
+}
+
+.servcnt{
+  width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 10ch;
+  h1{
+    font-family: 'Playfair Display', serif;
+    font-weight: bolder;
+  }
+}
+
+.servimg{
+  width: 100%;
+  height:150px;
+  margin-top: 1ch;
+}
+
+.servgif{
+  width: 100px;
+  height:100px;
+}
+
+.download-app {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically (if necessary) */
+  gap: 20px; /* Optional: Add space between the two images */
+}
+
+.download-app img {
+  width: 150px; /* Ensure images are responsive */
+  height: auto;
+}
+
+.download-app img:hover {
+  width: 160px; /* Ensure images are responsive */
+  height: auto;
+}
+
+

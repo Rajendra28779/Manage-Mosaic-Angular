@@ -1,7 +1,7 @@
 <app-sidebar></app-sidebar>
 <div class="content">
   <div class="flex-container">
-    <p style="font-weight: 500; font-size: 17px; margin-right: auto;">Payment Reminder</p>
+    <p style="font-weight: 600; font-size: 17px; margin-right: auto; font-family: 'Playfair Display', serif;">Payment Reminder</p>
 
     <select class="form-select me-2" name="house" id="house" style="max-width: 250px;">
       <option value="" selected>Select House</option>
@@ -24,13 +24,13 @@
           <div class="card-details">
             <div class="info-row">
               <h4>{{ record.name }}</h4>
-              <i class="bi bi-person-vcard" style="font-size: 25px; color: rgb(46, 61, 148);"></i>
+              <i class="bi bi-person-vcard" style="font-size: 25px; color: #388087"></i>
             </div>
             <div class="info-row">
-              <p style="color: #285e2a; font-size: 15px;">Room : No 1001</p>
+              <p style="color: #6FB3B8; font-size: 15px; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">Room : No 1001</p>
               <p class="badge bg-danger rent-amount">Rent : ₹{{ record.rentAmount }}</p>
             </div>
-            <p style="color: #285e2a; font-style: italic;">House : {{ record.gender }}</p>
+            <p style="color: #6FB3B8; font-style: italic; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">House : {{ record.gender }}</p>
           </div>
           <div class="arrow">
             <i class="bi bi-arrow-right"></i>
