@@ -12,6 +12,7 @@ import { PaymntreminderComponent } from './paymntreminder/paymntreminder.compone
 import { FormsModule } from '@angular/forms';
 import { CompliantdetailsComponent } from './compliantdetails/compliantdetails.component';
 import { ReminderComponent } from './reminder/reminder.component';
+import { DashborddesignComponent } from './dashborddesign/dashborddesign.component';
 
 
 
@@ -28,6 +29,7 @@ import { ReminderComponent } from './reminder/reminder.component';
     PaymntreminderComponent,
     CompliantdetailsComponent,
     ReminderComponent,
+    DashborddesignComponent,
   ],
   imports: [
     CommonModule,

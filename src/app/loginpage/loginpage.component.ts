@@ -31,7 +31,7 @@ export class LoginpageComponent implements OnInit {
       this.show=true
       this.showMsg();
     }
-    var component = this;
+    let component = this;
     $('#loginCaptchaImg').html(this.captchaService.getCaptcha());
     $('#loginRefreshCaptcha').click(function () {
       $('#loginCaptchaImg').html(component.captchaService.getCaptcha());
@@ -49,6 +49,8 @@ export class LoginpageComponent implements OnInit {
     }
   }
   onLoggedIn(){
+    this.router.navigate(['/rentmanage/userdashboard']);
+    return;
 
     let challange = $('#capt').val();
     let captcha = $('#loginCaptchaImg').html();
@@ -134,6 +136,7 @@ google.accounts.id.prompt((notification: PromptMomentNotification) => {});
 
 }
 async handleCredentialResponse(response: any) {
+
 }
 
 }

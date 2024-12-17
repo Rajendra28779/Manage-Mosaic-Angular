@@ -44,7 +44,7 @@ background-color: #FF6384;
 .vertical-bar-container {
 width: 30px; /* Width of the bar */
 height: 140px; /* Total height of the bar */
-border: 1px solid #ccc;
+// border: 1px solid #ccc;
 display: flex;
 flex-direction: column-reverse; /* Fill from bottom to top */
 background-color: rgb(185, 185, 185);
@@ -229,6 +229,7 @@ input[type="text"] {
     font-size: 20px;
     font-weight: bold;
     color: #388087;
+    cursor: pointer;
   }
 
   .tab-right {
@@ -287,3 +288,92 @@ input[type="text"] {
     max-width: 100%;
     overflow: auto;
   }
+
+
+
+.tenant-card {
+  width: 440px;
+  padding: 5px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.tenant-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #2a6f73;
+}
+
+.tenant-card-detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 17px;
+}
+
+.tenant-card-detail span {
+  font-weight: bold;
+  color: #555;
+}
+
+.tenant-card-detail p {
+  color: #2a6f73;
+  margin: 0;
+}
+
+//graph
+
+@media (max-width: 1024px) {
+  .executive_chart {
+    margin-top: 1rem;
+  }
+  .card .heading {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .executive_chart {
+    overflow: auto !important;
+  }
+}
+
+.chart_section {
+  height: 18rem;
+
+  @media (max-width: 640px) {
+      height: auto;
+  }
+}
+
+.funds_section {
+
+  .bg_blue {
+    background: transparent linear-gradient(110deg, #4D84F0 0%, #3160BC 100%);
+  }
+
+  .bg_yellow {
+    background: transparent linear-gradient(108deg, #EBB426 0%, #D4A222 100%);
+  }
+
+  .bg_green {
+    background: transparent linear-gradient(108deg, #41CB91 0%, #2BAF78 100%);
+  }
+
+  .bg_orange {
+    background: transparent linear-gradient(108deg, #DC6E4B 0%, #C7603F 100%);
+  }
+
+  .card {
+    transition: 0.5s cubic-bezier(0.55, 0.09, 0.68, 0.53);
+    border-radius: 10px;
+    border: 0;
+  }
+
+  .card-body {
+    padding: 1rem 1rem;
+  }
+}
+
+

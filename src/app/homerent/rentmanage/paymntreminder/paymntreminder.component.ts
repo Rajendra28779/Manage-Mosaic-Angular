@@ -14,12 +14,12 @@ export class PaymntreminderComponent implements OnInit {
 
   ngOnInit(): void {
     this.records = [
-      { name: 'Rajendra', age: 20, gender: 'Male', rentAmount: 5000 },
-      { name: 'Suresh', age: 25, gender: 'Male', rentAmount: 6000 },
-      { name: 'Meera', age: 22, gender: 'Female', rentAmount: 5500 },
-      { name: 'Rajendra', age: 20, gender: 'Male', rentAmount: 5000 },
-      { name: 'Suresh', age: 25, gender: 'Male', rentAmount: 6000 },
-      { name: 'Meera', age: 22, gender: 'Female', rentAmount: 5500 }
+      { name: 'Rajendra', room: 101, house: 'Sobhanna 01', rentAmount: 5000 },
+      { name: 'Suresh', room: 302, house: 'Sobhanna 01', rentAmount: 6000 },
+      { name: 'Meera', room: 104, house: 'Sobhanna 01', rentAmount: 5500 },
+      { name: 'Sanjib', room: 204, house: 'Sobhanna 02', rentAmount: 5000 },
+      { name: 'Raina', room: 101, house: 'Sobhanna 02', rentAmount: 6000 },
+      { name: 'Dhoni', room: 102, house: 'Sobhanna 02', rentAmount: 5500 }
       // Add more records as needed
     ];
   }

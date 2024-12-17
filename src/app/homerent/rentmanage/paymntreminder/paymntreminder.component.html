@@ -1,22 +1,29 @@
 <app-sidebar></app-sidebar>
 <div class="content">
-  <div class="flex-container">
-    <p style="font-weight: 600; font-size: 17px; margin-right: auto; font-family: 'Playfair Display', serif;">Payment Reminder</p>
+  <p style="font-weight: 600; font-size: 17px; margin-right: auto; font-family: 'Playfair Display', serif;">Payment Reminder</p><hr>
+  <div class="flex-container"></div>
 
-    <select class="form-select me-2" name="house" id="house" style="max-width: 250px;">
-      <option value="" selected>Select House</option>
-      <ng-container *ngFor="let item of houselist">
-        <option value="{{item.districtcode}}">{{item.districtname}}</option>
-      </ng-container>
-    </select>
-
-    <div class="search-bar form-control" style="max-width: 400px;">
-      <i class="bi bi-search search-icon"></i>
-      <input type="text" placeholder="Search..." id="txtsearchDate " name="txtsearchDate "
-      [(ngModel)]="txtsearchDate" maxlength="20 " (input)="onSearch($event)" />
+  <div class="row">
+    <div class="col-lg-3 col-xxl-3">
+      <select class="form-select me-2" name="house" id="house" style="max-width: 250px;">
+        <option value="" selected>Select House</option>
+        <ng-container *ngFor="let item of houselist">
+          <option value="{{item.districtcode}}">{{item.districtname}}</option>
+        </ng-container>
+      </select>
+    </div>
+    <div class="col-lg-2 col-xxl-2" style="font-size: 18px; font-style: italic;">
+      <b>Total No : 678</b>
+    </div>
+    <div class="col-lg-2 col-xxl-2"></div>
+    <div class="col-lg-5 col-xxl-5">
+      <div class="search-bar form-control" style="max-width: 400px;">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text" placeholder="Search..." id="txtsearchDate " name="txtsearchDate " autocomplete="off"
+        [(ngModel)]="txtsearchDate" maxlength="20 " (input)="onSearch($event)" />
+      </div>
     </div>
   </div>
-  <hr>
 
     <div class="row col-lg-11 card-container">
       <div class="col-lg-4 col-xxl-4 " *ngFor="let record of records | filter:txtsearchDate">
@@ -24,13 +31,14 @@
           <div class="card-details">
             <div class="info-row">
               <h4>{{ record.name }}</h4>
-              <i class="bi bi-person-vcard" style="font-size: 25px; color: #388087"></i>
+              <i class="bi bi-person-vcard" style="font-size: 25px; color: #2a6f73; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#userdetails" title="Tenent Details"></i>
             </div>
             <div class="info-row">
-              <p style="color: #6FB3B8; font-size: 15px; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">Room : No 1001</p>
+              <p style="color: #388087; font-size: 15px; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">Room : No {{record.room}}</p>
               <p class="badge bg-danger rent-amount">Rent : ₹{{ record.rentAmount }}</p>
             </div>
-            <p style="color: #6FB3B8; font-style: italic; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">House : {{ record.gender }}</p>
+            <p style="color: #388087; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">House : {{ record.house }}</p>
+            <p style="color: #388087; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">Due Date : <span style="color: #4b5fd4 ;">06-Nov-2024</span></p>
           </div>
           <div class="arrow">
             <i class="bi bi-arrow-right"></i>
@@ -39,3 +47,67 @@
       </div>
     </div>
 </div>
+
+
+<!-- User Details-->
+<div class="modal fade" id="userdetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 10ch;">
+  <div class="modal-dialog" style="max-width: 35%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 25px; color: #388087">
+          <i class="bi bi-file-person-fill"></i> Rajendra Prasad Sahoo
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="tenant-card">
+          <div class="detail">
+            <span>Mobile No:</span>
+            <p>6370178554</p>
+          </div>
+          <div class="detail">
+            <span>Additional Mobile No:</span>
+            <p>6370178554</p>
+          </div>
+          <div class="detail">
+            <span>Email Id:</span>
+            <p>rajendraprasadsahoo28@gmail.com</p>
+          </div>
+          <div class="detail">
+            <span>Room No:</span>
+            <p>1001</p>
+          </div>
+          <div class="detail">
+            <span>House Name:</span>
+            <p>Sobhanna 01</p>
+          </div>
+          <div class="detail">
+            <span>Family Members:</span>
+            <p>5</p>
+          </div>
+          <div class="detail">
+            <span>Age:</span>
+            <p>26</p>
+          </div>
+          <div class="detail">
+            <span>Rent Amount:</span>
+            <p>₹5000</p>
+          </div>
+          <div class="detail">
+            <span>Allocation Date:</span>
+            <p>06-Nov-2024</p>
+          </div>
+          <div class="detail">
+            <span>Aadhar Doc:</span>
+            <p><i class="bi bi-file-earmark-arrow-down-fill"></i></p>
+          </div>
+          <div class="detail">
+            <span>Rent Aggrement:</span>
+            <p><i class="bi bi-file-earmark-arrow-down-fill"></i></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- userdetails -->
