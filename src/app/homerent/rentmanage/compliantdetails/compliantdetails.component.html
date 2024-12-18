@@ -35,10 +35,14 @@
   </div>
 
 <div class="row">
-  <div class="col-7" style="margin-top: 10px"> </div>
+  <div class="col-7 d-flex" style="margin-top: 10px;margin-left: 15px; color: rgb(206, 70, 70); ">
+    <i class="bi bi-info-circle-fill me-3 "></i>
+    <p style="font-weight: 500;">These complaints were raised by tenants to help us improve.
+      Please resolve all issues as soon as possible to ensure a better experience.</p>
+  </div>
   <div class="col-5 search-bar form-control" style="max-width: 400px;">
       <i class="bi bi-search search-icon"></i>
-      <input type="text" placeholder="Search..." id="txtsearchDate " name="txtsearchDate "
+      <input type="text" placeholder="Search..." id="txtsearchDate " name="txtsearchDate " autocomplete="off"
       [(ngModel)]="txtsearchDate" maxlength="20"/>
   </div>
 </div>
@@ -51,7 +55,7 @@
         <th>Room No</th>
         <th>Complaint</th>
         <th>Time</th>
-        <th>Status</th>
+        <th colspan="2">Status</th>
       </tr>
     </thead>
     <tbody>
@@ -68,6 +72,7 @@
         <td>{{ tenant.time | date: 'short' }}</td>
         <td *ngIf="tenant.status == 2" Class="reopen" >Re-open</td>
         <td *ngIf="tenant.status == 0" Class="pending">Pending</td>
+        <td style="color: #388087; font-size: 22px; cursor: pointer;"><i class="bi bi-pencil-square" ></i></td>
       </tr>
       <tr *ngIf="tenantData?.length==0">
         <td colspan="10" style="text-align:center;"><strong class="text-danger">No data found</strong></td>

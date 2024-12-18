@@ -5,6 +5,7 @@ import { AddroomComponent } from './addroom/addroom.component';
 import { AddtenentComponent } from './addtenent/addtenent.component';
 import { CompliantdetailsComponent } from './compliantdetails/compliantdetails.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashborddesignComponent } from './dashborddesign/dashborddesign.component';
 import { HomedetailsComponent } from './homedetails/homedetails.component';
 import { PaymntreminderComponent } from './paymntreminder/paymntreminder.component';
 import { ReminderComponent } from './reminder/reminder.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'housedetails', component:AddhousedetailsComponent  },
   { path: 'compliants', component:CompliantdetailsComponent  },
   { path: 'reminder', component:ReminderComponent  },
+  { path: 'dashdemo', component:DashborddesignComponent  },
 
 ];
 

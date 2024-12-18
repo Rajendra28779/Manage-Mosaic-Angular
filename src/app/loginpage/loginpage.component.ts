@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CaptchaService } from '../services/captcha.service';
 import { EncryptService } from '../services/encrypt.service';
+import { GoogleloginService } from '../services/googlelogin.service';
 import { LoginserviceService } from '../services/loginservice.service';
 declare let $: any;
+declare const gapi: any;
 
 @Component({
   selector: 'app-loginpage',
@@ -11,6 +13,7 @@ declare let $: any;
   styleUrls: ['./loginpage.component.scss']
 })
 export class LoginpageComponent implements OnInit {
+  activeTab: string = 'password'; // Default tab
   toggletype = 'password';
   showpassword = false;
   user1:any
@@ -20,24 +23,27 @@ export class LoginpageComponent implements OnInit {
   constructor(private captchaService:CaptchaService,
     private leginsrv:LoginserviceService,
     private router:Router,private route:ActivatedRoute,
-    private enctserv:EncryptService) { }
+    private enctserv:EncryptService,
+    private googleAuthService: GoogleloginService) { }
 
   ngOnInit(): void {
+    this.googleAuthService.renderButton('google-signin-btn');
     this.user1= this.route.snapshot.params['id']
     $('#msg').hide();
     $('#msg1').hide();
     if(this.user1!=undefined){
-      // alert(this.user1)
       this.show=true
       this.showMsg();
     }
-    var component = this;
+    let component = this;
     $('#loginCaptchaImg').html(this.captchaService.getCaptcha());
     $('#loginRefreshCaptcha').click(function () {
       $('#loginCaptchaImg').html(component.captchaService.getCaptcha());
     });
+  }
 
-
+  switchTab(tab: string): void {
+    this.activeTab = tab; // Switch active tab
   }
 
   enableDisableBtn() {
@@ -49,6 +55,8 @@ export class LoginpageComponent implements OnInit {
     }
   }
   onLoggedIn(){
+    this.router.navigate(['/rentmanage/userdashboard']);
+    return;
 
     let challange = $('#capt').val();
     let captcha = $('#loginCaptchaImg').html();
@@ -108,32 +116,8 @@ export class LoginpageComponent implements OnInit {
     setTimeout(function(){
       $('#msg').hide();
     },3000);
+  }
+  sendotp(){
 
-}
-
-
-
-
-google(){
-  // @ts-ignore
-google.accounts.id.initialize({
-  client_id: "rajendraprasadsahoo@gmail.com",
-  callback: this.handleCredentialResponse.bind(this),
-  auto_select: false,
-  cancel_on_tap_outside: true,
-
-});
-// @ts-ignore
-google.accounts.id.renderButton(
-// @ts-ignore
-document.getElementById("google-button"),
-  { theme: "outline", size: "large", width: "100%" }
-);
-// @ts-ignore
-google.accounts.id.prompt((notification: PromptMomentNotification) => {});
-
-}
-async handleCredentialResponse(response: any) {
-}
-
+  }
 }
