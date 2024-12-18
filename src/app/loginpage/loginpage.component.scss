@@ -70,4 +70,38 @@
   background-color: rgb(241, 241, 240);
 }
 
+#google-signin-btn {
+  width: 100%;
+  margin-top: 1ch;
+}
 
+
+/* Tab styles */
+.tab {
+  padding-bottom: 15px;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.tab h5 {
+  margin: 0;
+  color: #5e5d5d;
+  position: relative;
+}
+
+/* Active tab underline */
+.active-tab h5 {
+  color: #388087; /* Change text color when active */
+}
+
+.active-tab h5::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #388087; /* Underline color */
+}

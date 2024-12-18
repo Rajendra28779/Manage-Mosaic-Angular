@@ -11,18 +11,37 @@
                   </div>
                 </div>
                 <div class="col-lg-5 col-md-6 col-sm-12">
-                  <h2>Log In</h2><br>
-                        <div class="row">
+                  <h2>Log In</h2>
+                  <div style="display: flex;gap: 20px;">
+                    <div class="tab"
+                      [ngClass]="{'active-tab': activeTab === 'password'}"
+                      (click)="switchTab('password')">
+                      <h5>Through Password</h5>
+                    </div>
+                    <div class="tab"
+                      [ngClass]="{'active-tab': activeTab === 'otp'}"
+                      (click)="switchTab('otp')">
+                      <h5>Through OTP</h5>
+                    </div>
+                  </div>
+
+                        <div class="row" *ngIf="activeTab=='password'">
                           <div class="col-lg-1 col-md-2 col-sm-2"><h2><i class="bi bi-person-fill"></i></h2></div>
                           <div class="col-lg-11 col-md-10 col-sm-10"><input type="text" class="form-control usertext userinput" id="username" maxlength="20" autocomplete="off"
                             name="userInput" placeholder="Enter UserName/Email/PhoneNo">
-                          </div><br>
+                          </div>
                         </div>
-                        <div class="row">
+                        <div class="row" *ngIf="activeTab=='password'">
                           <div class="col-lg-1 col-md-2 col-sm-2"><h2><i class="bi bi-key-fill"></i></h2></div>
                           <div class="col-lg-11 col-md-10 col-sm-10"><input type="text" class="form-control usertext userinput" id="password" maxlength="20" autocomplete="off"
                             name="userInput" placeholder="Enter Password">
-                          </div><br>
+                          </div>
+                        </div>
+                        <div class="row mt-3" *ngIf="activeTab=='otp'">
+                          <div class="col-lg-1 col-md-2 col-sm-2"><h2><i class="bi bi-phone-fill"></i></h2></div>
+                          <div class="col-lg-11 col-md-10 col-sm-10"><input type="text" class="form-control usertext userinput" id="mobile" maxlength="12" autocomplete="off"
+                            name="mobile" placeholder="Enter Mobile No">
+                          </div>
                         </div>
                         <div class="row">
                           <div class="col-lg-1 col-md-2 col-sm-2"></div>
@@ -37,15 +56,20 @@
                           </div>
                           <div class="col-lg-1 col-md-2 col-sm-2" (click)="captref()"><h3><i class="bi bi-arrow-clockwise"></i></h3></div>
                         </div>
-                        <p class="small text-end">
-                          <a routerLink="/login">Forgot Password?</a>
-                      </p>
-                      <div class="container col d-grid">
+
+                      <div class="container col d-grid mt-3" *ngIf="activeTab=='password'">
                         <a class="btn btn-primary px-xl-4 py-xl-2" style="border-radius: 20px 5px 20px 5px;" (click)="onLoggedIn()"
                             id="loginBtn">Login</a>
-                        <button type="button" class="form-control mt-2 gogle" style="border: 0.5px solid; border-color: grey; border-radius: 20px 5px 20px 5px; font-weight: 500;"><img src="../../assets/img/google.png" height="20px" width="20px" class="me-4" alt="Google Logo">Continue with Google</button>
-                    </div><br>
-                        <p style="text-align: center;">
+                            <div id="google-signin-btn"></div>
+                      </div>
+
+                      <div class="container col d-grid mt-5" *ngIf="activeTab=='otp'">
+                        <a class="btn btn-success px-xl-4 py-xl-2 " style="border-radius: 20px 5px 20px 5px;" (click)="sendotp()"
+                            id="loginBtn">Send OTP</a>
+                            <div id="google-signin-btn"></div>
+                      </div>
+
+                      <p class="mt-4" style="text-align: center;">
                           Don't have An Account? <a routerLink="/signup">Create Account</a>
                       </p>
                       <div class="row">
