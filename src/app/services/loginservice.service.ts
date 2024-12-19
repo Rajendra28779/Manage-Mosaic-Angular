@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {loginUrl,checkusername,signinuser} from '../config/api-config'
+import {loginUrl,checkusername,signinuser, contactrqst} from '../config/api-config'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -61,7 +61,7 @@ export class LoginserviceService {
     let options = {
       headers: headers,
     };
-    let fullUrl =loginUrl;
+    let fullUrl =contactrqst;
     return this.http.post(fullUrl,object,options)
   }
 }

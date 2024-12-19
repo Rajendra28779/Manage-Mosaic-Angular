@@ -19,7 +19,7 @@ export class GoogleloginService {
 
   private loadGoogleApi() {
     google.accounts.id.initialize({
-      client_id: '662111002101-797vmf6dcffvn0vbkr96gj6u01rfsmgd.apps.googleusercontent.com',
+      client_id: '243335143053-rmpl6ttt4srog99fvhlmmr1hafkcug7o.apps.googleusercontent.com',
       callback: (response: any) => this.handleCredentialResponse(response)
     });
   }

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { addhomedetails, gethomedetails, getroomdetails, inactiveroomdetails, loginUrl, submitdetails } from 'src/app/config/api-config';
+import { addnewhome, getallhousedetialsforuserspecific,getdisplayhousedetails, gethousemasterData, getroommasterData} from 'src/app/config/api-config';
 import { EncryptService } from 'src/app/services/encrypt.service';
 
 @Injectable({
@@ -9,75 +9,81 @@ import { EncryptService } from 'src/app/services/encrypt.service';
 export class HomerentserviceService {
 
 
+
   constructor(private http: HttpClient,private enctserv:EncryptService) { }
 
-  savehomedetails(object: any) {
+  addnewhome(object: any) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': this.enctserv.getJwtToken()
+      'Access-Control-Allow-Origin': '*',
     });
     let options = {
       headers: headers,
     };
-    let fullUrl =addhomedetails;
+    let fullUrl =addnewhome;
     return this.http.post(fullUrl,object,options);
   }
 
-  gethomedetails(userid: any) {
+  getallhousedetialsforuserspecific(userid: any) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': this.enctserv.getJwtToken()
+      'Access-Control-Allow-Origin': '*',
     });
     let options = {
       headers: headers,
-      params:{
-        userid:userid
+      params :{
+        userid : userid
       }
     };
-    let fullUrl =gethomedetails;
-    return this.http.get(fullUrl,options)
+    let fullUrl =getallhousedetialsforuserspecific;
+    return this.http.get(fullUrl,options);
   }
 
-  getroomdetails(housedetails:any,userid: any) {
+  getdisplayhousedetails(houseId: any, userid: any) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': this.enctserv.getJwtToken()
+      'Access-Control-Allow-Origin': '*',
     });
     let options = {
       headers: headers,
-      params:{
-        userid:userid,
-        housedetails:housedetails,
+      params :{
+        houseId : houseId,
+        userid : userid
       }
     };
-    let fullUrl =getroomdetails;
-    return this.http.get(fullUrl,options)
+    let fullUrl =getdisplayhousedetails;
+    return this.http.get(fullUrl,options);
   }
 
-  inactiveroomdetails(detailsid: any) {
+  gethousemasterData(userId:any){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': this.enctserv.getJwtToken()
+      'Access-Control-Allow-Origin': '*',
     });
     let options = {
       headers: headers,
-      params:{
-        detailsid:detailsid
+      params :{
+        userId : userId
       }
     };
-    let fullUrl =inactiveroomdetails;
-    return this.http.get(fullUrl,options)
+    let fullUrl = gethousemasterData;
+    return this.http.get(fullUrl,options);
   }
 
-  submitdetails(object: any) {
+  getroommasterData(userId:any, houseId:any){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': this.enctserv.getJwtToken()
+      'Access-Control-Allow-Origin': '*',
     });
     let options = {
-      headers: headers
+      headers: headers,
+      params :{
+        userId : userId,
+        houseId : houseId
+      }
     };
-    let fullUrl =submitdetails;
-    return this.http.post(fullUrl,object,options)
+    let fullUrl = getroommasterData;
+    return this.http.get(fullUrl,options);
   }
+
 }
