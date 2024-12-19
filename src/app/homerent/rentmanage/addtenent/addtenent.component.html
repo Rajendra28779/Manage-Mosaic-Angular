@@ -46,10 +46,10 @@
     <div class="col-lg-4 col-xxl-4">
       <div class="mb-xl-3">
           <label class="form-label">Select House<span class="text-danger">*</span></label>
-          <select class="form-select" name="house" id="house">
-              <option value="" selected>Select House</option>
+          <select class="form-select" name="house" id="house" (change)="onChangeHouse($event)">
+              <option value="" selected disabled>Select House</option>
               <ng-container *ngFor="let item of houselist">
-                  <option value={{item.districtcode}}>{{item.districtname}}</option>
+                  <option value={{item.homeId}}>{{item.homeName}}</option>
               </ng-container>
           </select>
       </div>
@@ -58,9 +58,9 @@
       <div class="mb-xl-3">
           <label class="form-label">Select Room<span class="text-danger">*</span></label>
           <select class="form-select" name="house" id="house">
-            <option value="" selected>Select House</option>
+            <option value="" selected disabled>Select Room</option>
             <ng-container *ngFor="let item of roomlist">
-                <option value={{item.districtcode}}>{{item.districtname}}</option>
+                <option value={{item.roomId}}>{{item.roomNo}}</option>
             </ng-container>
         </select>
       </div>

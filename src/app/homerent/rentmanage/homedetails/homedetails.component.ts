@@ -20,7 +20,7 @@ export class HomedetailsComponent implements OnInit {
     public route :Router) { }
 
   ngOnInit(): void {
-    let userdata:any=sessionStorage.getItem('userdata');
+    let userdata:any=sessionStorage.getItem('user');
     this.user=JSON.parse(userdata);
     this.houseId=localStorage.getItem('houseId');
     if(this.houseId==null || this.houseId== undefined ||this.houseId=="" || this.houseId==0){
@@ -33,7 +33,7 @@ export class HomedetailsComponent implements OnInit {
   getdisplayhousedetails(houseId: any, userid: any) {
     this.homerentserv.getdisplayhousedetails(houseId,userid).subscribe((data:any) => {
       if(data.status == 200){
-        this.displayhousedetails = data.data;
+        this.displayhousedetails = data.record;
       }else{
         Swal.fire("Error","HouseDetails Can't fetch!", "error");
       }
@@ -52,7 +52,7 @@ export class HomedetailsComponent implements OnInit {
       nooffloor:totalFloor,
       noofroom:totalRoom,
       homeLocation:address,
-      userid:this.user?.userid
+      ownerid:this.user?.userId
     }
 
     Swal.fire({
@@ -71,11 +71,48 @@ export class HomedetailsComponent implements OnInit {
           }else{
             Swal.fire('Failed!', 'Failed to save your details. Please try again.', 'error');
           }
-
         },
           (error:any)=>console.log(error)
         );
+      } else if (result.isDismissed) {
+        Swal.fire('Cancelled', 'Your details have not been saved.', 'error');
+      }
+    });
+  }
 
+  submitroomdetails(){
+    let roomno =$('#roomno').val();
+    let floor =$('#floor').val();
+    let mtrreding =$('#mtrreding').val();
+    let unitprice =$('#unitprice').val();
+
+    let object={
+      roomno:roomno,
+      floorNo:floor,
+      lastmtrRead:mtrreding,
+      unitPrice:unitprice,
+      ownerId:this.user?.userId,
+      houseId:this.houseId
+    }
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to save these details?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.homerentserv.addroomforhome(object).subscribe((result:any)=>{
+          if(result.status == 200){
+            Swal.fire('Saved!', 'Your details have been saved.','success');
+          }else{
+            Swal.fire('Failed!', 'Failed to save your details. Please try again.', 'error');
+          }
+        },
+          (error:any)=>console.log(error)
+        );
       } else if (result.isDismissed) {
         Swal.fire('Cancelled', 'Your details have not been saved.', 'error');
       }

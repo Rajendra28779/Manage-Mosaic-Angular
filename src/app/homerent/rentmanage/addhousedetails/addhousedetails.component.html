@@ -15,14 +15,14 @@
       <div class="container col-md-4" style="margin-top: 1ch;">
         <div class="d-flex px-0 ">
           <div class="card-tab">
-            <a class="card1" (click)="housedetails(record.houseid)"
+            <a class="card1" (click)="housedetails(record.houseId)"
               routerLinkActive="router-link-active" title="Rent Management">
               <div class="d-flex f-col">
                 <div class="icon_tabp"> <span><i class="bi bi-house-door-fill"></i></span> </div>
-                <div class="cardpk-txt"> {{record.name}}</div>
+                <div class="cardpk-txt" style="color: rgb(204, 2, 2);"> {{record?.homeName}}</div>
               </div>
               <div class="d-flex f-col">
-                <div class="cardpk-txt1" style="margin-left:10ch; margin-top:-2ch; "> {{record.gender}}</div>
+                <div class="cardpk-txt1" style="margin-left:10ch; margin-top:-2ch; "> {{record.homeLocation}}</div>
               </div>
               <div class="go-corner">
                 <div class="go-arrow">

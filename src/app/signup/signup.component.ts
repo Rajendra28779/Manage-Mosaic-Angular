@@ -77,9 +77,8 @@ let object ={
         this.rslt=data;
         if(data.status==200){
           this.swal("Success","SignUp Successful","success");
-          // this.route.navigate(['/login']);
           sessionStorage.setItem('user', JSON.stringify(this.rslt.userdata));
-          sessionStorage.setItem('token', JSON.stringify(this.rslt.token));
+          sessionStorage.setItem('token', this.rslt.token);
           this.route.navigate(['/rentmanage/userdashboard']);
         }else if(this.rslt.status==400){
           this.swal("Error",this.rslt.message,"error")

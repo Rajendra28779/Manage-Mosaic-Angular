@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { addnewhome, getallhousedetialsforuserspecific,getdisplayhousedetails, gethousemasterData, getroommasterData} from 'src/app/config/api-config';
+import { addnewhome, addroomforhome, getallhousedetialsforuserspecific,getdisplayhousedetails } from 'src/app/config/api-config';
 import { EncryptService } from 'src/app/services/encrypt.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomerentserviceService {
+  
 
 
 
@@ -15,6 +16,7 @@ export class HomerentserviceService {
   addnewhome(object: any) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      Authorization: this.enctserv.getJwtToken(),
       'Access-Control-Allow-Origin': '*',
     });
     let options = {
@@ -27,6 +29,7 @@ export class HomerentserviceService {
   getallhousedetialsforuserspecific(userid: any) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      Authorization: this.enctserv.getJwtToken(),
       'Access-Control-Allow-Origin': '*',
     });
     let options = {
@@ -53,37 +56,19 @@ export class HomerentserviceService {
     };
     let fullUrl =getdisplayhousedetails;
     return this.http.get(fullUrl,options);
-  }
+  } 
 
-  gethousemasterData(userId:any){
+  addroomforhome(object:any) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      Authorization: this.enctserv.getJwtToken(),
       'Access-Control-Allow-Origin': '*',
     });
     let options = {
       headers: headers,
-      params :{
-        userId : userId
-      }
     };
-    let fullUrl = gethousemasterData;
-    return this.http.get(fullUrl,options);
-  }
-
-  getroommasterData(userId:any, houseId:any){
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    });
-    let options = {
-      headers: headers,
-      params :{
-        userId : userId,
-        houseId : houseId
-      }
-    };
-    let fullUrl = getroommasterData;
-    return this.http.get(fullUrl,options);
+    let fullUrl =addroomforhome;
+    return this.http.post(fullUrl,object,options);
   }
 
 }

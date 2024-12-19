@@ -12,6 +12,7 @@ export const contactrqst = baseUrl + "/api/contactrqst";
 export const addnewhome = baseUrl + "/api/addnewhome";
 export const getallhousedetialsforuserspecific = baseUrl + "/api/gethomedetails";
 export const getdisplayhousedetails = baseUrl + "/api/getdisplayhousedetails";
+export const addroomforhome = baseUrl + "/api/addroomforhome";
 export const gethousemasterData = baseUrl + "/api/gethousemasterData";
 export const getroommasterData = baseUrl + "/api/getroommasterData";
 

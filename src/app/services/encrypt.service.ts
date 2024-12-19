@@ -34,8 +34,8 @@ export class EncryptService {
   }
 
   getJwtToken() {
-    let s:any=sessionStorage.getItem('token');
-    return JSON.parse(s);
+    let token:any=sessionStorage.getItem('token');
+    return token;
   }
 
 }

@@ -7,8 +7,8 @@
     <div class="col-lg-3 col-xxl-3">
       <select class="form-select me-2" name="house" id="house" style="max-width: 250px;">
         <option value="" selected>Select House</option>
-        <ng-container *ngFor="let item of houselist">
-          <option value="{{item.districtcode}}">{{item.districtname}}</option>
+        <ng-container *ngFor="let item of msthouseList">
+          <option value="{{item.homeId}}">{{item.homeName}}</option>
         </ng-container>
       </select>
     </div>

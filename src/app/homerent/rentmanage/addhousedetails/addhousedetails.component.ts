@@ -15,23 +15,14 @@ export class AddhousedetailsComponent implements OnInit {
     private homerentserv:HomerentserviceService) { }
 
   ngOnInit(): void {
-    let userdata:any=sessionStorage.getItem('userdata');
+    let userdata:any=sessionStorage.getItem('user');
     this.user=JSON.parse(userdata);
     this.getallhousedetialsforuserspecific();
-
-    this.records = [
-      { name: 'Sobhanna 01', age: 20, gender: 'Male', rentAmount: 5000,'id':1 },
-      { name: 'Sobhanna 02', age: 25, gender: 'Male', rentAmount: 6000,'id':1  },
-      { name: 'Sobhanna 03', age: 22, gender: 'Female', rentAmount: 5500,'id':1  },
-      { name: 'Sobhanna 02', age: 25, gender: 'Male', rentAmount: 6000,'id':1  },
-      { name: 'Sobhanna 03', age: 22, gender: 'Female', rentAmount: 5500,'id':1  },
-      // Add more records as needed
-    ];
   }
   getallhousedetialsforuserspecific() {
-    this.homerentserv.getallhousedetialsforuserspecific(this.user?.userid).subscribe((data:any) => {
+    this.homerentserv.getallhousedetialsforuserspecific(this.user?.userId).subscribe((data:any) => {
       if(data.status == 200){
-        this.records = data.data;
+        this.records = data.record;
       }else{
         Swal.fire("Error","Something went wrong !", "error");
       }
