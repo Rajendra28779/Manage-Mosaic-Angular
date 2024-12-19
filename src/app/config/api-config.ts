@@ -5,6 +5,16 @@ export const loginUrl = baseUrl + "/login/loginapi";
 
 export const checkusername = baseUrl + "/api/checkusername";
 export const signinuser = baseUrl + "/api/createUser";
+export const contactrqst = baseUrl + "/api/contactrqst";
+
+
+export const addnewhome = baseUrl + "/api/addnewhome";
+export const getallhousedetialsforuserspecific = baseUrl + "/api/gethomedetails";
+export const getdisplayhousedetails = baseUrl + "/api/getdisplayhousedetails";
+export const gethousemasterData = baseUrl + "/api/gethousemasterData";
+export const getroommasterData = baseUrl + "/api/getroommasterData";
+
+
 
 export const addhomedetails = baseUrl + "/api/addhomedetails";
 export const gethomedetails = baseUrl + "/api/gethomedetails";
