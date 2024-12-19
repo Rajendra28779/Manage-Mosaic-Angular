@@ -5,6 +5,7 @@ export const loginUrl = baseUrl + "/login/loginapi";
 
 export const checkusername = baseUrl + "/api/checkusername";
 export const signinuser = baseUrl + "/api/createUser";
+export const loginthroughgoogle = baseUrl + "/login/google";
 
 export const addhomedetails = baseUrl + "/api/addhomedetails";
 export const gethomedetails = baseUrl + "/api/gethomedetails";

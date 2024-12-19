@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { loginthroughgoogle } from '../config/api-config';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 declare const google: any;
 
 @Injectable({
@@ -9,7 +12,7 @@ declare const google: any;
 export class GoogleloginService {
   private authStatus = new Subject<any>();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private router:Router) {
     // Load Google API on service initialization
     this.loadGoogleApi();
   }
@@ -25,12 +28,27 @@ export class GoogleloginService {
   private handleCredentialResponse(response: any) {
     let token = response.credential
     console.log('ID Token:', response.credential);
-    this.http.post('http://localhost:8028/login/google', { token }).subscribe(
-    (response) => console.log('Login successful', response),
+    this.http.post(loginthroughgoogle, { token }).subscribe(
+    (response:any) => {
+      if(response.status==200){
+        sessionStorage.setItem('user', JSON.stringify(response.userdata));
+        sessionStorage.setItem('token', JSON.stringify(response.token));
+        this.router.navigate(['/rentmanage/userdashboard']);
+      }else{
+        this.swal("Error",response.message,"error")
+      }
+    },
     (error) => console.error('Login failed', error)
   );
-   // this.authStatus.next(token);  // Send token to any component that listens to this observable
   }
+
+    swal(title: any, text: any, icon: any) {
+      Swal.fire({
+        icon: icon,
+        title: title,
+        text: text
+      });
+    }
 
   // This function is called to render the sign-in button
   renderButton(elementId: string) {

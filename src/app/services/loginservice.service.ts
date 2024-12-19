@@ -40,6 +40,7 @@ export class LoginserviceService {
     let fullUrl =checkusername;
     return this.http.get(fullUrl,options)
   }
+  
   signin(object:any) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',

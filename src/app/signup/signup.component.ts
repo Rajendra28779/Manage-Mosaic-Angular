@@ -27,44 +27,41 @@ user:any
     let user=$('#user').val();
     let pass=$('#password').val();
     let cpass=$('#cpass').val();
+
     if (fname==null || fname== "" || fname==undefined){
       this.theswal="Please Fill FirstName";
-      $('#msg').show();
+      this.swal("Error",this.theswal,"error");
       return;
     }
     if (lname==null || lname== "" || lname==undefined){
       this.theswal="Please Fill LastName";
-      $('#msg').show();
+      this.swal("Error",this.theswal,"error");
       return;
     }
     if (phone==null || phone== "" || phone==undefined){
       this.theswal="Please Fill PhoneNo";
-      $('#msg').show();
+      this.swal("Error",this.theswal,"error");
       return;
     }
     if (email==null || email== "" || email==undefined){
       this.theswal="Please Fill Email";
-      $('#msg').show();
-      return;
-    }
-    if (user==null || user== "" || user==undefined){
-      this.theswal="Please Fill UserName";
-      $('#msg').show();
+      this.swal("Error",this.theswal,"error");
       return;
     }
     if (pass==null || pass== "" || pass==undefined){
       this.theswal="Please Fill Password";
-      $('#msg').show();
+      this.swal("Error",this.theswal,"error");
       return;
     }
     if (cpass==null || cpass== "" || cpass==undefined){
       this.theswal="Please Fill confirm Password";
-      $('#msg').show();
+      this.swal("Error",this.theswal,"error");
       return;
     }
 
     if (pass!=cpass){
       this.theswal="Password And Confirm Password Should Be Same";
+      this.swal("Error",this.theswal,"error");
       return;
     }
 
@@ -79,9 +76,12 @@ let object ={
     this.leginsrv.signin(object).subscribe((data:any)=>{
         this.rslt=data;
         if(data.status==200){
-          this.swal("Success","SignUp Successful","success")
-          this.route.navigate(['/login']);
-        }else if(this.rslt.status==406){
+          this.swal("Success","SignUp Successful","success");
+          // this.route.navigate(['/login']);
+          sessionStorage.setItem('user', JSON.stringify(this.rslt.userdata));
+          sessionStorage.setItem('token', JSON.stringify(this.rslt.token));
+          this.route.navigate(['/rentmanage/userdashboard']);
+        }else if(this.rslt.status==400){
           this.swal("Error",this.rslt.message,"error")
         }else{
           this.swal("Error", "Something Went Wrong ! Please Try After Sometime !", 'error');
@@ -89,33 +89,7 @@ let object ={
     },
     (error) => console.log(error)
     );
-  }
-
-  checkusername(){
-    let user=$('#user').val().toString().trim().toLowerCase();
-    if (user==null || user== "" || user==undefined){
-      this.theswal="Please Fill UserName";
-      $('#msg').show();
-      return;
-    }
-    this.leginsrv.checkusername(user).subscribe((data:any)=>{
-      this.user=data;
-      if(this.user.status==200){
-        this.theswal=this.user.message;
-      $('#msg1').show();
-      $('#msg').hide();
-      }else if(this.user.status==401){
-        this.theswal=this.user.message;
-        $('#msg').show();
-        $('#msg1').hide();
-      }else{
-        this.swal("Error", "Something Went Wrong ! Please Try After Sometime !", 'info');
-      }
-    },
-    (error) => console.log(error)
-    );
-
-  }
+  }  
 
   swal(title: any, text: any, icon: any) {
     Swal.fire({

@@ -4,6 +4,7 @@ import { CaptchaService } from '../services/captcha.service';
 import { EncryptService } from '../services/encrypt.service';
 import { GoogleloginService } from '../services/googlelogin.service';
 import { LoginserviceService } from '../services/loginservice.service';
+import Swal from 'sweetalert2';
 declare let $: any;
 declare const gapi: any;
 
@@ -27,10 +28,9 @@ export class LoginpageComponent implements OnInit {
     private googleAuthService: GoogleloginService) { }
 
   ngOnInit(): void {
+    sessionStorage.clear();
     this.googleAuthService.renderButton('google-signin-btn');
-    this.user1= this.route.snapshot.params['id']
-    $('#msg').hide();
-    $('#msg1').hide();
+    this.user1= this.route.snapshot.params['id'];
     if(this.user1!=undefined){
       this.show=true
       this.showMsg();
@@ -55,8 +55,8 @@ export class LoginpageComponent implements OnInit {
     }
   }
   onLoggedIn(){
-    this.router.navigate(['/rentmanage/userdashboard']);
-    return;
+    // this.router.navigate(['/rentmanage/userdashboard']);
+    // return;
 
     let challange = $('#capt').val();
     let captcha = $('#loginCaptchaImg').html();
@@ -64,41 +64,33 @@ export class LoginpageComponent implements OnInit {
     isValid = this.captchaService.validateCaptcha(challange, captcha);
     // alert(isValid)
     if(!isValid){
-      this.msg="InCorrect Captcha"
-      $('#msg1').show();
+      this.swal("Error","InCorrect Captcha","error");
       return;
     }
-    $('#msg1').hide();
     let username=$('#username').val();
     let password=$('#password').val();
     if (username==null || username== "" || username==undefined){
-      this.msg="Please Fill UserName";
-      $('#msg1').show();
+      this.swal("Error","Please Fill UserName","error");
       return;
     }
     if (password==null || password== "" || password==undefined){
-      this.msg="Please Fill Password";
-      $('#msg1').show();
-      return;
+      this.swal("Error","Please Fill Password","error");
+        return;
     }
-    $('#msg1').hide();
     username=this.enctserv.OnEncrypt(username);
     password=this.enctserv.OnEncrypt(password);
     this.leginsrv.login(username,password).subscribe((data:any)=>{
       this.rslt=data;
       if(this.rslt.status==200){
-        sessionStorage.setItem('user', JSON.stringify(this.rslt.user));
-        sessionStorage.setItem('token', JSON.stringify(this.rslt.auth));
-        this.router.navigate(['/dashboard']);
-      }else if(this.rslt.status==404){
-        this.msg=this.rslt.message;
-        $('#msg1').show();
+        sessionStorage.setItem('user', JSON.stringify(this.rslt.userdata));
+        sessionStorage.setItem('token', this.rslt.token);
+        this.router.navigate(['/rentmanage/userdashboard']);
       }else if(this.rslt.status==400){
-        this.msg=this.rslt.message;
-        $('#msg1').show();
+        this.swal("Error",this.rslt.message,"error");
+        return;
       }else{
-        this.msg="Somethig Went Wrong";
-        $('#msg1').show();
+        this.swal("Error","Something Went Wrong !","error");
+        return;
       }
     });
   }
@@ -117,7 +109,16 @@ export class LoginpageComponent implements OnInit {
       $('#msg').hide();
     },3000);
   }
+
   sendotp(){
 
   }
+
+    swal(title: any, text: any, icon: any) {
+      Swal.fire({
+        icon: icon,
+        title: title,
+        text: text
+      });
+    }
 }
