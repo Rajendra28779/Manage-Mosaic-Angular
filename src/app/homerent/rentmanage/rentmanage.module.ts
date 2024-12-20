@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { CompliantdetailsComponent } from './compliantdetails/compliantdetails.component';
 import { ReminderComponent } from './reminder/reminder.component';
 import { DashborddesignComponent } from './dashborddesign/dashborddesign.component';
+import { TenantdashbordComponent } from './tenantdashbord/tenantdashbord.component';
 
 
 
@@ -30,6 +31,7 @@ import { DashborddesignComponent } from './dashborddesign/dashborddesign.compone
     CompliantdetailsComponent,
     ReminderComponent,
     DashborddesignComponent,
+    TenantdashbordComponent,
   ],
   imports: [
     CommonModule,

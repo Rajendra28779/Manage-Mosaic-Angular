@@ -7,9 +7,6 @@ import { EncryptService } from 'src/app/services/encrypt.service';
   providedIn: 'root'
 })
 export class HomerentserviceService {
-  
-
-
 
   constructor(private http: HttpClient,private enctserv:EncryptService) { }
 
@@ -56,7 +53,7 @@ export class HomerentserviceService {
     };
     let fullUrl =getdisplayhousedetails;
     return this.http.get(fullUrl,options);
-  } 
+  }
 
   addroomforhome(object:any) {
     let headers = new HttpHeaders({

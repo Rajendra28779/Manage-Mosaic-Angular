@@ -9,6 +9,7 @@ import { DashborddesignComponent } from './dashborddesign/dashborddesign.compone
 import { HomedetailsComponent } from './homedetails/homedetails.component';
 import { PaymntreminderComponent } from './paymntreminder/paymntreminder.component';
 import { ReminderComponent } from './reminder/reminder.component';
+import { TenantdashbordComponent } from './tenantdashbord/tenantdashbord.component';
 
 const routes: Routes = [
   { path: 'dashboard', component:DashboardComponent  },
@@ -21,6 +22,8 @@ const routes: Routes = [
   { path: 'compliants', component:CompliantdetailsComponent  },
   { path: 'reminder', component:ReminderComponent  },
   { path: 'dashdemo', component:DashborddesignComponent  },
+  { path: 'tenantdashbord', component:TenantdashbordComponent  },
+
 
 ];
 

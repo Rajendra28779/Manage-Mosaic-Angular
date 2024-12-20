@@ -1,0 +1,126 @@
+<div class="content">
+
+  <div class="row">
+    <div class="col-xxl-5 col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3">
+              <div>
+                <img src="../../../../assets/img/hello.png" alt="user profile" height="90px" width="90px">
+              </div>
+            </div>
+            <div class="col-9" style="font-weight: 600;">
+              <p><span class="color1">Name : </span>Rajendra Prsasad Sahoo</p>
+              <p><span class="color1">Mobile No : </span>6370178554</p>
+              <p><span class="color1">Email id : </span>rajendraprasadsahoo28@gmail.com</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row" style="font-weight: 600;">
+            <div class="col-6">
+              <p><span class="color1">House Name : </span>Sobhanna 01</p>
+            </div>
+            <div class="col-6" style="text-align:end;">
+              <p><span class="color1">Room Name : </span>Room no 01</p>
+            </div>
+            <div class="col-12" >
+              <p><span class="color1">Owner Name : </span>Rajendra Prsasad Sahoo</p>
+            </div>
+            <div class="col-6">
+              <p><span class="color1">Contact No : </span>6370178554</p>
+            </div>
+            <div class="col-6" style="text-align:end;">
+              <p><span class="color1">Staying From : </span>12-Aug-2024</p>
+            </div>
+            <div class="col-6">
+              <p><span class="color1">Rent Amount : </span>7000</p>
+            </div>
+            <div class="col-6" style="text-align:end;">
+              <p><span class="color1">Pending Amount: </span>1000</p>
+            </div>
+            <div class="col-6">
+              <p><span class="color1">Due Date : </span>12-Jan-2025</p>
+            </div>
+            <div class="col-6" style="text-align:end;">
+              <p><span class="color1">Last Payment : </span>12-Dec-2024</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-6" >
+          <button routerLink="/contactus" class="btn btn-warning" style="width: 100%;"><i class="bi bi-headset me-3"></i> <span style="font-weight: 600; font-size: 18px;">Contact Us</span>
+          <br>We Always Here to Help You .</button>
+        </div>
+        <div class="col-6" >
+          <!-- <button class="btn btn-warning" style="width: 100%; font-weight: 600; font-size: 20px;"><i class="bi bi-headset me-2"></i> <span>Support</span></button> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-7 col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+      <div class="card" style="height: 55ch;">
+        <div class="card-header">
+          <div class="heading">Raise a Maintenance Request :- </div>
+        </div>
+        <div class="card-body">
+          <p style="font-size: 17px; color: red; margin-top: 0;">
+            <strong>Note:</strong> This message will be directly forwarded to the house owner.
+          <div class="row">
+            <div class="col-lg-4 col-xxl-4">
+              <div class="mb-xl-3">
+                <label class="form-label">Select House<span class="text-danger">*</span></label>
+                <select class="form-select" name="house" id="house" (change)="onChangeHouse($event)">
+                  <option value="" selected disabled>Select House</option>
+                  <ng-container *ngFor="let item of houselist">
+                    <option value={{item.homeId}}>{{item.homeName}}</option>
+                  </ng-container>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-4 col-xxl-4">
+              <div class="mb-xl-3">
+                <label class="form-label">Select Room<span class="text-danger">*</span></label>
+                <select class="form-select" name="room" id="room">
+                  <option value="" selected disabled>Select Room</option>
+                  <ng-container *ngFor="let item of roomlist">
+                    <option value={{item.roomId}}>{{item.roomNo}}</option>
+                  </ng-container>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-6 col-xxl-6">
+              <div class="mb-xl-3">
+                <label class="form-label">Tenant Name<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" value="Tenant User" disabled>
+              </div>
+            </div>
+            <div class="col-lg-6 col-xxl-6">
+              <div class="mb-xl-3">
+                <label class="form-label">Request Reson<span class="text-danger">*</span></label>
+                <select class="form-select" name="room" id="room">
+                  <option value="" selected disabled>Select Request Reson</option>
+                  <ng-container *ngFor="let item of maintanceFor">
+                    <option value={{item.maintainId}}>{{item.maintainFor}}</option>
+                  </ng-container>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-12 col-xxl-12">
+              <div class="mb-xl-3">
+                <label class="form-label">Description<span class="text-danger">*</span></label>
+                <textarea class="form-control" placeholder="Enter Description" autocomplete="off" id="description" maxlength="100"></textarea>
+              </div>
+            </div>
+            <div class="col-lg-6 col-xxl-6">
+              <div class="mb-xl-3">
+                <button class="btn btn-success me-2" style="width: 48%;" id="loginBtn" (click)="requestmaintnance()">Submit</button>
+                <button class="btn btn-primary" style="width: 48%;">Reset</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

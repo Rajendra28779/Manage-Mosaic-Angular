@@ -6,13 +6,15 @@
     <div class="col-lg-4 col-xxl-4">
       <div class="mb-xl-3">
           <label class="form-label">House Name<span class="text-danger">*</span></label>
-          <input class="form-control" type="text" placeholder="Enter House Name" autocomplete="off" id="housename" maxlength="40">
+          <input class="form-control" type="text" placeholder="Enter House Name" autocomplete="off" id="housename" maxlength="40"
+          onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9. ]/g,'');">
       </div>
     </div>
     <div class="col-lg-2 col-xxl-2">
       <div class="mb-xl-3">
           <label class="form-label">Total Floors<span class="text-danger">*</span></label>
-          <input class="form-control" type="text" placeholder="Enter Total Floors" autocomplete="off" id="floors" maxlength="2">
+          <input class="form-control" type="text" placeholder="Enter Total Floors" autocomplete="off" id="floors" maxlength="2"
+          onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
       </div>
     </div>
     <div class="col-lg-2 col-xxl-2">
@@ -73,55 +75,59 @@
                   <div class="col-lg-3 col-xxl-3">
                     <div class="mb-xl-3">
                         <label class="form-label">Room No<span class="text-danger">*</span></label>
-                        <input class="form-control" type="text" placeholder="Enter Room No" autocomplete="off" id="roomno" maxlength="20">
+                        <input class="form-control" type="text" placeholder="Enter Room No" autocomplete="off" id="roomno" maxlength="20"
+                        onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9. ]/g,'');">
                     </div>
                   </div>
                   <div class="col-lg-3 col-xxl-3">
                     <div class="mb-xl-3">
                         <label class="form-label">Floor Count<span class="text-danger">*</span></label>
-                        <input class="form-control" type="text" placeholder="Enter Floor Count" autocomplete="off" id="floor" maxlength="20">
+                        <input class="form-control" type="text" placeholder="Enter Floor Count" autocomplete="off" id="floor" maxlength="20"
+                        onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9. ]/g,'');">
                     </div>
                   </div>
                   <div class="col-lg-3 col-xxl-3">
                     <div class="mb-xl-3">
                         <label class="form-label">Last Metter Riding<span class="text-danger"></span></label>
-                        <input class="form-control" type="text" placeholder="Last Metter Riding" autocomplete="off" id="mtrreding" maxlength="20">
+                        <input class="form-control" type="text" placeholder="Last Metter Riding" autocomplete="off" id="mtrreding" maxlength="20"
+                        onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
                     </div>
                   </div>
                   <div class="col-lg-3 col-xxl-3">
                     <div class="mb-xl-3">
                         <label class="form-label">Unit Per price (₹)<span class="text-danger"></span></label>
-                        <input class="form-control" type="text" placeholder="Unit Per price (₹)" autocomplete="off" id="unitprice" maxlength="3">
+                        <input class="form-control" type="text" placeholder="Unit Per price (₹)" autocomplete="off" id="unitprice" maxlength="3"
+                        onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
                     </div>
                   </div>
                   <div class="col-lg-4 col-xxl-4">
                     <div class="mb-xl-3">
                         <label class="form-label">Image No1<span class="text-danger">*</span></label>
-                        <input type="file" id="image1" class="form-control" (change)="handleFileInput($event,1)">
+                        <input type="file" id="image1" class="form-control" accept=".jpg,.jpeg" (change)="handleFileInput($event,1)">
                     </div>
                   </div>
                   <div class="col-lg-4 col-xxl-4">
                     <div class="mb-xl-3">
                         <label class="form-label">Image No2<span class="text-danger">*</span></label>
-                        <input type="file" id="image2" class="form-control" (change)="handleFileInput($event,2)">
+                        <input type="file" id="image2" class="form-control" accept=".jpg,.jpeg" (change)="handleFileInput($event,2)">
                     </div>
                   </div>
                   <div class="col-lg-4 col-xxl-4">
                     <div class="mb-xl-3">
                         <label class="form-label">Image No3<span class="text-danger"></span></label>
-                        <input type="file" id="image3" class="form-control" (change)="handleFileInput($event,3)">
+                        <input type="file" id="image3" class="form-control" accept=".jpg,.jpeg" (change)="handleFileInput($event,3)">
                     </div>
                   </div>
                   <div class="col-lg-4 col-xxl-4">
                     <div class="mb-xl-3">
                         <label class="form-label">Image No4<span class="text-danger"></span></label>
-                        <input type="file" id="image4" class="form-control" (change)="handleFileInput($event,4)">
+                        <input type="file" id="image4" class="form-control" accept=".jpg,.jpeg" (change)="handleFileInput($event,4)">
                     </div>
                   </div>
                   <div class="col-lg-4 col-xxl-4">
                     <div class="mb-xl-3">
                         <label class="form-label">Image No5<span class="text-danger"></span></label>
-                        <input type="file" id="image5" class="form-control" (change)="handleFileInput($event,5)">
+                        <input type="file" id="image5" class="form-control" accept=".jpg,.jpeg" (change)="handleFileInput($event,5)">
                     </div>
                   </div>
                   <div class="col-lg-4 col-xxl-4" style="margin-top:30px;">

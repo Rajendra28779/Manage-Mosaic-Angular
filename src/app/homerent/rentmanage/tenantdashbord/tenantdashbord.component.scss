@@ -1,0 +1,83 @@
+
+.content {
+  padding: 20px;
+}
+
+.card-header {
+  font-size: 20px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+}
+
+
+.unique__section {
+  .card-body {
+    text-align: center;
+
+    label {
+      font-size: 1.563rem;
+      font-weight: 600;
+      line-height: 29px;
+
+
+      @media (max-width: 1440px) {
+          font-size: 1.25rem;
+        }
+    }
+
+    p {
+      font-size: 0.875rem;
+      margin: 0;
+    }
+  }
+
+  .flexing_uniquie {
+      height: 100%;
+
+      @media (max-width: 1440px) {
+          .px-4 {
+              padding-right: 1rem !important;
+              padding-left: 1rem !important;
+          }
+        }
+
+    .item {
+      border-right: 1px solid #ddd;
+
+      &:last-child {
+        border: 0;
+      }
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1rem;
+      line-height: 40px;
+    }
+
+    li {
+      list-style: square;
+
+      &::marker {
+        color: #9E6B28;
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .item_flex {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: space-between;
+
+    label {
+      font-size: 1.125rem;
+      margin: 0;
+
+      @media (max-width: 1440px) {
+          font-size: 1rem;
+        }
+    }
+  }
+}

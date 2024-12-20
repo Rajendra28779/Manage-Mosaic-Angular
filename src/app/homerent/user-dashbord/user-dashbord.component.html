@@ -10,7 +10,7 @@
 
       <div class="d-flex col-md-12 col-lg-12 col-sm-6 col-12 px-0" style="margin-top: 10ch;">
         <div class="card-tab">
-          <a class="card1" [routerLink]="['/rentmanage/homerentmanage/dashboard']" routerLinkActive="router-link-active"
+          <a class="card1" data-bs-toggle="modal" data-bs-target="#redirectpage"  routerLinkActive="router-link-active"
             title="Rent Management">
             <div class="d-flex f-col">
               <div class="icon_tabp"> <span><i class="fa fa-building"></i></span> </div>
@@ -23,6 +23,7 @@
             </div>
           </a>
         </div>
+        <!-- [routerLink]="['/rentmanage/homerentmanage/dashboard']" -->
         <div class="card-tab">
           <a class="card1" [routerLink]="['/rentmanage/tripmanage']" routerLinkActive="router-link-active"
             title="Unblock Package">
@@ -252,3 +253,39 @@
     </div>
   </div>
 </div>
+
+
+
+
+<!-- Modal Attendance Details-->
+<div class="modal fade " id="redirectpage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="max-width: 50%; margin-top: 100px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 30px; font-weight: 600;">Hello, <span style="color: #4295ec;">{{this.user?.firstName==null?'User':this.user?.firstName}}</span></h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body container text-center">
+        <p style="font-size: 18px; font-weight: bold; color: #333; text-align: center; margin-bottom: 20px;">Choose how you want to log in:</p>
+
+        <button type="button" class="btn btn-primary modalbutton" [routerLink]="['/rentmanage/homerentmanage/tenantdashbord']" aria-label="Close" data-bs-dismiss="modal">
+          <span style="font-size: 22px; font-weight: 600;">As a Tenant User</span>
+          <br>
+          <span style="font-size: 14px; color: #f9f9f9;">Select this option if you are a tenant looking to manage your rental details.</span>
+        </button>
+
+        <button type="button" class="btn btn-success modalbutton" [routerLink]="['/rentmanage/homerentmanage/dashboard']" aria-label="Close" data-bs-dismiss="modal">
+          <span style="font-size: 22px; font-weight: 600;">As a House Owner</span>
+          <br>
+          <span style="font-size: 14px; color: #f9f9f9;">Select this option if you are a house owner managing property or tenant records.</span>
+        </button>
+
+        <p style="font-size: 17px; color: red; text-align: center; margin-top: 10px;">
+          <strong>Note:</strong> Please ensure you select the correct option to access the features tailored to your role.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
