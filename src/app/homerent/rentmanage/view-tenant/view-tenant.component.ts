@@ -18,7 +18,8 @@ export class ViewTenantComponent implements OnInit {
   roomId:any="";
   gettenantdata:any;
 
-  constructor(private readonly commenserv:CommenService,private readonly tenantserv:TenentdetailsService) { }
+  constructor(private readonly commenserv:CommenService,
+    private readonly tenantserv:TenentdetailsService) { }
 
   ngOnInit(): void {
     let userdata:any=sessionStorage.getItem('user');
@@ -47,6 +48,13 @@ export class ViewTenantComponent implements OnInit {
         }
       },
       (error:any) => console.log(error));
+      this.gettenantdetails();
+    }
+
+    onSearch(event: Event): void {
+      const input = (event.target as HTMLInputElement).value;
+      console.log('Search query:', input);
+      // You can add logic here to handle the search query
     }
 
     gettenantdetails(){
@@ -64,8 +72,13 @@ export class ViewTenantComponent implements OnInit {
       this.gettenantdata=item;
     }
 
-    downloadTenantDoc(docname:any){
-
+    downloadTenantDoc(docPath: any) {
+      if (docPath) {
+          const img = this.commenserv.downloadcommondoc(docPath);
+          window.open(img, '_blank');
+      } else {
+          Swal.fire('Info', 'There is no file', 'info');
+      }
     }
 
 }

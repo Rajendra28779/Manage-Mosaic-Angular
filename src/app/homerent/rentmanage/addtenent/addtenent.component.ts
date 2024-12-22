@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommenService } from '../../services/commen.service';
 import Swal from 'sweetalert2';
 import { TenentdetailsService } from '../../services/tenentdetails.service';
+import { Router } from '@angular/router';
 declare let $: any;
 
 @Component({
@@ -10,6 +11,7 @@ declare let $: any;
   styleUrls: ['./addtenent.component.scss']
 })
 export class AddtenentComponent implements OnInit {
+  redirectdata:any;
   selectedDate: Date = new Date(); // Default to today's date
   user:any;
   houselist:any=[];
@@ -18,24 +20,40 @@ export class AddtenentComponent implements OnInit {
   aadharDoc:any="";
   rentDoc:any="";
   otherDoc:any="";
-
-  constructor(private readonly commenserv:CommenService,private tenantserv:TenentdetailsService) { }
+  houseId:any="";
+  roomId:any="";
+  constructor(private readonly commenserv:CommenService,
+    private readonly tenantserv:TenentdetailsService,
+    private readonly router:Router) { 
+  this.redirectdata = this.router.getCurrentNavigation()?.extras.state
+  }
 
   ngOnInit(): void {
     let userdata:any=sessionStorage.getItem('user');
     this.user=JSON.parse(userdata);
+    if(this.redirectdata){
+    this.houseId=this.redirectdata.houseId;
+      this.commenserv.getroommasterData(this.user?.userId,this.houseId).subscribe((data:any) => {
+        if(data.status == 200){
+          this.roomlist = data.record;
+        }else{
+          Swal.fire("Error","HouseDetails Can't fetch!", "error");
+        }
+      });
+    this.roomId=this.redirectdata.roomId;
+    }
     this.getmsthouseList();
   }
 
   getmsthouseList(){
-      this.commenserv.gethousemasterData(this.user?.userId).subscribe((data:any) => {
-            if(data.status == 200){
-              this.houselist = data.record;
-            }else{
-              Swal.fire("Error","HouseDetails Can't fetch!", "error");
-            }
-          },
-          (error:any) => console.log(error));
+    this.commenserv.gethousemasterData(this.user?.userId).subscribe((data:any) => {
+          if(data.status == 200){
+            this.houselist = data.record;
+          }else{
+            Swal.fire("Error","HouseDetails Can't fetch!", "error");
+          }
+        },
+        (error:any) => console.log(error));
     }
   onChangeHouse($event:any){
     let id=$event.target.value;
@@ -76,7 +94,6 @@ export class AddtenentComponent implements OnInit {
 
   submit(){
     let tenantName = $('#fullname').val();
-    let age = $('#age').val();
     let mobileno = $('#mobile').val();
     let altmobileno = $('#alternate').val();
     let member = $('#member').val();
@@ -90,12 +107,6 @@ export class AddtenentComponent implements OnInit {
     if (tenantName==null || tenantName== "" || tenantName==undefined){
       Swal.fire("Error","Please Enter Tenant Name","error");
       $('#fullname').focus();
-      return;
-    }
-
-    if (age==null || age== "" || age==undefined){
-      Swal.fire("Error","Please Enter Tenant Age","error");
-      $('#age').focus();
       return;
     }
 
@@ -175,7 +186,6 @@ export class AddtenentComponent implements OnInit {
 
     const formData: FormData = new FormData();
     formData.append('fullName', tenantName);
-    formData.append('age', age);
     formData.append('mobileNo', mobileno);
     formData.append('altMobileNo', altmobileno);
     formData.append('noOfMember', member);

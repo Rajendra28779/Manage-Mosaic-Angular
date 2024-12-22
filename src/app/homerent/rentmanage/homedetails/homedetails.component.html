@@ -94,11 +94,11 @@
                     </div>
                   </div>
                   <div class="col-lg-3 col-xxl-3">
-                    <div class="mb-xl-3">
+                    <!-- <div class="mb-xl-3">
                         <label class="form-label">Unit Per price (₹)<span class="text-danger"></span></label>
                         <input class="form-control" type="text" placeholder="Unit Per price (₹)" autocomplete="off" id="unitprice" maxlength="3"
                         onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
-                    </div>
+                    </div> -->
                   </div>
                   <div class="col-lg-4 col-xxl-4">
                     <div class="mb-xl-3">
@@ -147,10 +147,12 @@
         <div class="col-6">
           <div class="card bord">
             <div class="roomdata row" >
-              <div class="col-lg-4" style="color: rgb(238, 49, 49);"><h5>{{item.rommNo}}</h5></div>
-              <div class="col-lg-4" style="text-align: end;"><h5><i class="bi bi-lightbulb me-2"></i>{{item.lastmtrRead}}</h5></div>
-              <div class="col-lg-2" style="text-align: end;" ><h5><i class="bi bi-currency-rupee me-2"></i> {{item.unitprice}}</h5></div>
-              <div class="col-lg-2" style="text-align: end;" title="edit"><h5><i class="bi bi-pencil-square"></i></h5></div>
+              <div class="col-lg-5" style="color: rgb(238, 49, 49);"><h5>{{item.rommNo}}</h5></div>
+              <div class="col-lg-5" style="text-align: end;"><h5><i class="bi bi-lightbulb me-2"></i>{{item.lastmtrRead}}</h5></div>
+              <div class="col-lg-2" style="text-align: end;" title="edit">
+                <a style="color:#388087;" data-bs-toggle="modal" data-bs-target="#roomdetails" 
+                (click)="getroomdetails(item)"><i class="bi bi-info-circle-fill"></i></a>
+              </div>
             </div>
             <hr>
             <div class="row userdata" *ngIf="item.tenantId!=0">
@@ -163,14 +165,14 @@
               <div class="col-lg-4" style="text-align: end;" ><h6><i class="bi bi-currency-rupee me-1"></i>Rent : {{item.rentamount}}</h6></div>
             </div>
             <div class="row mt-2 editopt" *ngIf="item.tenantId!=0" >
-              <div class="col-lg-12" ><h5><img src="../../../../assets/img/change-user.png" alt="change user" height="28px" width="30px" class="me-3">  Change Tenent</h5></div>
+              <div class="col-lg-12" (click)="addtenant(2,item.roomId)"><h5><img src="../../../../assets/img/change-user.png" alt="change user" height="28px" width="30px" class="me-3">  Change Tenent</h5></div>
             </div>
             <div style="text-align: center; color: #b1adad; margin-top: -22px;" *ngIf="item.tenantId==0">
               <i class="bi bi-person-slash" style="font-size: 35px;"></i>
               <h4>User not allocated</h4>
             </div>
             <div class="row mt-2 editopt" *ngIf="item.tenantId==0">
-              <div class="col-lg-12" ><h5><i class="bi bi-person-add me-3" style="font-size: 23px; color: blue;"></i>Add Tenent</h5></div>
+              <div class="col-lg-12" (click)="addtenant(1,item.roomId)"><h5><i class="bi bi-person-add me-3" style="font-size: 23px; color: blue;"></i>Add Tenent</h5></div>
             </div>
           </div>
         </div>
@@ -178,5 +180,54 @@
     </div>
 </div>
 
-
+<!-- User Details-->
+<div class="modal fade" id="roomdetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 10ch;">
+  <div class="modal-dialog" style="max-width: 35%; margin-top: 0;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 25px; color: #388087">
+          <i class="bi bi-file-person-fill me-2"></i>{{roomdata?.rommNo}}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="tenant-card">
+          <div class="detail">
+            <span>Floor No:</span>
+            <p>{{roomdata?.floorNo}}</p>
+          </div>
+          <div class="detail">
+            <span>Meter Reading:</span>
+            <p>{{roomdata?.lastmtrRead}}</p>
+          </div>
+          <div class="detail">
+            <span>Image No1 :</span>
+            <p *ngIf="roomdata?.roomimg1!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(roomdata?.roomimg1)"></i></p>
+            <p *ngIf="roomdata?.roomimg1==null">N/A</p>
+          </div>
+          <div class="detail">
+            <span>Image No2:</span>
+            <p *ngIf="roomdata?.roomimg2!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(roomdata?.roomimg2)"></i></p>
+            <p *ngIf="roomdata?.roomimg2==null">N/A</p>
+          </div>
+          <div class="detail">
+            <span>Image No3 :</span>
+            <p *ngIf="roomdata?.roomimg3!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(roomdata?.roomimg3)"></i></p>
+            <p *ngIf="roomdata?.roomimg3==null">N/A</p>
+          </div>
+          <div class="detail">
+            <span>Image No4 :</span>
+            <p *ngIf="roomdata?.roomimg4!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(roomdata?.roomimg4)"></i></p>
+            <p *ngIf="roomdata?.roomimg4==null">N/A</p>
+          </div>
+          <div class="detail">
+            <span>Image No5 :</span>
+            <p *ngIf="roomdata?.roomimg5!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(roomdata?.roomimg5)"></i></p>
+            <p *ngIf="roomdata?.roomimg5==null">N/A</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 

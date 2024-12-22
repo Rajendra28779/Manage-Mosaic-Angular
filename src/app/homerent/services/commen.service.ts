@@ -1,16 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { gethousedetailsforuser, gethousemasterData, getmaintanceTrackingRecord, getroommasterData, onChangeroomgettenanrdata, savehousemaintancerqst } from 'src/app/config/api-config';
+import {  downloadcommondoc,gethousemasterData,getroommasterData} from 'src/app/config/api-config';
 import { EncryptService } from 'src/app/services/encrypt.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommenService {
+   
  
-  
- 
-  constructor(private http: HttpClient,private enctserv:EncryptService) { }
+  constructor(private readonly http: HttpClient,private readonly enctserv:EncryptService) { }
 
   gethousemasterData(userId:any){
     let headers = new HttpHeaders({
@@ -44,5 +43,16 @@ export class CommenService {
     let fullUrl = getroommasterData;
     return this.http.get(fullUrl,options);
   }
+
+  downloadcommondoc(docPath: any) {
+    const jsonObj = {
+      f: docPath
+  };
+  const jsonString = JSON.stringify(jsonObj);
+  const queryParam = btoa(jsonString);
+  const url = downloadcommondoc + '?' + 'data=' + queryParam;
+  return url;
+  }
+ 
 
 }

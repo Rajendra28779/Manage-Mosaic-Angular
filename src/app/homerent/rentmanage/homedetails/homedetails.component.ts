@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { HomerentserviceService } from '../../services/homerentservice.service';
+import { CommenService } from '../../services/commen.service';
 declare let $: any;
 
 @Component({
@@ -10,25 +11,33 @@ declare let $: any;
   styleUrls: ['./homedetails.component.scss']
 })
 export class HomedetailsComponent implements OnInit {
+  redirectdata:any;
   roomlist:any=[];
   addhouse:boolean=true;
   houseId:any="";
   user:any;
   displayhousedetails:any
   urlPreSurgery: any = "../../assets/img/for-sale.png";
+  roomdata:any;
 
-  constructor(private homerentserv:HomerentserviceService,
-    public route :Router) { }
+  constructor(private readonly homerentserv:HomerentserviceService,
+    public route :Router,private readonly commserv:CommenService) {
+      this.redirectdata = this.route.getCurrentNavigation()?.extras.state
+     }
 
   ngOnInit(): void {
     let userdata:any=sessionStorage.getItem('user');
     this.user=JSON.parse(userdata);
-    this.houseId=localStorage.getItem('houseId');
-    if(this.houseId==null || this.houseId== undefined ||this.houseId=="" || this.houseId==0){
-      this.addhouse=true;
+    if(this.redirectdata){
+    this.houseId=this.redirectdata.houseId;
+      if(this.houseId==null || this.houseId== undefined ||this.houseId=="" || this.houseId==0){
+        this.addhouse=true;
+      }else{
+        this.addhouse=false;
+        this.getdisplayhousedetails(this.houseId,this.user.userId);
+      }
     }else{
-      this.addhouse=false;
-      this.getdisplayhousedetails(this.houseId,this.user.userId);
+      this.addhouse=true;
     }
   }
   getdisplayhousedetails(houseId: any, userid: any) {
@@ -37,7 +46,7 @@ export class HomedetailsComponent implements OnInit {
         this.displayhousedetails = data.record;
         this.roomlist = data.rommlist
       }else{
-        Swal.fire("Error","HouseDetails Can't fetch!", "error");
+        Swal.fire("Error","Something Went Wrong!", "error");
       }
     },
     (error:any) => console.log(error));
@@ -110,7 +119,7 @@ export class HomedetailsComponent implements OnInit {
     let roomno =$('#roomno').val();
     let floor =$('#floor').val();
     let mtrreding =$('#mtrreding').val();
-    let unitprice =$('#unitprice').val();
+    let unitprice ='0';
 
     if (roomno==null || roomno== "" || roomno==undefined){
       Swal.fire("Error","Please Enter Room No","error");
@@ -215,6 +224,63 @@ export class HomedetailsComponent implements OnInit {
       }
     }else{
       Swal.fire("Warning", "Please Select File","warning");
+    }
+  }
+
+  getroomdetails(item:any){
+    this.roomdata = item;
+  }
+
+  addtenant(no:any,roomId:any){    
+    let navigation:NavigationExtras ={
+      state:{
+        roomId:roomId,
+        houseId:this.houseId
+      }
+    }
+    if(no==1){
+      this.route.navigate(['/rentmanage/homerentmanage/addtenent'],navigation);
+    }else{
+      let amount:any=0;
+      this.homerentserv.checkpendingbalanace(roomId).subscribe((data:any) => {
+        if(data.status == 200){
+          amount = data.record;
+          let htmldata
+                  if(amount > 0) {
+                      htmldata=`<p style="font-weight:500;">The Tenant currently has a pending amount of <br><span 
+                        style="font-weight:bold;font-size:30px; color:red">₹ `+amount+ `</span>.</p>`;
+                  }else{
+                      htmldata=`<p style="font-weight:500;">The Tenant currently has No pending amount.</p>`;
+                  }
+                  Swal.fire({
+                    title: "<strong>Are You Sure ?</strong>",
+                    icon: "question",
+                    html: htmldata,
+                    showCancelButton: true,
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      this.route.navigate(['/rentmanage/homerentmanage/addtenent'],navigation);
+                    }
+                  });
+        }else{
+          Swal.fire("Error","Something Went Wrong!", "error");
+        }
+      },
+      (error:any) => {
+        console.log(error)
+        Swal.fire("Error","Something Went Wrong!", "error");
+      });      
+    }
+  }
+
+  downloadTenantDoc(docPath: any) {
+    if (docPath) {
+        const img = this.commserv.downloadcommondoc(docPath);
+        window.open(img, '_blank');
+    } else {
+        Swal.fire('Info', 'There is no file', 'info');
     }
   }
 }

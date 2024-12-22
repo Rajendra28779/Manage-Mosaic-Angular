@@ -22,13 +22,13 @@
           <input class="form-control" type="text" placeholder="Enter Full Name" autocomplete="off" id="fullname" maxlength="40">
       </div>
     </div>
-    <div class="col-lg-4 col-xxl-4">
+    <!-- <div class="col-lg-4 col-xxl-4">
       <div class="mb-xl-3">
           <label class="form-label">Age<span class="text-danger">*</span></label>
           <input class="form-control" type="text" placeholder="Enter Age" autocomplete="off" id="age" maxlength="3"
           onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" >
       </div>
-    </div>
+    </div> -->
     <div class="col-lg-4 col-xxl-4">
       <div class="mb-xl-3">
           <label class="form-label">Mobile No<span class="text-danger">*</span></label>
@@ -59,8 +59,14 @@
     </div>
     <div class="col-lg-4 col-xxl-4">
       <div class="mb-xl-3">
+          <label class="form-label">Effective Date<span class="text-danger">*</span></label>
+          <input type="text" class="form-control datepicker" autocomplete="off" placeholder="DD/MM/YYYY" id="date" name="date">
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
           <label class="form-label">Select House<span class="text-danger">*</span></label>
-          <select class="form-select" name="house" id="house" (change)="onChangeHouse($event)">
+          <select class="form-select" name="house" id="house" (change)="onChangeHouse($event)" [(ngModel)]="houseId">
               <option value="" selected disabled>Select House</option>
               <ng-container *ngFor="let item of houselist">
                   <option value={{item.homeId}}>{{item.homeName}}</option>
@@ -71,7 +77,7 @@
     <div class="col-lg-4 col-xxl-4">
       <div class="mb-xl-3">
           <label class="form-label">Select Room<span class="text-danger">*</span></label>
-          <select class="form-select" name="room" id="room">
+          <select class="form-select" name="room" id="room" [(ngModel)]="roomId">
             <option value="" selected disabled>Select Room</option>
             <ng-container *ngFor="let item of roomlist">
                 <option value={{item.roomId}}>{{item.roomNo}}</option>
@@ -92,13 +98,7 @@
           <input class="form-control" type="text" placeholder="Enter Advance Amount" autocomplete="off" id="adv" maxlength="7"
           onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" >
       </div>
-    </div>
-    <div class="col-lg-4 col-xxl-4">
-      <div class="mb-xl-3">
-          <label class="form-label">Effective Date<span class="text-danger">*</span></label>
-          <input type="text" class="form-control datepicker" autocomplete="off" placeholder="DD/MM/YYYY" id="date" name="date">
-      </div>
-    </div>
+    </div>    
     <div class="col-lg-4 col-xxl-4">
       <div class="mb-xl-3">
           <label class="form-label">Aadhar Details<span class="text-danger">*</span></label>

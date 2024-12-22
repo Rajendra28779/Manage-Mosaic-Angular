@@ -75,3 +75,22 @@
   margin: 0;
 }
 
+
+
+.search-bar {
+  display: flex;               /* Use flexbox for the search bar */
+  align-items: center;         /* Center icon and input */
+}
+
+.search-icon {
+  color: rgb(58, 56, 56);                 /* Color for the search icon */
+  margin-right: 5px;          /* Space between icon and input */
+}
+
+input[type="text"] {
+  border: none;                /* Remove border */
+  outline: none;               /* Remove outline on focus */
+  flex: 1;                     /* Allow input to grow */
+  padding: 5px;                /* Padding for input */
+  font-size: 16px;             /* Font size for input */
+}

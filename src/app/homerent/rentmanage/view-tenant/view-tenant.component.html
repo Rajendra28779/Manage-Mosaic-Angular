@@ -9,10 +9,45 @@
         <li class="nav-item">
           <a routerLink="/rentmanage/homerentmanage/viewtenent" routerLinkActive="active" class="nav-link active color1">View Tenant</a>
         </li>   
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a routerLink="/rentmanage/homerentmanage/managetenent" routerLinkActive="active" class="nav-link color1">Manage Tenant</a>
-        </li>   
+        </li>    -->
       </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3 col-xxl-3">
+      <div class="mb-xl-3">
+          <label class="form-label">Select House<span class="text-danger"></span></label>
+          <select class="form-select" name="house" id="house" (change)="onChangeHouse($event)" [(ngModel)]="houseId">
+              <option value="" selected >Select House</option>
+              <ng-container *ngFor="let item of houselist">
+                  <option value={{item.homeId}}>{{item.homeName}}</option>
+              </ng-container>
+          </select>
+      </div>
+    </div>
+    <div class="col-lg-3 col-xxl-3">
+      <div class="mb-xl-3">
+          <label class="form-label">Select Room<span class="text-danger"></span></label>
+          <select class="form-select" name="room" id="room" [(ngModel)]="roomId" (change)="gettenantdetails()">
+            <option value="" selected >Select Room</option>
+            <ng-container *ngFor="let item of roomlist">
+                <option value={{item.roomId}}>{{item.roomNo}}</option>
+            </ng-container>
+        </select>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xxl-2" style="font-style: italic; font-size: 19px; margin-top: 3ch;">
+      <b>Total No : <span class="color1">{{tenantdetails.length}}</span></b>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="search-bar form-control" style="max-width: 400px; margin-top: 3ch;">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text" placeholder="Search..." id="txtsearchDate " name="txtsearchDate " autocomplete="off"
+        [(ngModel)]="txtsearchDate" maxlength="20 " (input)="onSearch($event)" />
+      </div>
     </div>
   </div>
 
@@ -40,7 +75,7 @@
           <td>{{ tenant.rentAmount | currency:'':''}}</td>
           <td>{{ tenant.effectiveDate }}</td>
           <td><a style="color:#388087;" data-bs-toggle="modal" data-bs-target="#userdetails" 
-            title="Tenent Details"><i class="bi bi-info-circle-fill" (click)="getdetails(tenant)"></i></a></td>
+            title="Tenent Details"  (click)="getdetails(tenant)"><i class="bi bi-info-circle-fill"></i></a></td>
           <td><a style="color:red;"><i class="bi bi-pencil-square"></i></a></td>
         </tr>
         <tr *ngIf="tenantdetails?.length==0">
@@ -101,15 +136,18 @@
             </div>
             <div class="detail">
               <span>Aadhar Doc:</span>
-              <p><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.aadharDetails)"></i></p>
+              <p *ngIf="gettenantdata?.aadharDetails!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.aadharDetails)"></i></p>
+              <p *ngIf="gettenantdata?.aadharDetails==null">N/A</p>
             </div>
             <div class="detail">
               <span>Rent Aggrement:</span>
-              <p><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.agreementDoc)"></i></p>
+              <p *ngIf="gettenantdata?.agreementDoc!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.agreementDoc)"></i></p>
+              <p *ngIf="gettenantdata?.agreementDoc==null">N/A</p>
             </div>
             <div class="detail">
               <span>Other Document:</span>
-              <p><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.otherDoc)"></i></p>
+              <p *ngIf="gettenantdata?.otherDoc!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.otherDoc)"></i></p>
+              <p *ngIf="gettenantdata?.otherDoc==null">N/A</p>
             </div>
           </div>
         </div>

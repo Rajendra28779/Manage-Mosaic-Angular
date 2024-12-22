@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { addnewhome, addroomforhome, getallhousedetialsforuserspecific,getdisplayhousedetails } from 'src/app/config/api-config';
+import { addnewhome, addroomforhome, checkpendingbalanace, getallhousedetialsforuserspecific,getdisplayhousedetails } from 'src/app/config/api-config';
 import { EncryptService } from 'src/app/services/encrypt.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomerentserviceService {
+  
 
   constructor(private http: HttpClient,private enctserv:EncryptService) { }
 
@@ -67,6 +68,22 @@ export class HomerentserviceService {
     };
     let fullUrl =addroomforhome;
     return this.http.post(fullUrl,object,options);
+  }
+
+  checkpendingbalanace(tenantId: any) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: this.enctserv.getJwtToken(),
+      'Access-Control-Allow-Origin': '*',
+    });
+    let options = {
+      headers: headers,
+      params :{
+        roomId : tenantId
+      }
+    };
+    let fullUrl =checkpendingbalanace;
+    return this.http.get(fullUrl,options);
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { HomerentserviceService } from '../../services/homerentservice.service';
 
@@ -31,8 +31,12 @@ export class AddhousedetailsComponent implements OnInit {
   }
 
   housedetails(houseId:any){
-    localStorage.setItem('houseId',houseId);
-    this.route.navigate(['/rentmanage/homerentmanage/hosmedetails']);
+    let navigation:NavigationExtras ={
+          state:{
+            houseId:houseId
+          }
+        }
+    this.route.navigate(['/rentmanage/homerentmanage/hosmedetails'],navigation);
   }
 
 }

@@ -23,6 +23,8 @@ export const onChangeroomgettenanrdata = baseUrl + "/api/onChangeroomgettenanrda
 export const getmaintanceTrackingRecord = baseUrl + "/api/getmaintanceTrackingRecord";
 export const getrequestdetailsForowner = baseUrl + "/api/getrequestdetailsForowner";
 export const takeactionagainestrequest = baseUrl + "/api/takeactionagainestrequest";
+export const downloadcommondoc = baseUrl + "/api/downloadcommondoc";
+export const checkpendingbalanace = baseUrl + "/api/checkpendingbalanace";
 
 
 
