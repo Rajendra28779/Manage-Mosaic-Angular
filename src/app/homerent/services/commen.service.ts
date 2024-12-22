@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { gethousemasterData, getroommasterData } from 'src/app/config/api-config';
+import { gethousedetailsforuser, gethousemasterData, getmaintanceTrackingRecord, getroommasterData, onChangeroomgettenanrdata, savehousemaintancerqst } from 'src/app/config/api-config';
 import { EncryptService } from 'src/app/services/encrypt.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommenService {
-
+ 
+  
+ 
   constructor(private http: HttpClient,private enctserv:EncryptService) { }
 
   gethousemasterData(userId:any){
@@ -42,4 +44,5 @@ export class CommenService {
     let fullUrl = getroommasterData;
     return this.http.get(fullUrl,options);
   }
+
 }

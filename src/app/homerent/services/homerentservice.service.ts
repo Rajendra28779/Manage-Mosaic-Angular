@@ -42,6 +42,7 @@ export class HomerentserviceService {
   getdisplayhousedetails(houseId: any, userid: any) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      Authorization: this.enctserv.getJwtToken(),
       'Access-Control-Allow-Origin': '*',
     });
     let options = {
@@ -57,7 +58,7 @@ export class HomerentserviceService {
 
   addroomforhome(object:any) {
     let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
       Authorization: this.enctserv.getJwtToken(),
       'Access-Control-Allow-Origin': '*',
     });

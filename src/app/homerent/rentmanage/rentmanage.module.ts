@@ -14,6 +14,7 @@ import { CompliantdetailsComponent } from './compliantdetails/compliantdetails.c
 import { ReminderComponent } from './reminder/reminder.component';
 import { DashborddesignComponent } from './dashborddesign/dashborddesign.component';
 import { TenantdashbordComponent } from './tenantdashbord/tenantdashbord.component';
+import { ViewTenantComponent } from './view-tenant/view-tenant.component';
 
 
 
@@ -32,6 +33,7 @@ import { TenantdashbordComponent } from './tenantdashbord/tenantdashbord.compone
     ReminderComponent,
     DashborddesignComponent,
     TenantdashbordComponent,
+    ViewTenantComponent,
   ],
   imports: [
     CommonModule,

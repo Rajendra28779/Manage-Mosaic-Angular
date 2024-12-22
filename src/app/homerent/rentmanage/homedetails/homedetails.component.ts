@@ -10,7 +10,7 @@ declare let $: any;
   styleUrls: ['./homedetails.component.scss']
 })
 export class HomedetailsComponent implements OnInit {
-  roomlist:any=[1,2,3,4];
+  roomlist:any=[];
   addhouse:boolean=true;
   houseId:any="";
   user:any;
@@ -28,13 +28,14 @@ export class HomedetailsComponent implements OnInit {
       this.addhouse=true;
     }else{
       this.addhouse=false;
-      this.getdisplayhousedetails(this.houseId,this.user.userid);
+      this.getdisplayhousedetails(this.houseId,this.user.userId);
     }
   }
   getdisplayhousedetails(houseId: any, userid: any) {
     this.homerentserv.getdisplayhousedetails(houseId,userid).subscribe((data:any) => {
       if(data.status == 200){
         this.displayhousedetails = data.record;
+        this.roomlist = data.rommlist
       }else{
         Swal.fire("Error","HouseDetails Can't fetch!", "error");
       }
@@ -144,6 +145,9 @@ export class HomedetailsComponent implements OnInit {
     formData.append('image4', this.image4);
     formData.append('image5', this.image4);
 
+    console.log(formData);
+    
+
     Swal.fire({
       title: 'Are you sure?',
       text: 'You want to save these details?',
@@ -156,6 +160,7 @@ export class HomedetailsComponent implements OnInit {
         this.homerentserv.addroomforhome(formData).subscribe((result:any)=>{
           if(result.status == 200){
             Swal.fire('Saved!', 'Your details have been saved.','success');
+            this.addroomforhome();
           }else{
             Swal.fire('Failed!', 'Failed to save your details. Please try again.', 'error');
           }
@@ -166,6 +171,18 @@ export class HomedetailsComponent implements OnInit {
         Swal.fire('Cancelled', 'Your details have not been saved.', 'error');
       }
     });
+  }
+
+  addroomforhome(){
+    $('#roomno').val('');
+    $('#floor').val('');
+    $('#mtrreding').val('');
+    $('#unitprice').val('');
+    $('#image1').val('');
+    $('#image2').val('');
+    $('#image3').val('');
+    $('#image4').val('');
+    $('#image5').val('');
   }
 
   image1:any;

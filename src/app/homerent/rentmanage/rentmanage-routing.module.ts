@@ -10,12 +10,14 @@ import { HomedetailsComponent } from './homedetails/homedetails.component';
 import { PaymntreminderComponent } from './paymntreminder/paymntreminder.component';
 import { ReminderComponent } from './reminder/reminder.component';
 import { TenantdashbordComponent } from './tenantdashbord/tenantdashbord.component';
+import { ViewTenantComponent } from './view-tenant/view-tenant.component';
 
 const routes: Routes = [
   { path: 'dashboard', component:DashboardComponent  },
   { path: 'hosmedetails', component:HomedetailsComponent  },
   { path: 'roomalert', component:AddroomComponent  },
   { path: 'addtenent', component:AddtenentComponent  },
+  { path: 'viewtenent', component:ViewTenantComponent },
   { path: 'upcommingpayment', component:PaymntreminderComponent  },
   { path: 'housedetails', component:AddhousedetailsComponent  },
   { path: 'housedetails', component:AddhousedetailsComponent  },

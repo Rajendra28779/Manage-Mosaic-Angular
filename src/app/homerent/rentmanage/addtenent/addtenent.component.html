@@ -1,7 +1,21 @@
 <app-sidebar></app-sidebar>
 <div class="content">
-  <p style="font-weight: 600; font-size: 17px; font-family: 'Playfair Display', serif;">Add UserDetails</p><hr>
-  <div class="row col-lg-10">
+  <div class="main-tab">
+    <div class="col-lg-12">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a routerLink="/rentmanage/homerentmanage/addtenent" routerLinkActive="active" class="nav-link active color1">Add Tenant</a>
+        </li>   
+        <li class="nav-item">
+          <a routerLink="/rentmanage/homerentmanage/viewtenent" routerLinkActive="active" class="nav-link color1">View Tenant</a>
+        </li>   
+        <li class="nav-item">
+          <a routerLink="/rentmanage/homerentmanage/managetenent" routerLinkActive="active" class="nav-link color1">Manage Tenant</a>
+        </li>   
+      </ul>
+    </div>
+  </div>
+  <div class="row col-lg-10 mt-1">
     <div class="col-lg-4 col-xxl-4">
       <div class="mb-xl-3">
           <label class="form-label">Name<span class="text-danger">*</span></label>
@@ -39,7 +53,7 @@
     <div class="col-lg-4 col-xxl-4">
       <div class="mb-xl-3">
           <label class="form-label">Member Mobile No<span class="text-danger"></span></label>
-          <input class="form-control" type="text" placeholder="Member Mobile No" autocomplete="off" id="othmobile" maxlength="2"
+          <input class="form-control" type="text" placeholder="Member Mobile No" autocomplete="off" id="othmobile" maxlength="12"
           onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" >
       </div>
     </div>
@@ -82,7 +96,7 @@
     <div class="col-lg-4 col-xxl-4">
       <div class="mb-xl-3">
           <label class="form-label">Effective Date<span class="text-danger">*</span></label>
-          <input type="text" class="form-control datepicker" autocomplete="off" placeholder="Effective Date" id="date" name="date">
+          <input type="text" class="form-control datepicker" autocomplete="off" placeholder="DD/MM/YYYY" id="date" name="date">
       </div>
     </div>
     <div class="col-lg-4 col-xxl-4">

@@ -44,22 +44,22 @@
   <div class="backtab-container">
     <img src="../../../../assets/img/buy-a-house.gif" alt="house" class="img1stimg">
     <div>
-      <h2 style="font-family: 'Playfair Display', serif; font-weight: bold; width: 290px;">Sobhanna 01</h2>
-      <p style="width: 230px;"><i class="bi bi-geo-alt-fill me-2"></i>OCAC Building, Plot No. N-1/7-D, Acharya Vihar Square RRL Post Office, Bhubaneswar, Odisha 751013</p>
+      <h2 style="font-family: 'Playfair Display', serif; font-weight: bold; width: 290px;">{{this.displayhousedetails?.houseName}}</h2>
+      <p style="width: 230px;"><i class="bi bi-geo-alt-fill me-2"></i>{{this.displayhousedetails?.address}}</p>
     </div>
     <div class="tabdata" style="margin-left: 5ch;">
       <img src="../../../../assets/img/living-room.gif" alt="home" class="housedimg">
-      <div class="housed-text" style="font-size: 22px;font-family: 800;">38</div>
+      <div class="housed-text" style="font-size: 22px;font-family: 800;">{{this.displayhousedetails?.roomCount}}</div>
       <div class="housed-text">Total No Of Room</div>
     </div>
     <div class="tabdata" style="margin-left: 5ch;">
       <img src="../../../../assets/img/family.gif" alt="house" class="housedimg">
-      <div class="housed-text" style="font-size: 22px;font-family: 800;">57</div>
+      <div class="housed-text" style="font-size: 22px;font-family: 800;">{{this.displayhousedetails?.memberCount}}</div>
       <div class="housed-text">Total No Of Tenants</div>
     </div>
     <div class="tabdata" style="margin-left: 5ch;">
       <img src="../../../../assets/img/coins.gif" alt="house" class="housedimg">
-      <div class="housed-text" style="font-size: 22px;font-family: 800;">57</div>
+      <div class="housed-text" style="font-size: 22px;font-family: 800;">₹ {{this.displayhousedetails?.totalamount}}</div>
       <div class="housed-text">Total Revenue to Date</div>
     </div>
   </div>
@@ -133,7 +133,7 @@
                   <div class="col-lg-4 col-xxl-4" style="margin-top:30px;">
                     <div class="mb-xl-3">
                       <button class="btn btn-success me-2" style="width: 48%;" id="loginBtn" (click)="submitroomdetails()">Submit</button>
-                      <button class="btn btn-primary" style="width: 48%;">Reset</button>
+                      <button class="btn btn-primary" style="width: 48%;" (click)="addroomforhome()">Reset</button>
                     </div>
                   </div>
                 </div>
@@ -147,29 +147,29 @@
         <div class="col-6">
           <div class="card bord">
             <div class="roomdata row" >
-              <div class="col-lg-4" style="color: rgb(238, 49, 49);"><h5>Room No {{item}}</h5></div>
-              <div class="col-lg-4" style="text-align: end;"><h5><i class="bi bi-lightbulb me-2"></i>18776354426</h5></div>
-              <div class="col-lg-2" style="text-align: end;" ><h5><i class="bi bi-currency-rupee me-2"></i>6</h5></div>
+              <div class="col-lg-4" style="color: rgb(238, 49, 49);"><h5>{{item.rommNo}}</h5></div>
+              <div class="col-lg-4" style="text-align: end;"><h5><i class="bi bi-lightbulb me-2"></i>{{item.lastmtrRead}}</h5></div>
+              <div class="col-lg-2" style="text-align: end;" ><h5><i class="bi bi-currency-rupee me-2"></i> {{item.unitprice}}</h5></div>
               <div class="col-lg-2" style="text-align: end;" title="edit"><h5><i class="bi bi-pencil-square"></i></h5></div>
             </div>
             <hr>
-            <div class="row userdata" *ngIf="item!=2">
-              <div class="col-lg-8" style="color: #388087; font-weight: 800;"><h5>Rajendra Prasad Sahoo</h5></div>
-              <div class="col-lg-4" style="text-align: end;"><h5><i class="bi bi-telephone me-1"></i>6370178554</h5></div>
+            <div class="row userdata" *ngIf="item.tenantId!=0">
+              <div class="col-lg-8" style="color: #388087; font-weight: 800;"><h5>{{item.tenantName}}</h5></div>
+              <div class="col-lg-4" style="text-align: end;"><h5><i class="bi bi-telephone me-1"></i>{{item.mobileNo}}</h5></div>
             </div>
-            <div class="row mt-2 userdata" *ngIf="item!=2">
-              <div class="col-lg-4" ><h6><i class="bi bi-calendar-check me-2"></i>31-Oct-2024</h6></div>
-              <div class="col-lg-4" style="text-align: end;"><h6><i class="bi bi-currency-rupee me-1"></i>Adv : 999999</h6></div>
-              <div class="col-lg-4" style="text-align: end;" ><h6><i class="bi bi-currency-rupee me-1"></i>Rent : 69999</h6></div>
+            <div class="row mt-2 userdata" *ngIf="item.tenantId!=0">
+              <div class="col-lg-4" ><h6><i class="bi bi-calendar-check me-2"></i>{{item.effectiveDate}}</h6></div>
+              <div class="col-lg-4" style="text-align: end;"><h6><i class="bi bi-currency-rupee me-1"></i>Adv : {{item.advamt}}</h6></div>
+              <div class="col-lg-4" style="text-align: end;" ><h6><i class="bi bi-currency-rupee me-1"></i>Rent : {{item.rentamount}}</h6></div>
             </div>
-            <div class="row mt-2 editopt" *ngIf="item!=2" >
+            <div class="row mt-2 editopt" *ngIf="item.tenantId!=0" >
               <div class="col-lg-12" ><h5><img src="../../../../assets/img/change-user.png" alt="change user" height="28px" width="30px" class="me-3">  Change Tenent</h5></div>
             </div>
-            <div style="text-align: center; color: rgb(177, 173, 173); margin-top: -22px;" *ngIf="item==2">
+            <div style="text-align: center; color: #b1adad; margin-top: -22px;" *ngIf="item.tenantId==0">
               <i class="bi bi-person-slash" style="font-size: 35px;"></i>
               <h4>User not allocated</h4>
             </div>
-            <div class="row mt-2 editopt" *ngIf="item==2">
+            <div class="row mt-2 editopt" *ngIf="item.tenantId==0">
               <div class="col-lg-12" ><h5><i class="bi bi-person-add me-3" style="font-size: 23px; color: blue;"></i>Add Tenent</h5></div>
             </div>
           </div>

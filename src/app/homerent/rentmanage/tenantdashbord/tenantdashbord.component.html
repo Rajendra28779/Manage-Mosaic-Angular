@@ -7,65 +7,80 @@
           <div class="row">
             <div class="col-3">
               <div>
-                <img src="../../../../assets/img/hello.png" alt="user profile" height="90px" width="90px">
+                <img src="../../../../assets/img/hello.png" alt="user profile" height="90px" width="80px" style="margin-left: 1ch;">
               </div>
             </div>
             <div class="col-9" style="font-weight: 600;">
-              <p><span class="color1">Name : </span>Rajendra Prsasad Sahoo</p>
-              <p><span class="color1">Mobile No : </span>6370178554</p>
-              <p><span class="color1">Email id : </span>rajendraprasadsahoo28@gmail.com</p>
+              <p><span class="color1">Name : </span>{{this.user.fullName}}</p>
+              <p><span class="color1">Mobile No : </span>{{this.user.phoneNo}}</p>
+              <p><span class="color1">Email id : </span>{{this.user.email}}</p>
             </div>
           </div>
-          <hr>
+        <div [ngClass]="{'example-container1': userhousedatalist.length > 1}" >
+      <ng-container *ngFor="let item of userhousedatalist">
+          <hr style="margin-top: 1ch;">
           <div class="row" style="font-weight: 600;">
             <div class="col-6">
-              <p><span class="color1">House Name : </span>Sobhanna 01</p>
+              <p><span class="color1">House Name : </span>{{item.houseName}}</p>
             </div>
             <div class="col-6" style="text-align:end;">
-              <p><span class="color1">Room Name : </span>Room no 01</p>
+              <p><span class="color1">Room Name : </span>{{item.roomNo}}</p>
             </div>
             <div class="col-12" >
-              <p><span class="color1">Owner Name : </span>Rajendra Prsasad Sahoo</p>
+              <p><span class="color1">Owner Name : </span>{{item.ownerName}}</p>
             </div>
             <div class="col-6">
-              <p><span class="color1">Contact No : </span>6370178554</p>
+              <p><span class="color1">Contact No : </span>{{item.ownerMobile}}</p>
             </div>
             <div class="col-6" style="text-align:end;">
-              <p><span class="color1">Staying From : </span>12-Aug-2024</p>
+              <p><span class="color1">Staying From : </span>{{item.efectdate}}</p>
             </div>
             <div class="col-6">
-              <p><span class="color1">Rent Amount : </span>7000</p>
+              <p><span class="color1">Rent Amount : </span>₹ {{item.rentAmount}}</p>
             </div>
             <div class="col-6" style="text-align:end;">
-              <p><span class="color1">Pending Amount: </span>1000</p>
+              <p><span class="color1">Pending Amount: </span>₹ {{item.advAmount}}</p>
             </div>
             <div class="col-6">
-              <p><span class="color1">Due Date : </span>12-Jan-2025</p>
+              <p><span class="color1">Due Date : </span>{{item.paymentdate}}</p>
             </div>
             <div class="col-6" style="text-align:end;">
-              <p><span class="color1">Last Payment : </span>12-Dec-2024</p>
+              <p><span class="color1">Last Payment : </span>{{item.lastpaymentdate}}</p>
             </div>
           </div>
+    </ng-container>
+      </div>
         </div>
       </div>
       <div class="row mt-3">
-        <div class="col-6" >
-          <button routerLink="/contactus" class="btn btn-warning" style="width: 100%;"><i class="bi bi-headset me-3"></i> <span style="font-weight: 600; font-size: 18px;">Contact Us</span>
+        <div class="col-md-6 col-sm-12" >
+          <button routerLink="/contactus" class="btn btn-warning" style="width: 100%;"><i class="bi bi-headset me-2"></i> <span style="font-weight: 600; font-size: 18px;">Contact Us</span>
           <br>We Always Here to Help You .</button>
         </div>
-        <div class="col-6" >
-          <!-- <button class="btn btn-warning" style="width: 100%; font-weight: 600; font-size: 20px;"><i class="bi bi-headset me-2"></i> <span>Support</span></button> -->
+        <div class="col-md-6 col-sm-12" >
+          <button routerLink="/contactus" class="btn btn-primary" style="width: 100%;"><i class="bi bi-geo-alt-fill me-2"></i> <span style="font-weight: 600; font-size: 18px;">Find Rooms Nearby</span>
+            <br>Find your space nearby today.</button>
         </div>
       </div>
     </div>
     <div class="col-xxl-7 col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
       <div class="card" style="height: 55ch;">
         <div class="card-header">
-          <div class="heading">Raise a Maintenance Request :- </div>
+          <div class="row">
+            <div class="col-6" style="cursor: pointer;" [ngClass]="{'active': activeElement == 1}" 
+            (click)="setActive(1)">
+              <div class="heading">Raise a Maintenance Request </div>
+            </div>
+            <div class="col-6" style="text-align: end; cursor: pointer;" [ngClass]="{'active': activeElement == 2}" 
+            (click)="setActive(2)">
+              <div class="heading">Track Request </div>
+            </div>  
+          </div>        
         </div>
-        <div class="card-body">
-          <p style="font-size: 17px; color: red; margin-top: 0;">
-            <strong>Note:</strong> This message will be directly forwarded to the house owner.
+
+        <div class="card-body" *ngIf="activeElement == 1">
+          <p style="font-size: 18px; color: #388087; font-weight: 500; margin-top: 0;">
+            <i class="bi bi-info-circle-fill me-2"></i>You can raise complaints for yourself, neighbors, or Common maintenance.
           <div class="row">
             <div class="col-lg-4 col-xxl-4">
               <div class="mb-xl-3">
@@ -81,7 +96,7 @@
             <div class="col-lg-4 col-xxl-4">
               <div class="mb-xl-3">
                 <label class="form-label">Select Room<span class="text-danger">*</span></label>
-                <select class="form-select" name="room" id="room">
+                <select class="form-select" name="room" id="room" (change)="onChangeroom($event)">
                   <option value="" selected disabled>Select Room</option>
                   <ng-container *ngFor="let item of roomlist">
                     <option value={{item.roomId}}>{{item.roomNo}}</option>
@@ -89,16 +104,17 @@
                 </select>
               </div>
             </div>
+            <div class="col-lg-4 col-xxl-4" style="text-align: end;color: rgb(199, 8, 8);font-style: italic;">(*) Indicate mandatory</div>
             <div class="col-lg-6 col-xxl-6">
               <div class="mb-xl-3">
                 <label class="form-label">Tenant Name<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" value="Tenant User" disabled>
+                <input type="text" class="form-control" [value]="tenantdatafrmroom?.fullName" disabled placeholder="Tenant Name">
               </div>
             </div>
             <div class="col-lg-6 col-xxl-6">
               <div class="mb-xl-3">
                 <label class="form-label">Request Reson<span class="text-danger">*</span></label>
-                <select class="form-select" name="room" id="room">
+                <select class="form-select" name="rqstrson" id="rqstrson">
                   <option value="" selected disabled>Select Request Reson</option>
                   <ng-container *ngFor="let item of maintanceFor">
                     <option value={{item.maintainId}}>{{item.maintainFor}}</option>
@@ -109,17 +125,56 @@
             <div class="col-lg-12 col-xxl-12">
               <div class="mb-xl-3">
                 <label class="form-label">Description<span class="text-danger">*</span></label>
-                <textarea class="form-control" placeholder="Enter Description" autocomplete="off" id="description" maxlength="100"></textarea>
+                <textarea class="form-control" placeholder="Enter Description" autocomplete="off" id="description" maxlength="250"></textarea>
+              </div>
+            </div>           
+            <div class="col-lg-3 col-xxl-3">
+              <div class="mb-xl-3">
+                <button class="btn btn-success me-2" style="width: 100%;" id="loginBtn" (click)="requestmaintnance()">Submit</button>
               </div>
             </div>
-            <div class="col-lg-6 col-xxl-6">
-              <div class="mb-xl-3">
-                <button class="btn btn-success me-2" style="width: 48%;" id="loginBtn" (click)="requestmaintnance()">Submit</button>
-                <button class="btn btn-primary" style="width: 48%;">Reset</button>
-              </div>
+            <div class="col-lg-9 col-xxl-9">
+              <p style="font-size: 17px; color: red; text-align: end;"><strong>Note:</strong> This message will be directly forwarded to the House Owner.</p>
             </div>
         </div>
       </div>
+
+      <div class="card-body" *ngIf="activeElement == 2">
+        <div class="table-container example-container">
+          <table class="custom-table">
+            <caption></caption>
+            <thead>
+              <tr>
+                <th style="width: 110px;">Request On</th>
+                <th style="width: 150px;">Hosue Details</th>                
+                <th style="width: 220px;">Request For</th>
+                <th>Status</th>
+                <th><i class="bi bi-soundwave"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let tenant of tenantData" title="{{tenant.fullName}}  (Mob = {{ tenant.tanantPhone }})">          
+                <td>{{ tenant.rqstOn }}</td>      
+                <td >
+                  <div style="font-size: 18px; font-weight: 600;">{{ tenant.roomName }} </div>
+                  <div style="font-size: 15px; font-weight: 500;">{{ tenant.houseName }} </div>
+                </td>                
+                <td >
+                  <div style="font-size: 18px; font-weight: 600;">{{ tenant.rqstfor }} </div>
+                  <div style="font-size: 15px; font-weight: 500;">{{ tenant.rqstdesc }} </div>
+                </td>               
+                <td style="color: red; font-weight: bold; font-size: 20px;" *ngIf="tenant.status!='Resolved'">{{ tenant.status}}</td>
+                <td style="color: green; font-weight: bold; font-size: 20px;" *ngIf="tenant.status=='Resolved'">{{ tenant.status}}</td>
+                <td style="color: #388087; font-size: 22px; cursor: pointer;"><i class="bi bi-bell"></i></td>
+              </tr>
+              <tr *ngIf="tenantData?.length==0">
+                <td colspan="10" style="text-align:center;"><strong class="text-danger">No data found</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

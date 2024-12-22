@@ -9,6 +9,21 @@
   font-weight: 600;
 }
 
+.active {
+  // background-color: #d8fce2; /* Example color (blue) */
+  color: red; /* Text color for contrast */
+}
+
+.example-container {
+  height: 46ch;
+  max-width: 100%;
+  overflow: auto;
+}
+.example-container1 {
+  height: 240px;
+  max-width: 100%;
+  overflow: auto;
+}
 
 .unique__section {
   .card-body {
@@ -80,4 +95,31 @@
         }
     }
   }
+}
+
+
+.table-container {
+  width: 100%;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: separate; /* Allows border-spacing to work */
+  border-spacing: 10px; /* Adds space between the cells */
+  font-family: Arial, sans-serif;
+}
+
+.custom-table th {
+  background-color: #6FB3B8;
+  color: white;
+  border-radius: 5px 20px 5px 20px;
+}
+
+.custom-table th, .custom-table td {
+  padding: 5px;
+  text-align: center;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #e0e0e0;
 }

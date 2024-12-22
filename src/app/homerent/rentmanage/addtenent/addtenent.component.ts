@@ -10,6 +10,7 @@ declare let $: any;
   styleUrls: ['./addtenent.component.scss']
 })
 export class AddtenentComponent implements OnInit {
+  selectedDate: Date = new Date(); // Default to today's date
   user:any;
   houselist:any=[];
   roomlist:any=[];
@@ -173,20 +174,21 @@ export class AddtenentComponent implements OnInit {
     }
 
     const formData: FormData = new FormData();
-    formData.append('tenantName', tenantName);
+    formData.append('fullName', tenantName);
     formData.append('age', age);
-    formData.append('mobileno', mobileno);
-    formData.append('altmobileno', altmobileno);
-    formData.append('member', member);
-    formData.append('membermobileno', membermobileno);
+    formData.append('mobileNo', mobileno);
+    formData.append('altMobileNo', altmobileno);
+    formData.append('noOfMember', member);
+    formData.append('memberMobileNo', membermobileno);
     formData.append('houseId', houseId);
-    formData.append('roomid', roomid);
-    formData.append('rentamount', rentamount);
-    formData.append('advanceamount', advanceamount);
-    formData.append('efectivedate', efectivedate);
-    formData.append('aadhatDoc', this.aadharDoc);
-    formData.append('rentDoc', this.rentDoc);
-    formData.append('otherDoc', this.otherDoc);
+    formData.append('ownerId', this.user?.userId);
+    formData.append('roomId', roomid);
+    formData.append('rentAmount', rentamount);
+    formData.append('advAmount', advanceamount);
+    formData.append('effectiveDate', efectivedate);
+    formData.append('image1', this.aadharDoc);
+    formData.append('image2', this.rentDoc);
+    formData.append('image3', this.otherDoc);
     console.log(this.aadharDoc);
 
     let alrtmsg="Your previous tenant has not cleared all dues yet. Pending due = 10,000."
@@ -201,7 +203,7 @@ export class AddtenentComponent implements OnInit {
       cancelButtonText: 'No'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.tenantserv.addroomforhome(formData).subscribe((result:any)=>{
+        this.tenantserv.addtenanttoroom(formData).subscribe((result:any)=>{
           if(result.status == 200){
             Swal.fire('Saved!', 'Your details have been saved.','success');
           }else{
