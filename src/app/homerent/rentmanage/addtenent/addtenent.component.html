@@ -9,9 +9,9 @@
         <li class="nav-item">
           <a routerLink="/rentmanage/homerentmanage/viewtenent" routerLinkActive="active" class="nav-link color1">View Tenant</a>
         </li>   
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a routerLink="/rentmanage/homerentmanage/managetenent" routerLinkActive="active" class="nav-link color1">Manage Tenant</a>
-        </li>   
+        </li>    -->
       </ul>
     </div>
   </div>
@@ -22,13 +22,6 @@
           <input class="form-control" type="text" placeholder="Enter Full Name" autocomplete="off" id="fullname" maxlength="40">
       </div>
     </div>
-    <!-- <div class="col-lg-4 col-xxl-4">
-      <div class="mb-xl-3">
-          <label class="form-label">Age<span class="text-danger">*</span></label>
-          <input class="form-control" type="text" placeholder="Enter Age" autocomplete="off" id="age" maxlength="3"
-          onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" >
-      </div>
-    </div> -->
     <div class="col-lg-4 col-xxl-4">
       <div class="mb-xl-3">
           <label class="form-label">Mobile No<span class="text-danger">*</span></label>
@@ -77,7 +70,7 @@
     <div class="col-lg-4 col-xxl-4">
       <div class="mb-xl-3">
           <label class="form-label">Select Room<span class="text-danger">*</span></label>
-          <select class="form-select" name="room" id="room" [(ngModel)]="roomId">
+          <select class="form-select" name="room" id="room" [(ngModel)]="roomId" (change)="onChangeroom($event)">
             <option value="" selected disabled>Select Room</option>
             <ng-container *ngFor="let item of roomlist">
                 <option value={{item.roomId}}>{{item.roomNo}}</option>
@@ -120,6 +113,14 @@
     <div class="col-lg-4 col-xxl-4" style="margin-top: 30px;">
       <input type="button" value="Save" class="btn btn-primary me-2" style="width: 48%;" (click)="submit()">
       <input type="button" value="Reset" class="btn btn-info" style="width: 48%;" (click)="resetVal()">
+    </div>
+    <div class="col-lg-4 col-xxl-4"  >
+      <p class="madotory">(*) Indicate mandatory</p>
+    </div>
+    <div class="col-lg-12 col-xxl-12" >
+      <p style="font-size: 17px; color: red; text-align: justify;"><strong>Note:</strong>
+      When you add a new tenant, the previous tenant will be automatically removed after the effective date, 
+      but any remaining balance will continue to appear in the payment section until it is fully paid.</p>
     </div>
   </div>
 </div>

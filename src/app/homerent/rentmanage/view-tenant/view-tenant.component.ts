@@ -58,7 +58,7 @@ export class ViewTenantComponent implements OnInit {
     }
 
     gettenantdetails(){
-      this.tenantserv.gettenantdetails(this.houseId,this.roomId).subscribe((data:any) => {
+      this.tenantserv.gettenantdetails(this.houseId,this.roomId,"").subscribe((data:any) => {
         if(data.status == 200){
           this.tenantdetails = data.record;
         }else{

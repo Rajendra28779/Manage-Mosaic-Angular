@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { addnewhome, addroomforhome, checkpendingbalanace, getallhousedetialsforuserspecific,getdisplayhousedetails } from 'src/app/config/api-config';
+import { addnewhome, addroomforhome, checkpendingbalanace, getallhousedetialsforuserspecific,getdisplayhousedetails, gettenantlistforpaymentprocess } from 'src/app/config/api-config';
 import { EncryptService } from 'src/app/services/encrypt.service';
 
 @Injectable({
@@ -86,4 +86,19 @@ export class HomerentserviceService {
     return this.http.get(fullUrl,options);
   }
 
+  gettenantlistforpaymentprocess(houseId: any) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: this.enctserv.getJwtToken(),
+      'Access-Control-Allow-Origin': '*',
+    });
+    let options = {
+      headers: headers,
+      params :{
+        houseId : houseId
+      }
+    };
+    let fullUrl = gettenantlistforpaymentprocess;
+    return this.http.get(fullUrl,options);
+  }
 }

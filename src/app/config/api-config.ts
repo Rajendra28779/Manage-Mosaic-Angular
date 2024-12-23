@@ -25,6 +25,7 @@ export const getrequestdetailsForowner = baseUrl + "/api/getrequestdetailsForown
 export const takeactionagainestrequest = baseUrl + "/api/takeactionagainestrequest";
 export const downloadcommondoc = baseUrl + "/api/downloadcommondoc";
 export const checkpendingbalanace = baseUrl + "/api/checkpendingbalanace";
+export const gettenantlistforpaymentprocess = baseUrl + "/api/gettenantlistforpaymentprocess";
 
 
 

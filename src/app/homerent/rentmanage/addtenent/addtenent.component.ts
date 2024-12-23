@@ -3,6 +3,7 @@ import { CommenService } from '../../services/commen.service';
 import Swal from 'sweetalert2';
 import { TenentdetailsService } from '../../services/tenentdetails.service';
 import { Router } from '@angular/router';
+import { HomerentserviceService } from '../../services/homerentservice.service';
 declare let $: any;
 
 @Component({
@@ -22,7 +23,10 @@ export class AddtenentComponent implements OnInit {
   otherDoc:any="";
   houseId:any="";
   roomId:any="";
+  pendingamount:any="";
+
   constructor(private readonly commenserv:CommenService,
+    private readonly homerentserv:HomerentserviceService,
     private readonly tenantserv:TenentdetailsService,
     private readonly router:Router) { 
   this.redirectdata = this.router.getCurrentNavigation()?.extras.state
@@ -56,6 +60,7 @@ export class AddtenentComponent implements OnInit {
         (error:any) => console.log(error));
     }
   onChangeHouse($event:any){
+    $('#room').val('');
     let id=$event.target.value;
     this.commenserv.getroommasterData(this.user?.userId,id).subscribe((data:any) => {
       if(data.status == 200){
@@ -65,6 +70,22 @@ export class AddtenentComponent implements OnInit {
       }
     },
     (error:any) => console.log(error));
+  }
+
+  onChangeroom($event:any){
+    let id=$event.target.value;
+    this.homerentserv.checkpendingbalanace(id).subscribe((data:any) => {
+        if(data.status == 200){
+          if(data.record.tenantName != ""){
+            this.pendingamount=data.record.val;
+            let htmldata=`<p style="font-weight:500;">Tenant Name : `+data.record.tenantName+`<br>`+
+              `Mobile No : `+data.record.tenantMobileNo+`<br>`+
+              `The Tenant currently has a pending amount of <br><span 
+              style="font-weight:bold;font-size:30px; color:red">₹ `+this.pendingamount+ `</span>.</p>`;
+              Swal.fire({html: htmldata,}); 
+          }                  
+        }
+      });      
   }
 
 
@@ -164,19 +185,7 @@ export class AddtenentComponent implements OnInit {
       Swal.fire("Error","Please Enter Date When Tenant take Over The Romm","error");
       $('#date').focus();
       return;
-    }
-
-    if (efectivedate==null || efectivedate== "" || efectivedate==undefined){
-      Swal.fire("Error","Please Enter Date When Tenant take Over The Romm","error");
-      $('#date').focus();
-      return;
-    }
-
-    if (efectivedate==null || efectivedate== "" || efectivedate==undefined){
-      Swal.fire("Error","Please Enter Date When Tenant take Over The Romm","error");
-      $('#date').focus();
-      return;
-    }
+    }    
 
     if (this.aadharDoc==null || this.aadharDoc== "" || this.aadharDoc==undefined){
       Swal.fire("Error","Please Enter Tenant Aadhar Doc","error");
@@ -198,15 +207,12 @@ export class AddtenentComponent implements OnInit {
     formData.append('effectiveDate', efectivedate);
     formData.append('image1', this.aadharDoc);
     formData.append('image2', this.rentDoc);
-    formData.append('image3', this.otherDoc);
-    console.log(this.aadharDoc);
-
-    let alrtmsg="Your previous tenant has not cleared all dues yet. Pending due = 10,000."
+    formData.append('image3', this.otherDoc);    
 
     Swal.fire({
-      //`<span style="color:red;">Do You Want To Change Your Claim Amount?</span>`
       title: 'Are you sure?',
-      text: 'You want to save these details? ' + alrtmsg,
+      text: 'When you add a new tenant, the previous tenant will be automatically removed after the effective date,'+ 
+             'but any remaining balance will continue to appear in the payment section until it is fully paid.',
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Yes',

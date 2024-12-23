@@ -244,7 +244,7 @@ export class HomedetailsComponent implements OnInit {
       let amount:any=0;
       this.homerentserv.checkpendingbalanace(roomId).subscribe((data:any) => {
         if(data.status == 200){
-          amount = data.record;
+          amount = data.record.val;
           let htmldata
                   if(amount > 0) {
                       htmldata=`<p style="font-weight:500;">The Tenant currently has a pending amount of <br><span 

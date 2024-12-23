@@ -5,7 +5,8 @@
 
   <div class="row">
     <div class="col-lg-3 col-xxl-3">
-      <select class="form-select me-2" name="house" id="house" style="max-width: 250px;">
+      <select class="form-select me-2" name="house" id="house" style="max-width: 250px;"
+      (change)="gettenantlistforpaymentprocess()" [(ngModel)]="houseId">
         <option value="" selected>Select House</option>
         <ng-container *ngFor="let item of msthouseList">
           <option value="{{item.homeId}}">{{item.homeName}}</option>
@@ -26,22 +27,23 @@
   </div>
 
     <div class="row col-lg-11 card-container">
-      <div class="col-lg-4 col-xxl-4 " *ngFor="let record of records | filter:txtsearchDate">
+      <div class="col-lg-4 col-xxl-4 " *ngFor="let record of listOfpayment | filter:txtsearchDate">
         <div class="card" >
           <div class="card-details">
             <div class="info-row">
-              <h4>{{ record.name }}</h4>
-              <i class="bi bi-person-vcard" style="font-size: 25px; color: #2a6f73; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#userdetails" title="Tenent Details"></i>
+              <h4>{{ record.fullName }}</h4>
+              <i class="bi bi-person-vcard" style="font-size: 25px; color: #2a6f73; cursor: pointer;" 
+              data-bs-toggle="modal" data-bs-target="#userdetails" title="Tenent Details" (click)="gettenantdetails(record.tenantId)"></i>
             </div>
             <div class="info-row">
-              <p style="color: #388087; font-size: 15px; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">Room : No {{record.room}}</p>
-              <p class="badge bg-danger rent-amount">Rent : ₹{{ record.rentAmount }}</p>
+              <p style="color: #388087; font-size: 15px; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">{{record.roomNo}}</p>
+              <p class="badge bg-danger rent-amount">Rent : ₹ {{ record.rentAmount }}</p>
             </div>
-            <p style="color: #388087; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">House : {{ record.house }}</p>
-            <p style="color: #388087; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">Due Date : <span style="color: #4b5fd4 ;">06-Nov-2024</span></p>
+            <p style="color: #388087; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">House : {{ record.houseName }}</p>
+            <p style="color: #388087; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">Due Date : <span style="color: #4b5fd4 ;">{{ record.dueDate }}</span></p>
           </div>
           <div class="arrow">
-            <i class="bi bi-arrow-right"></i>
+            <i class="bi bi-arrow-right" data-bs-toggle="modal" data-bs-target="#payment" title="Calculate Payment" (click)="calculatepayment(record)"></i>
           </div>
         </div>
       </div>
@@ -51,11 +53,11 @@
 
 <!-- User Details-->
 <div class="modal fade" id="userdetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 10ch;">
-  <div class="modal-dialog" style="max-width: 35%;">
+  <div class="modal-dialog" style="max-width: 35%; margin-top: 0;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel" style="font-size: 25px; color: #388087">
-          <i class="bi bi-file-person-fill"></i> Rajendra Prasad Sahoo
+          <i class="bi bi-file-person-fill me-2"></i>{{gettenantdata?.fullName}}
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -63,47 +65,54 @@
         <div class="tenant-card">
           <div class="detail">
             <span>Mobile No:</span>
-            <p>6370178554</p>
+            <p>{{gettenantdata?.mobileNo}}</p>
           </div>
           <div class="detail">
             <span>Additional Mobile No:</span>
-            <p>6370178554</p>
-          </div>
-          <div class="detail">
-            <span>Email Id:</span>
-            <p>rajendraprasadsahoo28@gmail.com</p>
+            <p>{{gettenantdata?.altMobileNo}}</p>
           </div>
           <div class="detail">
             <span>Room No:</span>
-            <p>1001</p>
+            <p>{{gettenantdata?.roomNo}}</p>
           </div>
           <div class="detail">
             <span>House Name:</span>
-            <p>Sobhanna 01</p>
+            <p>{{gettenantdata?.houseName}}</p>
           </div>
           <div class="detail">
             <span>Family Members:</span>
-            <p>5</p>
+            <p>{{gettenantdata?.noOfMember}}</p>
           </div>
           <div class="detail">
-            <span>Age:</span>
-            <p>26</p>
+            <span>Members Mobile No:</span>
+            <p>{{gettenantdata?.memberMobileNo}}</p>
           </div>
           <div class="detail">
             <span>Rent Amount:</span>
-            <p>₹5000</p>
+            <p>₹ {{gettenantdata?.rentAmount | currency:'':''}}</p>
+          </div>
+          <div class="detail">
+            <span>Adv Amount:</span>
+            <p>₹ {{gettenantdata?.advAmount | currency:'':''}}</p>
           </div>
           <div class="detail">
             <span>Allocation Date:</span>
-            <p>06-Nov-2024</p>
+            <p>{{gettenantdata?.effectiveDate}}</p>
           </div>
           <div class="detail">
             <span>Aadhar Doc:</span>
-            <p><i class="bi bi-file-earmark-arrow-down-fill"></i></p>
+            <p *ngIf="gettenantdata?.aadharDetails!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.aadharDetails)"></i></p>
+            <p *ngIf="gettenantdata?.aadharDetails==null">N/A</p>
           </div>
           <div class="detail">
             <span>Rent Aggrement:</span>
-            <p><i class="bi bi-file-earmark-arrow-down-fill"></i></p>
+            <p *ngIf="gettenantdata?.agreementDoc!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.agreementDoc)"></i></p>
+            <p *ngIf="gettenantdata?.agreementDoc==null">N/A</p>
+          </div>
+          <div class="detail">
+            <span>Other Document:</span>
+            <p *ngIf="gettenantdata?.otherDoc!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.otherDoc)"></i></p>
+            <p *ngIf="gettenantdata?.otherDoc==null">N/A</p>
           </div>
         </div>
       </div>
@@ -111,3 +120,78 @@
   </div>
 </div>
 <!-- userdetails -->
+
+<div class="modal fade" id="payment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 10ch;">
+  <div class="modal-dialog" style="max-width: 45%; margin-top: 0;">
+    <div class="modal-content" style="background-color: #ebeaea;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 23px; color: #388087">
+          Calculate Payment
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" >
+        <div class="row">
+          <div class="col-8">
+            <p class="paydata" >Tenant Name : <span class="color1" >{{tenantdata?.fullName}}</span></p>
+          </div>
+          <div class="col-4">
+            <p class="paydata color1" style="text-align: end;"><i class="bi bi-telephone-fill me-1"></i> <span>{{tenantdata?.mobileNo}}</span></p>
+          </div>
+          <div class="col-6">
+            <p class="paydata" >Room : <span class="color1" >{{tenantdata?.roomNo}}</span></p>
+          </div>
+          <div class="col-6">
+            <p class="paydata" style="text-align: end;">House Name : <span style="color: #388087; ">{{tenantdata?.houseName}}</span></p>
+          </div>
+          <div class="col-6">
+            <p class="paydata" >Advance Amount : <span class="color1" >₹ {{tenantdata?.advamount | currency:'':''}}</span></p>
+          </div>
+          <div class="col-6">
+            <p class="paydata" style="text-align: end;">Due Date : <span style="color: #388087 ;">{{tenantdata?.dueDate}}</span></p>
+          </div>
+          <hr>
+          <div class="col-5">
+            <label>Priviouse Meter Reading</label>
+            <input class="form-control" type="text" placeholder="Priviouse Meter Reading" autocomplete="off"
+                onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" disabled [value]="tenantdata?.prvMtrRead">
+          </div>
+          <div class="col-5">
+            <label>Current Meter Reading</label>
+            <input class="form-control" type="text" placeholder="Enter Here" autocomplete="off" id="cullbillno" maxlength="30"
+                onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" >
+          </div>
+          <div class="col-2">
+            <label>Unit Price</label><input class="form-control" type="text" placeholder="₹" autocomplete="off" id="price" maxlength="3"
+                onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" (keyup)="currentbillcount()">
+          </div><br>
+          <div class="col-7" style="margin-top: 6ch;">
+            <p class="paydata1" >Rent Amount </p>
+          </div>
+          <div class="col-4" style="margin-top: 6ch;">
+            <p class="paydata1" >₹ {{tenantdata?.rentAmount | currency:'':''}} </p>
+          </div>
+          <div class="col-7">
+            <p class="paydata1" >Pending Amount </p>
+          </div>
+          <div class="col-4">
+            <p class="paydata1" >₹ {{tenantdata?.prvPendingAmount | currency:'':''}} </p>
+          </div>
+          <div class="col-7">
+            <p class="paydata1" >Current Bill </p>
+          </div>
+          <div class="col-4">
+            <p class="paydata1" >₹ {{currentbill | currency:'':''}} </p>
+          </div>
+          <hr>
+          <div class="col-6">
+            <p class="paydata color1">Total Payble Amount</p>
+          </div>
+          <div class="col-5">
+            <p class="paydata" style="text-align: end; color: red;">₹ {{totalpayment | currency:'':''}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

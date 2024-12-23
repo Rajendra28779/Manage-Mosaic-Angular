@@ -23,7 +23,7 @@ export class TenentdetailsService {
     return this.http.post(fullUrl,formData,options);
   }
 
-  gettenantdetails(houseId: any, roomId: any) {
+  gettenantdetails(houseId: any, roomId: any,tenantId:any) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: this.enctserv.getJwtToken(),
@@ -33,7 +33,8 @@ export class TenentdetailsService {
       headers: headers,
       params:{
         houseId:houseId,
-        roomId:roomId
+        roomId:roomId,
+        tenantId:tenantId
       }
     };
     let fullUrl =viewtenanttoroom;
