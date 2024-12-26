@@ -7,7 +7,7 @@ import { EncryptService } from 'src/app/services/encrypt.service';
   providedIn: 'root'
 })
 export class HomerentserviceService {
-  
+
 
   constructor(private http: HttpClient,private enctserv:EncryptService) { }
 
@@ -31,10 +31,7 @@ export class HomerentserviceService {
       'Access-Control-Allow-Origin': '*',
     });
     let options = {
-      headers: headers,
-      params :{
-        userid : userid
-      }
+      headers: headers
     };
     let fullUrl =getallhousedetialsforuserspecific;
     return this.http.get(fullUrl,options);

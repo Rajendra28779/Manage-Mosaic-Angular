@@ -1,14 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {  downloadcommondoc,getdashboarddata,gethousemasterData,getroommasterData} from 'src/app/config/api-config';
+import {  downloadcommondoc,getdashboarddata,gethousemasterData,getroommasterData, sendOTPforaddmobileno, verifyOTPforaddmobileno} from 'src/app/config/api-config';
 import { EncryptService } from 'src/app/services/encrypt.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CommenService { 
-   
- 
+export class CommenService {
+
   constructor(private readonly http: HttpClient,private readonly enctserv:EncryptService) { }
 
   gethousemasterData(userId:any){
@@ -18,10 +17,7 @@ export class CommenService {
       'Access-Control-Allow-Origin': '*',
     });
     let options = {
-      headers: headers,
-      params :{
-        userId : userId
-      }
+      headers: headers
     };
     let fullUrl = gethousemasterData;
     return this.http.get(fullUrl,options);
@@ -36,7 +32,6 @@ export class CommenService {
     let options = {
       headers: headers,
       params :{
-        userId : userId,
         houseId : houseId
       }
     };
@@ -53,7 +48,7 @@ export class CommenService {
   const url = downloadcommondoc + '?' + 'data=' + queryParam;
   return url;
   }
- 
+
   getdashboarddata() {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -64,6 +59,39 @@ export class CommenService {
       headers: headers
     };
     let fullUrl = getdashboarddata;
+    return this.http.get(fullUrl,options);
+  }
+
+  sendOTPforaddmobileno(phoneno: any) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: this.enctserv.getJwtToken(),
+      'Access-Control-Allow-Origin': '*',
+    });
+    let options = {
+      headers: headers,
+      params :{
+        phoneno : phoneno
+      }
+    };
+    let fullUrl = sendOTPforaddmobileno;
+    return this.http.get(fullUrl,options);
+  }
+
+  verifyOTPforaddmobileno(phoneno: any, otpval: any) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: this.enctserv.getJwtToken(),
+      'Access-Control-Allow-Origin': '*',
+    });
+    let options = {
+      headers: headers,
+      params :{
+        phoneno : phoneno,
+        otpval : otpval
+      }
+    };
+    let fullUrl = verifyOTPforaddmobileno;
     return this.http.get(fullUrl,options);
   }
 

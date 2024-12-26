@@ -7,7 +7,7 @@ import { EncryptService } from 'src/app/services/encrypt.service';
   providedIn: 'root'
 })
 export class CompliantService {
-  
+
 
   constructor(private http: HttpClient,private enctserv:EncryptService) { }
 
@@ -23,9 +23,9 @@ export class CompliantService {
       };
       let fullUrl = savehousemaintancerqst;
       return this.http.post(fullUrl,object,options);
-    }  
-  
-    gethousedetailsforuser(userId: any) {
+    }
+
+    gethousedetailsforuser(phoneNo: any) {
       let headers = new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: this.enctserv.getJwtToken(),
@@ -34,13 +34,13 @@ export class CompliantService {
       let options = {
         headers: headers,
         params :{
-          phoneNo : userId
+          phoneNo : phoneNo
         }
       };
       let fullUrl = gethousedetailsforuser;
       return this.http.get(fullUrl,options);
     }
-  
+
     onChangeroomgettenanrdata(id: any, houseId: any) {
       let headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ export class CompliantService {
       let fullUrl = onChangeroomgettenanrdata;
       return this.http.get(fullUrl,options);
     }
-  
+
     getmaintanceTrackingRecord(userId: any) {
       let headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -65,14 +65,11 @@ export class CompliantService {
         'Access-Control-Allow-Origin': '*',
       });
       let options = {
-        headers: headers,
-        params :{
-          userId : userId
-        }
+        headers: headers
       };
       let fullUrl = getmaintanceTrackingRecord;
       return this.http.get(fullUrl,options);
-    } 
+    }
 
     getrequestdetailsForowner() {
       let headers = new HttpHeaders({
@@ -85,7 +82,7 @@ export class CompliantService {
       };
       let fullUrl = getrequestdetailsForowner;
       return this.http.get(fullUrl,options);
-    } 
+    }
 
     takeactionagainestrequest(actiontype: any,rqstId:any) {
       let headers = new HttpHeaders({

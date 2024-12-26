@@ -294,10 +294,49 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3 style="font-weight: 500;color: #388087">Update Mobile No</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closemodal()"></button> 
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closemodal()"></button>
       </div>
       <div class="modal-body container text-center">
-
+          <div class="row">
+            <div class="col-lg-12 col-xxl-12">
+              <p style="font-size: 17px; color: rgb(156, 6, 6);"><strong>Note:</strong> Please enter your mobile number to track your rent and room details.<br> Make sure to use the same mobile number provided to the owner at the time of room booking.</p>
+            </div>
+            <ng-container>
+                <div class="col-lg-1 col-xxl-1"></div>
+                <div class="col-lg-3 col-xxl-3">
+                  <p class="paydata color1">Mobile No. : </p>
+                </div>
+                <div class="col-lg-6 col-xxl-6">
+                  <input class="form-control" type="text" placeholder="Enter here..." autocomplete="off" id="mobileno" maxlength="10"
+                    onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');"[disabled]="sentotp">
+                </div>
+                <div class="col-lg-2 col-xxl-2"></div>
+            </ng-container>
+            <ng-container *ngIf="sentotp">
+                <div class="col-lg-1 col-xxl-1"></div>
+                <div class="col-lg-3 col-xxl-3 mt-2">
+                  <p class="paydata color1">Enter OTP : </p>
+                </div>
+                <div class="col-lg-6 col-xxl-6 mt-2">
+                  <input class="form-control" type="text" placeholder="Enter here..." autocomplete="off" id="otpval" maxlength="6"
+                    onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');">
+                </div>
+                <div class="col-lg-2 col-xxl-2"></div>
+            </ng-container>
+            <div class="col-lg-12 col-xxl-12" style="margin-left: 1ch; margin-top: 1ch; text-align: left;" *ngIf="sentotp">
+              <p>* We've sent an OTP to your registered email ID.</p>
+              <!-- <p style="margin-top: -1ch;">* An OTP has also been sent to your registered ****6789 mobile number.</p> -->
+              <p style="margin-top: -1ch;">* You have {{attemptcount}} attempts remaining to verify your account.</p>
+            </div>
+            <div class="col-lg-12 col-xxl-12 mt-4" *ngIf="!sentotp">
+              <button class="btn btn-success w-50 me-2" (click)="sendOTP()">Send OTP</button>
+            </div>
+            <div class="col-lg-12 col-xxl-12 mt-4 d-flex justify-content-center" *ngIf="sentotp">
+              <button class="btn btn-primary mx-2" style="width: 120px;" (click)="sendOTP()">Re-Send</button>
+              <button class="btn btn-success mx-2" style="width: 120px;" (click)="verifyOTP()">Verify</button>
+              <button class="btn btn-warning mx-2" style="width: 120px;" (click)="closemodal()">Cancel</button>
+            </div>
+          </div>
       </div>
     </div>
   </div>
