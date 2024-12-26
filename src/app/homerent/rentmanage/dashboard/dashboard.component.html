@@ -14,17 +14,17 @@
             [(ngModel)]="txtsearchDate" maxlength="20 "/>
           </div>
           <div class="example-container">
-          <div class="tab-container" *ngFor="let tenant of users | filter:txtsearchDate">
+          <div class="tab-container" *ngFor="let tenant of tenantUser | filter:txtsearchDate">
             <div class="tab-row">
-              <!-- <i class="bi bi-file-person me-2" style="font-size: 30px; color: #388087;"></i> -->
               <div class="tab-left">
-                <span class="name" data-bs-toggle="modal" data-bs-target="#userdetails" title={{tenant.fullName}}>{{tenant.fullName}}</span><br>
-                <span class="me-5">{{tenant.roomName}}</span>
-                <span>{{tenant.houseName}}</span>
+                <span class="name" data-bs-toggle="modal" data-bs-target="#userdetails" 
+                title={{tenant.fullName}} data-bs-toggle="modal" data-bs-target="#userdetails" (click)="getdetails(tenant)">{{tenant?.fullName}}</span><br>
+                <span class="me-5">{{tenant?.roomNo}}</span>
+                <span>{{tenant?.houseName}}</span>
               </div>
               <div class="tab-right">
-                <span><i class="bi bi-phone-fill me-1" style="color: #388087;"></i>{{tenant.mobileNo}}</span><br>
-                <span style="color: red;">₹ {{tenant.dueAmount}}</span>
+                <span><i class="bi bi-phone-fill me-1" style="color: #388087;"></i>{{tenant?.mobileNo}}</span><br>
+                <span style="color: red;">₹ {{tenant?.rentAmount}}</span>
               </div>
             </div>
             <hr>
@@ -40,17 +40,17 @@
           <div class="row" style="display: flex; align-items: center; ">
             <div class="tabdata col-md-4">
               <img src="../../../../assets/img/enterprise.gif" alt="house" class="housedimg">
-              <div class="housed-text" style="font-size: 22px;font-family: 800;">5</div>
+              <div class="housed-text" style="font-size: 22px;font-family: 800;">{{roomCountdata?.homecount}}</div>
               <div class="housed-text" >Total No Of House</div>
             </div>
             <div class="tabdata col-md-4">
               <img src="../../../../assets/img/living-room.gif" alt="home" class="housedimg">
-              <div class="housed-text" style="font-size: 22px;font-family: 800;">38</div>
+              <div class="housed-text" style="font-size: 22px;font-family: 800;">{{roomCountdata?.roomcount}}</div>
               <div class="housed-text" >Total No Of Room</div>
             </div>
             <div class="tabdata col-md-4">
               <img src="../../../../assets/img/family.gif" alt="house" class="housedimg">
-              <div class="housed-text" style="font-size: 22px;font-family: 800;">57</div>
+              <div class="housed-text" style="font-size: 22px;font-family: 800;">{{roomCountdata?.tenantfamily}}</div>
               <div class="housed-text" >Total No Of Tenants</div>
             </div>
           </div>
@@ -69,19 +69,19 @@
                   <div class="legend">
                       <div class="legend-item">
                           <span class="legend-color total"></span>
-                          <span>Total Room ({{ totalRooms }})</span>
+                          <span>Total Room ({{ roomCountdata?.roomcount }})</span>
                       </div>
                       <div class="legend-item">
                           <span class="legend-color occupied"></span>
-                          <span>Occupied Rooms ({{ occupied }})</span>
+                          <span>Occupied Rooms ({{ roomCountdata?.tenantcount }})</span>
                       </div>
                       <div class="legend-item">
                           <span class="legend-color advance"></span>
-                          <span>Advanced Reservations ({{ advance }})</span>
+                          <span>Advanced Reservations ({{ roomCountdata?.advancebook }})</span>
                       </div>
                       <div class="legend-item">
                           <span class="legend-color remaining"></span>
-                          <span>Available Rooms ({{ vacancies }})</span>
+                          <span>Available Rooms ({{ roomCountdata?.available }})</span>
                       </div>
                   </div>
             </div>
@@ -114,9 +114,9 @@
         <div class="card-body1">
           <div class="tabdata">
             <i class="bi bi-cash-coin" style="color:rgb(219, 140, 20);"></i>
-            <div class="eraning-text">Total Revenue to Date : <span>{{totalearn}}</span></div>
-            <div class="eraning-text">Earnings for This Year : <span>{{monthearn}}</span></div>
-            <div class="eraning-text">Earnings for This Month : <span>{{yearhearn}}</span></div>
+            <div class="eraning-text">Total Revenue to Date : <span>{{revenuecount?.totalrevenue | currency:"":""}}</span></div>
+            <div class="eraning-text">Earnings for This Year : <span>{{revenuecount?.yearlyrevenue | currency:"":""}}</span></div>
+            <div class="eraning-text">Earnings for This Month : <span>{{revenuecount?.monthlyrevenue | currency:"":""}}</span></div>
           </div>
         </div>
       </div>
@@ -127,8 +127,8 @@
         <div class="card-body">
           <div class="tabdata ">
             <i class="bi bi-calendar-check" style="color:rgb(236, 90, 46);"></i>
-            <div class="booking-text">Advance Reservations : <span>{{advbook}}</span></div>
-            <div class="booking-text">Rooms Vacant Soon : <span>{{upcmgvncy}}</span></div>
+            <div class="booking-text">Advance Reservations : <span>0</span></div>
+            <div class="booking-text">Rooms Vacant Soon : <span>0</span></div>
           </div>
         </div>
       </div>
@@ -139,12 +139,12 @@
         <div class="card-body">
           <div class="tabdata border-end">
             <i class="bi bi-building-gear" style="color:rgb(155, 68, 68);"></i>
-            <div class="compl-text" style="color:rgb(241, 47, 47); font-size: 22px; font-weight: 700;">28</div>
+            <div class="compl-text" style="color:rgb(241, 47, 47); font-size: 22px; font-weight: 700;">{{compliantsumdata?.pending}}</div>
             <div class="compl-text">Complaints Pending Resolution</div>
           </div>
           <div class="tabdata ">
             <i class="bi bi-building-fill-exclamation" style="color:#6FB3B8;"></i>
-            <div class="compl-text" style="color:#388087; font-size: 22px; font-weight: 700;">28</div>
+            <div class="compl-text" style="color:#388087; font-size: 22px; font-weight: 700;">{{compliantsumdata?.inprogress}}</div>
             <div class="compl-text">Complaints In Progress</div>
           </div>
         </div>
@@ -152,7 +152,7 @@
     </div>
   </div>
 
-  <div class="row" style="margin-top: 2ch;">
+  <!-- <div class="row" style="margin-top: 2ch;">
     <div class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
        <div class="card" style="height: 100%; padding: 0;">
           <div class="card-header">
@@ -175,72 +175,78 @@
           </div>
        </div>
     </div>
- </div>
+ </div> -->
 
 </div>
 
 <!-- User Details-->
 <div class="modal fade" id="userdetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 10ch;">
-  <div class="modal-dialog" style="max-width: 35%;">
+  <div class="modal-dialog" style="max-width: 35%; margin-top: 0;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 25px; ">
-          <i class="bi bi-file-person-fill me-2" style="color: #388087"></i> <span style="font-weight: 700; color: #525151;">Rajendra Prasad Sahoo</span>
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 25px; color: #388087">
+          <i class="bi bi-file-person-fill me-2"></i>{{gettenantdata?.fullName}}
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="tenant-card">
-          <div class="tenant-card-detail">
+          <div class="detail">
             <span>Mobile No:</span>
-            <p>6370178554</p>
+            <p>{{gettenantdata?.mobileNo}}</p>
           </div>
-          <div class="tenant-card-detail">
+          <div class="detail">
             <span>Additional Mobile No:</span>
-            <p>6370178554</p>
+            <p>{{gettenantdata?.altMobileNo}}</p>
           </div>
-          <div class="tenant-card-detail">
-            <span>Email Id:</span>
-            <p>rajendraprasadsahoo28@gmail.com</p>
-          </div>
-          <div class="tenant-card-detail">
+          <div class="detail">
             <span>Room No:</span>
-            <p>1001</p>
+            <p>{{gettenantdata?.roomNo}}</p>
           </div>
-          <div class="tenant-card-detail">
+          <div class="detail">
             <span>House Name:</span>
-            <p>Sobhanna 01</p>
+            <p>{{gettenantdata?.houseName}}</p>
           </div>
-          <div class="tenant-card-detail">
+          <div class="detail">
             <span>Family Members:</span>
-            <p>5</p>
+            <p>{{gettenantdata?.noOfMember}}</p>
           </div>
-          <div class="tenant-card-detail">
-            <span>Age:</span>
-            <p>26</p>
+          <div class="detail">
+            <span>Members Mobile No:</span>
+            <p>{{gettenantdata?.memberMobileNo}}</p>
           </div>
-          <div class="tenant-card-detail">
+          <div class="detail">
             <span>Rent Amount:</span>
-            <p>₹5000</p>
+            <p>₹ {{gettenantdata?.rentAmount | currency:'':''}}</p>
           </div>
-          <div class="tenant-card-detail">
+          <div class="detail">
+            <span>Adv Amount:</span>
+            <p>₹ {{gettenantdata?.advAmount | currency:'':''}}</p>
+          </div>
+          <div class="detail">
             <span>Allocation Date:</span>
-            <p>06-Nov-2024</p>
+            <p>{{gettenantdata?.effectiveDate}}</p>
           </div>
-          <div class="tenant-card-detail">
+          <div class="detail">
             <span>Aadhar Doc:</span>
-            <p><i class="bi bi-file-earmark-arrow-down-fill"></i></p>
+            <p *ngIf="gettenantdata?.aadharDetails!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.aadharDetails)"></i></p>
+            <p *ngIf="gettenantdata?.aadharDetails==null">N/A</p>
           </div>
-          <div class="tenant-card-detail">
+          <div class="detail">
             <span>Rent Aggrement:</span>
-            <p><i class="bi bi-file-earmark-arrow-down-fill"></i></p>
+            <p *ngIf="gettenantdata?.agreementDoc!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.agreementDoc)"></i></p>
+            <p *ngIf="gettenantdata?.agreementDoc==null">N/A</p>
+          </div>
+          <div class="detail">
+            <span>Other Document:</span>
+            <p *ngIf="gettenantdata?.otherDoc!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.otherDoc)"></i></p>
+            <p *ngIf="gettenantdata?.otherDoc==null">N/A</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- userdetails -->
 
 
 

@@ -84,6 +84,8 @@ export class PaymntreminderComponent implements OnInit {
   totalpayment:any;
   tenantdata:any;
   currentbill:any=0;
+  cullbillno:any=0;
+  price:any=0;
   calculatepayment(item:any){
     this.tenantdata = item;
     this.totalpayment = parseInt(item.rentAmount) + parseInt(item.prvPendingAmount);
@@ -91,16 +93,68 @@ export class PaymntreminderComponent implements OnInit {
 
   currentbillcount(){
     let prvbillno = this.tenantdata.prvMtrRead;
-    let cullbillno = $('#cullbillno').val();
-    let price = $('#price').val();
-    let calculate = (parseInt(cullbillno)-parseInt(prvbillno))*price;
-    if(price > 0){
+    this.cullbillno = $('#cullbillno').val();
+    this.price = $('#price').val();
+    let calculate = (parseInt(this.cullbillno)-parseInt(prvbillno))*this.price;
+    if(this.price > 0){
       this.currentbill=calculate;
       this.totalpayment=parseInt(this.tenantdata.rentAmount) + parseInt(this.tenantdata.prvPendingAmount)+calculate;
     }else{
       this.currentbill=0;
     }
+  }
 
+  closeModal(){
+    this.totalpayment=0;
+    this.cullbillno=0;
+    this.currentbill=0;
+    $('#cullbillno').val('');
+    $('#price').val('');
+  }
+
+  submitPayment(){
+    if(this.totalpayment == null || this.totalpayment == undefined || this.totalpayment == ""){
+      Swal.fire("Error","Payment Cannot Be Empty", "error");
+      return ;
+    }
+
+    if(this.totalpayment == 0){
+      Swal.fire("Error","Payment Cannot Be Zero", "error");
+      return ;
+    }
+
+    let object = {
+      currentMeterRead : this.cullbillno,
+      paidAmount : this.totalpayment,
+      price : this.price,
+      tenantId : this.tenantdata.tenantId,
+      paymentId : this.tenantdata.paymentId,
+      paidStatus : this.tenantdata.paidstatus
+    }
+
+     Swal.fire({
+      title: 'Are you sure?',
+      text: 'You, want to Save the Data ?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.tenantserv.savePaymentdetails(object).subscribe((data:any) => {
+          if(data.status == 200){
+            Swal.fire("Success","Payment Process Successful !", "success");
+            this.closeModal();
+          }else{
+            Swal.fire("Error","Something Went Wrong!", "error");
+          }
+        },
+        (error:any) =>{
+          Swal.fire("Error","Something Went Wrong!", "error");
+           console.log(error);
+        });
+      }
+    });    
   }
 
 }

@@ -268,7 +268,7 @@
       <div class="modal-body container text-center">
         <p style="font-size: 18px; font-weight: bold; color: #333; text-align: center; margin-bottom: 20px;">Choose how you want to log in:</p>
 
-        <button type="button" class="btn btn-primary modalbutton" [routerLink]="['/rentmanage/homerentmanage/tenantdashbord']" aria-label="Close" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-primary modalbutton" (click)="tenantpage()" aria-label="Close" data-bs-dismiss="modal">
           <span style="font-size: 22px; font-weight: 600;">As a Tenant User</span>
           <br>
           <span style="font-size: 14px; color: #f9f9f9;">Select this option if you are a tenant looking to manage your rental details.</span>
@@ -289,3 +289,16 @@
   </div>
 </div>
 
+<div class="modal" id="tenantmobile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="backdrop-filter: blur(10px); ">
+  <div class="modal-dialog" style="max-width: 40%; margin-top: 100px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-weight: 500;color: #388087">Update Mobile No</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closemodal()"></button> 
+      </div>
+      <div class="modal-body container text-center">
+
+      </div>
+    </div>
+  </div>
+</div>

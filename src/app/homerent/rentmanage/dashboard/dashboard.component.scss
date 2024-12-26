@@ -377,3 +377,33 @@ input[type="text"] {
 }
 
 
+.tenant-card {
+  width: 440px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #2a6f73;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 17px;
+}
+
+.detail span {
+  font-weight: bold;
+  color: #555;
+}
+
+.detail p {
+  color: #2a6f73;
+  margin: 0;
+}
+

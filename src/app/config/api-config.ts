@@ -26,6 +26,8 @@ export const takeactionagainestrequest = baseUrl + "/api/takeactionagainestreque
 export const downloadcommondoc = baseUrl + "/api/downloadcommondoc";
 export const checkpendingbalanace = baseUrl + "/api/checkpendingbalanace";
 export const gettenantlistforpaymentprocess = baseUrl + "/api/gettenantlistforpaymentprocess";
+export const getdashboarddata = baseUrl + "/api/getdashboarddata";
+export const savePaymentdetails = baseUrl + "/api/savePaymentdetails";
 
 
 
