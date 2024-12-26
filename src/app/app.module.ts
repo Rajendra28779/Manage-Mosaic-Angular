@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
@@ -14,6 +14,8 @@ import { HomerentComponent } from './homerent/homerent.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { UnauthorizeComponent } from './unauthorize/unauthorize.component';
+import { ErrorInterceptor } from './services/error.interceptor';
 
 
 @NgModule({
@@ -29,6 +31,7 @@ import { ContactusComponent } from './contactus/contactus.component';
     HeaderComponent,
     FooterComponent,
     ContactusComponent,
+    UnauthorizeComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,9 @@ import { ContactusComponent } from './contactus/contactus.component';
       showForeground: true,
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

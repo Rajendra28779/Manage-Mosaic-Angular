@@ -18,10 +18,19 @@ export class GoogleloginService {
   }
 
   private loadGoogleApi() {
-    google.accounts.id.initialize({
-      client_id: '243335143053-rmpl6ttt4srog99fvhlmmr1hafkcug7o.apps.googleusercontent.com',
-      callback: (response: any) => this.handleCredentialResponse(response)
-    });
+    try{
+      google.accounts.id.initialize({
+        client_id: '243335143053-rmpl6ttt4srog99fvhlmmr1hafkcug7o.apps.googleusercontent.com',
+        callback: (response: any) => this.handleCredentialResponse(response)
+      });
+    }catch{
+      console.log("google not defined");
+
+    }
+    // google.accounts.id.initialize({
+    //   client_id: '243335143053-rmpl6ttt4srog99fvhlmmr1hafkcug7o.apps.googleusercontent.com',
+    //   callback: (response: any) => this.handleCredentialResponse(response)
+    // });
   }
 
   // This function is called after user signs in

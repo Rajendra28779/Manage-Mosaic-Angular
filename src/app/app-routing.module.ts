@@ -4,6 +4,8 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { SignupComponent } from './signup/signup.component';
+import { AuthgardService } from '../app/services/authgard.service';
+import { UnauthorizeComponent } from './unauthorize/unauthorize.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -11,10 +13,11 @@ const routes: Routes = [
   { path: 'login/:id', component:LoginpageComponent  },
   { path: 'signup', component:SignupComponent  },
   { path: 'contactus', component:ContactusComponent  },
+  { path: 'unauthorize', component:UnauthorizeComponent  },
 
 
   { path: 'application', loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule) },
-  { path: 'rentmanage', loadChildren: () => import('./homerent/homerent.module').then(h => h.HomerentModule) },
+  { path: 'rentmanage', loadChildren: () => import('./homerent/homerent.module').then(h => h.HomerentModule),canActivate: [AuthgardService] },
   { path: '**', component: PagenotfoundComponent }
 ];
 
