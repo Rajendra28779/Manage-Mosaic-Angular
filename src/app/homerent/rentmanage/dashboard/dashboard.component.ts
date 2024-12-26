@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { CommenService } from '../../services/commen.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { TenentdetailsService } from '../../services/tenentdetails.service';
+import { CompliantService } from '../../services/compliant.service';
 declare let $: any;
 
 @Component({
@@ -8,154 +13,89 @@ declare let $: any;
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  totalRooms: number = 100;
-  occupied: number = 50;
-  advance: number = 20;
-  vacancies: number = 30;
-  paidrent:any=66;
-  totalearn:any=99999999;
-  yearhearn:any=67885;
-  monthearn:any=16885;
-  advbook:any=20;
-  upcmgvncy:any=25;
-  txtsearchDate:any;
-  curyear:any;
+    roomCountdata:any;
+    compliantsumdata:any;
+    txtsearchDate:any;
+    curyear:any;
+    tenantUser:any=[];
+    occupiedPercentage: number=0;
+    advancePercentage: number =0;
+    vacanciesPercentage: number =0;
+    revenuecount:any;
+    gettenantdata:any;
+    
+    
+  paidrent:any=66; 
 
-  // Dynamic calculations
-  occupiedPercentage: number=0;
-  advancePercentage: number =0;
-  vacanciesPercentage: number =0;
-
-  users = [
-    {
-      fullName: 'John Doe',
-      houseName: 'House A',
-      roomName: 'Room 101',
-      dueDate: '2024-11-10',
-      dueAmount: 500,
-      pendingAmount: 100,
-      aadhaarNo: '1234-5678-9012',
-      agreementStatus: 'Active',
-      mobileNo: '9876543210'
-    },
-    {
-      fullName: 'Jane Smith',
-      houseName: 'House B',
-      roomName: 'Room 203',
-      dueDate: '2024-11-05',
-      dueAmount: 450,
-      pendingAmount: 50,
-      aadhaarNo: '1234-5678-1234',
-      agreementStatus: 'Expired',
-      mobileNo: '9876543211'
-    },
-    {
-      fullName: 'David Brown',
-      houseName: 'House C',
-      roomName: 'Room 305',
-      dueDate: '2024-11-15',
-      dueAmount: 600,
-      pendingAmount: 200,
-      aadhaarNo: '1234-5678-4321',
-      agreementStatus: 'Active',
-      mobileNo: '9876543212'
-    },
-    {
-      fullName: 'David Brown',
-      houseName: 'House C',
-      roomName: 'Room 305',
-      dueDate: '2024-11-15',
-      dueAmount: 600,
-      pendingAmount: 200,
-      aadhaarNo: '1234-5678-4321',
-      agreementStatus: 'Active',
-      mobileNo: '9876543212'
-    },
-    {
-      fullName: 'David Brown',
-      houseName: 'House C',
-      roomName: 'Room 305',
-      dueDate: '2024-11-15',
-      dueAmount: 600,
-      pendingAmount: 200,
-      aadhaarNo: '1234-5678-4321',
-      agreementStatus: 'Active',
-      mobileNo: '9876543212'
-    },
-    {
-      fullName: 'David Brown',
-      houseName: 'House C',
-      roomName: 'Room 305',
-      dueDate: '2024-11-15',
-      dueAmount: 600,
-      pendingAmount: 200,
-      aadhaarNo: '1234-5678-4321',
-      agreementStatus: 'Active',
-      mobileNo: '9876543212'
-    },
-    {
-      fullName: 'David Brown',
-      houseName: 'House C',
-      roomName: 'Room 305',
-      dueDate: '2024-11-15',
-      dueAmount: 600,
-      pendingAmount: 200,
-      aadhaarNo: '1234-5678-4321',
-      agreementStatus: 'Active',
-      mobileNo: '9876543212'
-    },
-    {
-      fullName: 'David Brown',
-      houseName: 'House C',
-      roomName: 'Room 305',
-      dueDate: '2024-11-15',
-      dueAmount: 600,
-      pendingAmount: 200,
-      aadhaarNo: '1234-5678-4321',
-      agreementStatus: 'Active',
-      mobileNo: '9876543212'
-    },
-    {
-      fullName: 'David Brown',
-      houseName: 'House C',
-      roomName: 'Room 305',
-      dueDate: '2024-11-15',
-      dueAmount: 600,
-      pendingAmount: 200,
-      aadhaarNo: '1234-5678-4321',
-      agreementStatus: 'Active',
-      mobileNo: '9876543212'
-    },
-    {
-      fullName: 'David Brown',
-      houseName: 'House C',
-      roomName: 'Room 305',
-      dueDate: '2024-11-15',
-      dueAmount: 600,
-      pendingAmount: 200,
-      aadhaarNo: '1234-5678-4321',
-      agreementStatus: 'Active',
-      mobileNo: '9876543212'
-    }
-  ];
-
-
-  constructor() {
-    this.animateCircle();
-  }
+  constructor(private readonly commserv:CommenService,
+    private readonly tenantserv: TenentdetailsService,
+    private readonly compliantserv: CompliantService,
+    private readonly router2: Router,
+  ) { }
 
   ngOnInit(): void {
+    this.getdashboarddata();
+    this.gettenantdetails();
+    this.getrequestdetailsForowner();
     this.curyear=new Date().getFullYear();
     this.createSpecialitychart();
     this.createProcedurechart();
   }
 
+  getdashboarddata(){
+    this.commserv.getdashboarddata().subscribe((data:any) => {
+          if(data.status == 200){
+            this.roomCountdata = data.record.roomcountdata;
+            this.revenuecount = data.record.revenuecount;
+            this.animateCircle();            
+          }else{
+            Swal.fire("Error","Something Went Wrong!", "error");
+          }
+        },
+        (error:any) => console.log(error));
+  }
+
+  gettenantdetails(){
+    this.tenantserv.gettenantdetails("","","").subscribe((data:any) => {
+        if(data.status == 200){
+        this.tenantUser = data.record;
+        }else{
+        Swal.fire("Error","Tenant Details Can't fetch!", "error");
+        }
+    },
+    (error:any) => console.log(error));
+  }
+
+  getrequestdetailsForowner(){
+    this.compliantserv.getrequestdetailsForowner().subscribe((data:any) => {
+        if(data.status == 200){
+            this.compliantsumdata = data.record.sumdata;
+        }else{
+            Swal.fire("Error","Something Went Wrong !", "error");
+        }
+        },
+        (error:any) => console.log(error));
+    }
+
+    getdetails(item:any){
+        this.gettenantdata=item;
+    }
+
+    downloadTenantDoc(docPath: any) {
+        if (docPath) {
+            const img = this.commserv.downloadcommondoc(docPath);
+            window.open(img, '_blank');
+        } else {
+            Swal.fire('Info', 'There is no file', 'info');
+        }
+    }
+
   animateCircle() {
     // Animation logic can be added here if needed
     setTimeout(() => {
-      this.occupiedPercentage = this.occupied>0? (this.occupied / this.totalRooms) * 100:0; // This can be updated dynamically
-      this.advancePercentage = this.advance>0? (this.advance / this.totalRooms) * 100:0; // This can be updated dynamically
-      this.vacanciesPercentage = this.vacancies>0? (this.vacancies / this.totalRooms) * 100:0; // This can be updated dynamically
+      this.occupiedPercentage = this.roomCountdata.tenantcount>0? (this.roomCountdata.tenantcount / this.roomCountdata.roomcount) * 100:0; // This can be updated dynamically
+      this.advancePercentage = this.roomCountdata.advancebook>0? (this.roomCountdata.advancebook / this.roomCountdata.roomcount) * 100:0; // This can be updated dynamically
+      this.vacanciesPercentage = this.roomCountdata.available>0? (this.roomCountdata.available / this.roomCountdata.roomcount) * 100:0; // This can be updated dynamically
     }, 500); // Delay for animation effect
   }
 

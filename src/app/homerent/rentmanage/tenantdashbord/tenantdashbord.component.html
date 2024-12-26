@@ -16,10 +16,12 @@
               <p><span class="color1">Email id : </span>{{this.user.email}}</p>
             </div>
           </div>
+          <hr style="margin-top: 1ch;">
+          <p class="histry_icon">Click the icon to view past payments in a list &nbsp;&nbsp;<i class="bi bi-download" style="color:rgb(156, 5, 5)"></i></p>
         <div [ngClass]="{'example-container1': userhousedatalist.length > 1}" >
       <ng-container *ngFor="let item of userhousedatalist">
-          <hr style="margin-top: 1ch;">
-          <div class="row" style="font-weight: 600;">
+          <hr>
+          <div class="row paydata" style="font-weight: 600;">
             <div class="col-6">
               <p><span class="color1">House Name : </span>{{item.houseName}}</p>
             </div>
@@ -36,17 +38,17 @@
               <p><span class="color1">Staying From : </span>{{item.efectdate}}</p>
             </div>
             <div class="col-6">
-              <p><span class="color1">Rent Amount : </span>₹ {{item.rentAmount}}</p>
+              <p><span class="color1">Rent Amount : </span>₹ {{item.rentAmount | currency:"":""}}</p>
             </div>
             <div class="col-6" style="text-align:end;">
-              <p><span class="color1">Pending Amount: </span>₹ {{item.advAmount}}</p>
+              <p><span class="color1">Advance Amount: </span>₹ {{item.advAmount | currency:"":""}}</p>
             </div>
             <div class="col-6">
-              <p><span class="color1">Due Date : </span>{{item.paymentdate}}</p>
+              <p><span class="color1">Pending Amount : </span>{{item.prvamt | currency:"":""}}</p>
             </div>
             <div class="col-6" style="text-align:end;">
-              <p><span class="color1">Last Payment : </span>{{item.lastpaymentdate}}</p>
-            </div>
+              <p><span class="color1">Due Date : </span>{{item.deudate}}</p>
+            </div>            
           </div>
     </ng-container>
       </div>

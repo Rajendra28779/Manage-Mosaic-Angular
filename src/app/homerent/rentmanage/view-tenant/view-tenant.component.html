@@ -63,7 +63,7 @@
           <th>Room Rent</th>
           <th>Room Allocation</th>
           <th>Info</th>
-          <th>dit</th>
+          <!-- <th>Edit</th> -->
         </tr>
       </thead>
       <tbody>
@@ -76,7 +76,7 @@
           <td>{{ tenant.effectiveDate }}</td>
           <td><a style="color:#388087;" data-bs-toggle="modal" data-bs-target="#userdetails" 
             title="Tenent Details"  (click)="getdetails(tenant)"><i class="bi bi-info-circle-fill"></i></a></td>
-          <td><a style="color:red;"><i class="bi bi-pencil-square"></i></a></td>
+          <!-- <td><a style="color:red;"><i class="bi bi-pencil-square"></i></a></td> -->
         </tr>
         <tr *ngIf="tenantdetails?.length==0">
           <td colspan="10" style="text-align:center;"><strong class="text-danger">No data found</strong></td>

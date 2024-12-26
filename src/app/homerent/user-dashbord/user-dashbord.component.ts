@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+declare let $: any;
 
 @Component({
   selector: 'app-user-dashbord',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class UserDashbordComponent implements OnInit {
   user:any;
 
-  constructor() {
+  constructor(private readonly router:Router) {
   }
 
   ngOnInit(): void {
@@ -16,8 +18,17 @@ export class UserDashbordComponent implements OnInit {
     this.user=JSON.parse(user);
   }
 
-  redirecttorentmanage(){
+  tenantpage(){
+    if(this.user.phoneNo == null || this.user.phoneNo == undefined || this.user.phone == ""){
+      this.router.navigate(['/rentmanage/homerentmanage/tenantdashbord']); 
+    }else {
+      
+      $('#tenantmobile').show();
+    }
+  }
 
+  closemodal(){
+    $('#tenantmobile').hide();
   }
 
 }
