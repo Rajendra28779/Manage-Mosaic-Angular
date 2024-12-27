@@ -28,11 +28,25 @@ export class AddtenentComponent implements OnInit {
   constructor(private readonly commenserv:CommenService,
     private readonly homerentserv:HomerentserviceService,
     private readonly tenantserv:TenentdetailsService,
-    private readonly router:Router) { 
+    private readonly router:Router) {
   this.redirectdata = this.router.getCurrentNavigation()?.extras.state
   }
 
   ngOnInit(): void {
+    $('.selectpicker').selectpicker();
+
+    $('.datepicker').datetimepicker({
+      format: 'DD-MMM-YYYY',
+      daysOfWeekDisabled: ['', 7],
+    });
+    $('.timepicker').datetimepicker({
+      format: 'LT',
+      daysOfWeekDisabled: ['', 7],
+    });
+    $('.datetimepicker').datetimepicker({
+      format: 'YYYY-MM-DD LT',
+      daysOfWeekDisabled: ['', 7],
+    });
     let userdata:any=sessionStorage.getItem('user');
     this.user=JSON.parse(userdata);
     if(this.redirectdata){
@@ -80,12 +94,12 @@ export class AddtenentComponent implements OnInit {
             this.pendingamount=data.record.val;
             let htmldata=`<p style="font-weight:500;">Tenant Name : `+data.record.tenantName+`<br>`+
               `Mobile No : `+data.record.tenantMobileNo+`<br>`+
-              `The Tenant currently has a pending amount of <br><span 
+              `The Tenant currently has a pending amount of <br><span
               style="font-weight:bold;font-size:30px; color:red">₹ `+this.pendingamount+ `</span>.</p>`;
-              Swal.fire({html: htmldata,}); 
-          }                  
+              Swal.fire({html: htmldata,});
+          }
         }
-      });      
+      });
   }
 
 
@@ -185,7 +199,7 @@ export class AddtenentComponent implements OnInit {
       Swal.fire("Error","Please Enter Date When Tenant take Over The Romm","error");
       $('#date').focus();
       return;
-    }    
+    }
 
     if (this.aadharDoc==null || this.aadharDoc== "" || this.aadharDoc==undefined){
       Swal.fire("Error","Please Enter Tenant Aadhar Doc","error");
@@ -207,11 +221,11 @@ export class AddtenentComponent implements OnInit {
     formData.append('effectiveDate', efectivedate);
     formData.append('image1', this.aadharDoc);
     formData.append('image2', this.rentDoc);
-    formData.append('image3', this.otherDoc);    
+    formData.append('image3', this.otherDoc);
 
     Swal.fire({
       title: 'Are you sure?',
-      text: 'When you add a new tenant, the previous tenant will be automatically removed after the effective date,'+ 
+      text: 'When you add a new tenant, the previous tenant will be automatically removed after the effective date,'+
              'but any remaining balance will continue to appear in the payment section until it is fully paid.',
       icon: 'question',
       showCancelButton: true,

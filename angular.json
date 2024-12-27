@@ -30,10 +30,15 @@
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "src/assets/css/bootstrap-datetimepicker.min.css",
+              "src/assets/css/bootstrap-select.min.css"
             ],
             "scripts": ["node_modules/jquery/dist/jquery.min.js",
-            "node_modules/bootstrap/dist/js/bootstrap.min.js"]
+            "node_modules/bootstrap/dist/js/bootstrap.min.js",
+            "src/assets/js/moment.min.js",
+            "src/assets/js/bootstrap-datetimepicker.min.js",
+            "src/assets/js/bootstrap-select.min.js"]
           },
           "configurations": {
             "production": {
