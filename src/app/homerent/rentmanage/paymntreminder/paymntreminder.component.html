@@ -151,41 +151,46 @@
             <p class="paydata" style="text-align: end;">Due Date : <span style="color: #388087 ;">{{tenantdata?.dueDate}}</span></p>
           </div>
           <hr>
-          <div class="col-5">
+          <div class="col-5" *ngIf="tenantdata?.currBill==0">
             <label>Priviouse Meter Reading</label>
             <input class="form-control" type="text" placeholder="Priviouse Meter Reading" autocomplete="off"
                 onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" disabled [value]="tenantdata?.prvMtrRead">
           </div>
-          <div class="col-5">
+          <div class="col-5" *ngIf="tenantdata?.currBill==0">
             <label>Current Meter Reading</label>
             <input class="form-control" type="text" placeholder="Enter Here" autocomplete="off" id="cullbillno" maxlength="30"
                 onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" >
           </div>
-          <div class="col-2">
+          <div class="col-2" *ngIf="tenantdata?.currBill==0">
             <label>Unit Price</label><input class="form-control" type="text" placeholder="₹" autocomplete="off" id="price" maxlength="3"
                 onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" (keyup)="currentbillcount()">
           </div><br>
           <div class="col-7" style="margin-top: 6ch;">
-            <p class="paydata1" >Rent Amount </p>
+            <p class="paydata1" *ngIf="tenantdata?.paidstatus==0">Rent Amount </p>
+            <p class="paydata1" *ngIf="tenantdata?.paidstatus!=0">Total Amount </p>
           </div>
           <div class="col-4" style="margin-top: 6ch;">
-            <p class="paydata1" >₹ {{tenantdata?.rentAmount | currency:'':''}} </p>
+            <p class="paydata1" *ngIf="tenantdata?.paidstatus==0">₹ {{tenantdata?.rentAmount | currency:'':''}} </p>
+            <p class="paydata1" *ngIf="tenantdata?.paidstatus!=0">₹ {{tenantdata?.totalamount | currency:'':''}} </p>
           </div>
           <div class="col-7">
-            <p class="paydata1" >Pending Amount </p>
+            <p class="paydata1" *ngIf="tenantdata?.paidstatus==0">Pending Amount </p>
+            <p class="paydata1" *ngIf="tenantdata?.paidstatus!=0">Paid Amount </p>
           </div>
           <div class="col-4">
-            <p class="paydata1" >₹ {{tenantdata?.prvPendingAmount | currency:'':''}} </p>
+            <p class="paydata1" *ngIf="tenantdata?.paidstatus==0">₹ {{tenantdata?.prvPendingAmount | currency:'':''}} </p>
+            <p class="paydata1" *ngIf="tenantdata?.paidstatus!=0">₹ {{tenantdata?.paidamount | currency:'':''}} </p>
           </div>
-          <div class="col-7">
+          <div class="col-7" *ngIf="tenantdata?.currBill==0">
             <p class="paydata1" >Current Bill </p>
           </div>
-          <div class="col-4">
+          <div class="col-4" *ngIf="tenantdata?.currBill==0">
             <p class="paydata1" >₹ {{currentbill | currency:'':''}} </p>
           </div>
           <hr>
           <div class="col-6">
-            <p class="paydata color1">Total Payble Amount</p>
+            <p class="paydata color1" *ngIf="tenantdata?.paidstatus==0">Total Payble Amount</p>
+            <p class="paydata color1" *ngIf="tenantdata?.paidstatus!=0">Pending Amount</p>
           </div>
           <div class="col-5">
             <p class="paydata" style="text-align: end; color: red;">₹ {{totalpayment | currency:'':''}}</p>

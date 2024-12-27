@@ -5,6 +5,7 @@ import { EncryptService } from '../services/encrypt.service';
 import { GoogleloginService } from '../services/googlelogin.service';
 import { LoginserviceService } from '../services/loginservice.service';
 import Swal from 'sweetalert2';
+import { CommenService } from '../homerent/services/commen.service';
 declare let $: any;
 declare const gapi: any;
 
@@ -14,36 +15,40 @@ declare const gapi: any;
   styleUrls: ['./loginpage.component.scss']
 })
 export class LoginpageComponent implements OnInit {
-  activeTab: string = 'password'; // Default tab
+  activeTab: any = 'password'; // Default tab
   toggletype = 'password';
   showpassword = false;
   user1:any
   show:any
   msg:any
   rslt:any;
-  constructor(private captchaService:CaptchaService,
-    private leginsrv:LoginserviceService,
-    private router:Router,private route:ActivatedRoute,
-    private enctserv:EncryptService,
-    private googleAuthService: GoogleloginService) { }
+  constructor(private readonly captchaService:CaptchaService,
+    private readonly leginsrv:LoginserviceService,
+    private readonly router:Router,private readonly route:ActivatedRoute,
+    private readonly commserv:CommenService,
+    private readonly enctserv:EncryptService,
+    private readonly googleAuthService: GoogleloginService) { }
 
   ngOnInit(): void {
-    sessionStorage.clear();
-    this.googleAuthService.renderButton('google-signin-btn');
-    this.user1= this.route.snapshot.params['id'];
-    if(this.user1!=undefined){
-      this.show=true
-      this.showMsg();
-    }
+    sessionStorage.clear();    
+    this.activeTab = 'password';
+    // this.user1= this.route.snapshot.params['id'];
+    // if(this.user1!=undefined){
+    //   this.show=true
+    //   this.showMsg();
+    // }
     let component = this;
     $('#loginCaptchaImg').html(this.captchaService.getCaptcha());
     $('#loginRefreshCaptcha').click(function () {
       $('#loginCaptchaImg').html(component.captchaService.getCaptcha());
     });
+
+    this.googleAuthService.renderButton('google-signin-btn');
   }
 
-  switchTab(tab: string): void {
+  switchTab(tab: any) {
     this.activeTab = tab; // Switch active tab
+    this.sentotp=false;
   }
 
   enableDisableBtn() {
@@ -55,9 +60,6 @@ export class LoginpageComponent implements OnInit {
     }
   }
   onLoggedIn(){
-    // this.router.navigate(['/rentmanage/userdashboard']);
-    // return;
-
     let challange = $('#capt').val();
     let captcha = $('#loginCaptchaImg').html();
     let isValid: boolean;
@@ -110,9 +112,6 @@ export class LoginpageComponent implements OnInit {
     },3000);
   }
 
-  sendotp(){
-
-  }
 
     swal(title: any, text: any, icon: any) {
       Swal.fire({
@@ -121,4 +120,65 @@ export class LoginpageComponent implements OnInit {
         text: text
       });
     }
+
+    sentotp:boolean = false;
+    attemptcount:any=5;
+    sendotp(){
+      let challange = $('#capt').val();
+      let captcha = $('#loginCaptchaImg').html();
+      let isValid: boolean;
+      isValid = this.captchaService.validateCaptcha(challange, captcha);
+      if(!isValid){
+        this.swal("Error","InCorrect Captcha","error");
+        return;
+      }
+
+      let phoneno:any=$('#mobile').val();
+      if(phoneno == "" || phoneno == undefined || phoneno == null){
+        $('#mobile').focus();
+        Swal.fire("Error","Please Enter your Mobile No. ","error");
+        return;
+      }
+      this.commserv.sendOTPforloginthroughno(phoneno).subscribe((data:any) =>{
+        if(data.status == 200){
+          this.sentotp=true;
+        }else if(data.status == 404){
+          Swal.fire("Error","User Not Found !","error");
+        } else {
+          Swal.fire("Error","Something Went Wrong ! OTP Can't Send ,Please Trye After Sometime . ","error");
+        }
+      });
+    }
+
+    verifyOTP(){
+    let phoneno:any=$('#mobile').val();
+    let otpval:any=$('#otpval').val();
+    if(phoneno == "" || phoneno == undefined || phoneno == null){
+      $('#mobileno').focus();
+      Swal.fire("Error","Please Enter your Mobile No. ","error");
+      return;
+    }
+    if(otpval == "" || otpval == undefined || otpval == null){
+      $('#otpval').focus();
+      Swal.fire("Error","Please Enter OTP ","error");
+      return;
+    }
+    this.commserv.verifyOTPforloginthroughno(phoneno,otpval).subscribe((data:any) =>{
+      if(data.status == 200){
+        sessionStorage.setItem('user', JSON.stringify(data.record.userdata));
+        sessionStorage.setItem('token', data.record.token);
+        this.router.navigate(['/rentmanage/userdashboard']);
+      }else if(data.status == 401){
+        if(data.record == 0){
+        Swal.fire("Error","Maximum verification attempts reached. Please try again later.","error");
+          this. switchTab('otp');         
+        } else {
+          Swal.fire("Error","Otp Not matched ! you have "+data.record+" attempts now","error");
+          this.attemptcount=data.record;
+        }
+      } else {
+        Swal.fire("Error","Something Went Wrong ! OTP Can't Verify ,Please Trye After Sometime . ","error");
+      }
+    });
+  }
 }

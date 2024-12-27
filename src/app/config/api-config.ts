@@ -2,11 +2,14 @@ import { environment } from "src/environments/environment";
 
 let baseUrl = environment.baseUrl;
 export const loginUrl = baseUrl + "/login/loginapi";
+export const loginthroughgoogle = baseUrl + "/login/google";
+export const sendOTPforloginthroughno = baseUrl + "/login/sendOTPforloginthroughno";
+export const verifyOTPforloginthroughno = baseUrl + "/login/verifyOTPforloginthroughno";
 
 export const checkusername = baseUrl + "/api/checkusername";
 export const signinuser = baseUrl + "/api/createUser";
-export const loginthroughgoogle = baseUrl + "/login/google";
 export const contactrqst = baseUrl + "/api/contactrqst";
+
 
 
 export const addnewhome = baseUrl + "/api/addnewhome";

@@ -88,7 +88,11 @@ export class PaymntreminderComponent implements OnInit {
   price:any=0;
   calculatepayment(item:any){
     this.tenantdata = item;
-    this.totalpayment = parseInt(item.rentAmount) + parseInt(item.prvPendingAmount);
+    if(item.paidstatus == 0){
+      this.totalpayment = parseInt(item.rentAmount) + parseInt(item.prvPendingAmount);
+    } else {
+      this.totalpayment = item.curpendingamt;
+    }
   }
 
   currentbillcount(){
@@ -98,7 +102,11 @@ export class PaymntreminderComponent implements OnInit {
     let calculate = (parseInt(this.cullbillno)-parseInt(prvbillno))*this.price;
     if(this.price > 0){
       this.currentbill=calculate;
-      this.totalpayment=parseInt(this.tenantdata.rentAmount) + parseInt(this.tenantdata.prvPendingAmount)+calculate;
+      if(this.tenantdata.paidstatus == 0){
+        this.totalpayment=parseInt(this.tenantdata.rentAmount) + parseInt(this.tenantdata.prvPendingAmount)+calculate;
+      } else {
+        this.totalpayment = parseInt(this.tenantdata.curpendingamt)+calculate;
+      }
     }else{
       this.currentbill=0;
     }
@@ -144,6 +152,7 @@ export class PaymntreminderComponent implements OnInit {
         this.tenantserv.savePaymentdetails(object).subscribe((data:any) => {
           if(data.status == 200){
             Swal.fire("Success","Payment Process Successful !", "success");
+            this.gettenantlistforpaymentprocess();
             this.closeModal();
           }else{
             Swal.fire("Error","Something Went Wrong!", "error");

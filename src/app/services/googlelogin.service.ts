@@ -40,8 +40,6 @@ export class GoogleloginService {
     this.http.post(loginthroughgoogle, { token }).subscribe(
     (response:any) => {
       if(response.status==200){
-        console.log(response.token);
-      console.log(response);
         sessionStorage.setItem('user', JSON.stringify(response.userdata));
         sessionStorage.setItem('token', response.token);
         this.router.navigate(['/rentmanage/userdashboard']);
