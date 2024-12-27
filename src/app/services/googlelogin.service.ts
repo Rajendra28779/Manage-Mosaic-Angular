@@ -17,20 +17,15 @@ export class GoogleloginService {
     this.loadGoogleApi();
   }
 
-  private loadGoogleApi() {
+  private async loadGoogleApi() {
     try{
-      google.accounts.id.initialize({
+      await google.accounts.id.initialize({
         client_id: '243335143053-rmpl6ttt4srog99fvhlmmr1hafkcug7o.apps.googleusercontent.com',
         callback: (response: any) => this.handleCredentialResponse(response)
       });
-    }catch{
+    }catch (error){
       console.log("google not defined");
-
-    }
-    // google.accounts.id.initialize({
-    //   client_id: '243335143053-rmpl6ttt4srog99fvhlmmr1hafkcug7o.apps.googleusercontent.com',
-    //   callback: (response: any) => this.handleCredentialResponse(response)
-    // });
+        }
   }
 
   // This function is called after user signs in
@@ -61,14 +56,14 @@ export class GoogleloginService {
 
   // This function is called to render the sign-in button
   renderButton(elementId: string) {
-    google.accounts.id.renderButton(
-      document.getElementById(elementId),  // The element where button will be rendered
-      {
-        theme: 'outline',  // Button style
-        size: 'large',     // Button size
-        text: 'Continue_in_with'
-      }
-    );
+      google.accounts.id.renderButton(
+        document.getElementById(elementId),  // The element where button will be rendered
+        {
+          theme: 'outline',  // Button style
+          size: 'large',     // Button size
+          text: 'Continue_in_with'
+        }
+      );
   }
 
   // This will return the observable that will notify components

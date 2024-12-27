@@ -66,12 +66,12 @@
                       <div class="container col d-grid mt-3" *ngIf="activeTab=='password'">
                         <a class="btn btn-primary px-xl-4 py-xl-2" style="border-radius: 20px 5px 20px 5px;" (click)="onLoggedIn()"
                             id="loginBtn">Login</a>
-                            
+
                       </div>
 
                       <div class="container col d-grid mt-5" *ngIf="activeTab=='otp' && !sentotp">
                         <a class="btn btn-success px-xl-4 py-xl-2 " style="border-radius: 20px 5px 20px 5px;" (click)="sendotp()"
-                            id="loginBtn" *ngIf="!sentotp">Send OTP</a> 
+                            id="loginBtn" *ngIf="!sentotp">Send OTP</a>
                       </div>
                       <div class="container col d-grid " *ngIf="sentotp">
                         <div class="col-lg-12 col-xxl-12" style="margin-left: 1ch; margin-top: 1ch; text-align: left;">
@@ -83,21 +83,36 @@
                           <button class="btn btn-primary mx-2" style="width: 120px;" (click)="sendotp()">Re-Send</button>
                           <button class="btn btn-success mx-2" style="width: 120px;" (click)="verifyOTP()">Verify</button>
                           <button class="btn btn-warning mx-2" style="width: 120px;" (click)="switchTab('password')">Cancel</button>
-                        </div>                          
+                        </div>
                       </div>
-                      <div id="google-signin-btn"></div>                     
+                      <div id="google-signin-btn"></div>
 
                       <p class="mt-4" style="text-align: center;" *ngIf="!sentotp">
                           Don't have An Account? <a routerLink="/signup">Create Account</a>
                       </p>
                       <div class="row">
-                        <div class="col d-grid" style="text-align: center;">
+                        <!-- <div class="col d-grid" style="text-align: center;">
                             <div class="phone" id="loginBtn11">
                                 <div style="font-size: 17pt; padding-bottom: 0; color: #6FB3B8;">
                                     &phone; <b style="font-size: 16pt;">6370178554</b>
                                 </div>
                                 <div style="font-size: 12pt;font-weight: 500; padding-top: 0; color:rgb(184, 52, 52);">For Emergency Contact</div>
                             </div>
+                        </div> -->
+                        <div class="col-md-6 col-sm-12" >
+                          <button routerLink="/contactus" class="btn btn-basic" style="width: 100%; font-size: 17pt;">
+                            <i class="bi bi-headset me-2"></i> <span style="font-weight: 600; font-size: 21px; color: #6FB3B8;" >Contact Us</span><br>
+                            <div style="font-size: 12pt;font-weight: 500; padding-top: 0; color:rgb(184, 52, 52);">24/7 Customer Support</div></button>
+                        </div>
+                        <div class="col-md-6 col-sm-12" >
+                          <button class="btn btn-default" style="width: 100%;">
+                            <div class="phone" id="loginBtn11">
+                              <div style="font-size: 17pt; padding-bottom: 0; color: #6FB3B8;">
+                                  &phone; <b style="font-size: 16pt;">6370178554</b>
+                              </div>
+                              <div style="font-size: 12pt;font-weight: 500; padding-top: 0; color:rgb(184, 52, 52);">For Emergency Contact</div>
+                          </div>
+                          </button>
                         </div>
                       </div>
                   <!-- -------------------------------------------- -->

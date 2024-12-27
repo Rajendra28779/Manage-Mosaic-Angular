@@ -16,24 +16,27 @@
                   <div class="row register-form">
                       <div class="col-md-6">
                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="First Name *" id="fname" name="fname" />
+                              <input type="text" class="form-control" placeholder="First Name *" id="fname" name="fname" maxlength="34"/>
                           </div><br>
                           <div class="form-group">
-                            <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" id="phone" name="phone" class="form-control" placeholder="Your Phone *"  />
+                            <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" id="phone" name="phone" class="form-control" placeholder="Your Phone *"
+                            onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" />
                           </div><br>
                           <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Password *" id="password" name="password" autocomplete="off" maxlength="15"/>
+                            <input type="text" class="form-control" placeholder="Password *" id="password" name="password" autocomplete="off" maxlength="15"
+                            onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9@#&]/g,'');"/>
                           </div>
                       </div>
                       <div class="col-md-6">
                           <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Last Name *" id="lname" name="lname" />
+                            <input type="text" class="form-control" placeholder="Last Name *" id="lname" name="lname" maxlength="25"/>
                           </div><br>
                           <div class="form-group">
-                              <input type="email" class="form-control" placeholder="Your Email *" id="email" name="email" autocomplete="off"/>
+                              <input type="email" class="form-control" placeholder="Your Email *" id="email" name="email" autocomplete="off" maxlength="25"/>
                           </div><br>
                           <div class="form-group">
-                            <input type="text" class="form-control"  placeholder="Confirm Password *" id="cpass" name="cpass" autocomplete="off"/>
+                            <input type="text" class="form-control"  placeholder="Confirm Password *" id="cpass" name="cpass" autocomplete="off" maxlength="15"
+                            onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9@#&]/g,'');"/>
                           </div>
                         <input type="button" class="btnRegister" (click)="signup()"  value="Register"/>
                       </div>

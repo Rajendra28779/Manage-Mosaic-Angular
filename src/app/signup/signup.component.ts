@@ -14,7 +14,10 @@ rslt:any
 theswal:any;
 gen:any;
 user:any
-  constructor(private leginsrv:LoginserviceService,private route:Router) { }
+mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+mobileformat = /[6-9][0-9]{9}$/;
+
+  constructor(private readonly leginsrv:LoginserviceService,private route:Router) { }
 
   ngOnInit(): void {
   }
@@ -33,6 +36,11 @@ user:any
       this.swal("Error",this.theswal,"error");
       return;
     }
+    if (fname.length < 5){
+      this.theswal="FirstName more then 5 character";
+      this.swal("Error",this.theswal,"error");
+      return;
+    }
     if (lname==null || lname== "" || lname==undefined){
       this.theswal="Please Fill LastName";
       this.swal("Error",this.theswal,"error");
@@ -43,8 +51,18 @@ user:any
       this.swal("Error",this.theswal,"error");
       return;
     }
+    if (!(phone.toString()).match(this.mobileformat)) {
+      this.theswal="Please provide Valid MobileNo.";
+      this.swal("Error",this.theswal,"error");
+      return;
+    }
     if (email==null || email== "" || email==undefined){
       this.theswal="Please Fill Email";
+      this.swal("Error",this.theswal,"error");
+      return;
+    }
+    if (!email.match(this.mailformat)) {
+      this.theswal="Please provide Valid Email";
       this.swal("Error",this.theswal,"error");
       return;
     }
@@ -88,7 +106,7 @@ let object ={
     },
     (error) => console.log(error)
     );
-  }  
+  }
 
   swal(title: any, text: any, icon: any) {
     Swal.fire({

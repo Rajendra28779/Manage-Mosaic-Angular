@@ -1,13 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {  downloadcommondoc,getdashboarddata,gethousemasterData,getroommasterData, sendOTPforaddmobileno, sendOTPforloginthroughno, verifyOTPforaddmobileno, verifyOTPforloginthroughno} from 'src/app/config/api-config';
+import {  downloadcommondoc,getdashboarddata,gethousemasterData,getroommasterData, sendOTPforaddmobileno, sendOTPforloginthroughno, verifyOTPforaddmobileno, verifyOTPforchangepassword, verifyOTPforloginthroughno} from 'src/app/config/api-config';
 import { EncryptService } from 'src/app/services/encrypt.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommenService {
-   
+
 
   constructor(private readonly http: HttpClient,private readonly enctserv:EncryptService) { }
 
@@ -93,6 +93,23 @@ export class CommenService {
       }
     };
     let fullUrl = verifyOTPforaddmobileno;
+    return this.http.get(fullUrl,options);
+  }
+
+  verifyOTPforchangepassword(password: any, otpval: any) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: this.enctserv.getJwtToken(),
+      'Access-Control-Allow-Origin': '*',
+    });
+    let options = {
+      headers: headers,
+      params :{
+        password : password,
+        otpval : otpval
+      }
+    };
+    let fullUrl = verifyOTPforchangepassword;
     return this.http.get(fullUrl,options);
   }
 

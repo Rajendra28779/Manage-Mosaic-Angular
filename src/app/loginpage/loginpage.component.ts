@@ -6,6 +6,7 @@ import { GoogleloginService } from '../services/googlelogin.service';
 import { LoginserviceService } from '../services/loginservice.service';
 import Swal from 'sweetalert2';
 import { CommenService } from '../homerent/services/commen.service';
+import { HttpClient } from '@angular/common/http';
 declare let $: any;
 declare const gapi: any;
 
@@ -30,20 +31,23 @@ export class LoginpageComponent implements OnInit {
     private readonly googleAuthService: GoogleloginService) { }
 
   ngOnInit(): void {
-    sessionStorage.clear();    
+    sessionStorage.clear();
     this.activeTab = 'password';
-    // this.user1= this.route.snapshot.params['id'];
-    // if(this.user1!=undefined){
-    //   this.show=true
-    //   this.showMsg();
-    // }
-    let component = this;
-    $('#loginCaptchaImg').html(this.captchaService.getCaptcha());
-    $('#loginRefreshCaptcha').click(function () {
-      $('#loginCaptchaImg').html(component.captchaService.getCaptcha());
-    });
+    this.loadCaptcha();
+    try{
+      this.googleAuthService.renderButton('google-signin-btn');
+    } catch (error){
+      window.location.reload();
+    }
+  }
 
-    this.googleAuthService.renderButton('google-signin-btn');
+  private async loadCaptcha() {
+    try {
+      const captcha = await this.captchaService.getCaptcha();
+      $('#loginCaptchaImg').html(captcha);
+    } catch (error) {
+      console.error('Failed to load CAPTCHA:', error);
+    }
   }
 
   switchTab(tab: any) {
@@ -124,6 +128,13 @@ export class LoginpageComponent implements OnInit {
     sentotp:boolean = false;
     attemptcount:any=5;
     sendotp(){
+      let phoneno:any=$('#mobile').val();
+      if(phoneno == "" || phoneno == undefined || phoneno == null){
+        $('#mobile').focus();
+        Swal.fire("Error","Please Enter your Mobile No. ","error");
+        return;
+      }
+
       let challange = $('#capt').val();
       let captcha = $('#loginCaptchaImg').html();
       let isValid: boolean;
@@ -133,12 +144,6 @@ export class LoginpageComponent implements OnInit {
         return;
       }
 
-      let phoneno:any=$('#mobile').val();
-      if(phoneno == "" || phoneno == undefined || phoneno == null){
-        $('#mobile').focus();
-        Swal.fire("Error","Please Enter your Mobile No. ","error");
-        return;
-      }
       this.commserv.sendOTPforloginthroughno(phoneno).subscribe((data:any) =>{
         if(data.status == 200){
           this.sentotp=true;
@@ -171,7 +176,7 @@ export class LoginpageComponent implements OnInit {
       }else if(data.status == 401){
         if(data.record == 0){
         Swal.fire("Error","Maximum verification attempts reached. Please try again later.","error");
-          this. switchTab('otp');         
+          this. switchTab('otp');
         } else {
           Swal.fire("Error","Otp Not matched ! you have "+data.record+" attempts now","error");
           this.attemptcount=data.record;

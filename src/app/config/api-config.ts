@@ -33,6 +33,7 @@ export const getdashboarddata = baseUrl + "/api/getdashboarddata";
 export const savePaymentdetails = baseUrl + "/api/savePaymentdetails";
 export const sendOTPforaddmobileno = baseUrl + "/api/sendOTPforaddmobileno";
 export const verifyOTPforaddmobileno = baseUrl + "/api/verifyOTPforaddmobileno";
+export const verifyOTPforchangepassword = baseUrl + "/api/verifyOTPforchangepassword";
 
 
 

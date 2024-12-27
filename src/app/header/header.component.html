@@ -15,7 +15,8 @@
     <div class="profile-dropdown">
       <i class="bi bi-bell"></i>
       <div class="dropdown-list example-container">
-        <p style="font-weight: bold; text-align: center; background-color: #dfd9d9;">Notification</p><hr>
+        <p style="font-weight: bold; text-align: center; background-color: #dfd9d9;">Notification</p>
+        <hr>
         <ng-container *ngFor="let item of notifications">
           <div class="notification-item">
             <i class="bi bi-envelope-at-fill" *ngIf="item?.status==1"></i>
@@ -37,27 +38,146 @@
           <p>Updated<br>
             Version 1.0.1
           </p>
-        </div><hr>
+        </div>
+        <hr>
         <div class="notification-item">
           <i class="bi bi-shield-check"></i>
           <p>Privacy policy<br>
             2024
           </p>
-        </div><hr>
+        </div>
+        <hr>
         <div class="notification-item">
           <i class="bi bi-c-circle"></i>
           <p>Copyright Policy<br>2024</p>
-        </div><hr>
+        </div>
+        <hr>
       </div>
     </div>
     <!-- //profile -->
     <div class="profile-dropdown">
       <i class="bi bi-person-circle"></i>
       <div class="dropdown-menu">
-        <a href="#" (click)="updateProfile()">Update Profile</a>
-        <a href="#" (click)="changePassword()">Change Password</a>
+        <a (click)="updateProfile()" data-bs-toggle="modal" data-bs-target="#userprofile">Profile</a>
+        <a (click)="changePassword()">Change Password</a>
       </div>
     </div>
     <i class="bi bi-box-arrow-right" (click)="logout()" title="Logout"></i>
   </div>
 </header>
+
+
+
+<div class="modal" id="changepassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  style="backdrop-filter: blur(10px); ">
+  <div class="modal-dialog" style="max-width: 40%; margin-top: 100px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-weight: 500;color: #388087">Verify OTP</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="closemodal()"></button>
+      </div>
+      <div class="modal-body container text-center">
+        <div class="row">
+          <div class="col-lg-12 col-xxl-12">
+            <div class="mb-xl-3">
+              <label class="form-label">Enter New Paasword<span class="text-danger">*</span></label>
+              <input class="form-control" type="text" placeholder="Enter New Paasword" autocomplete="off" id="newpass"
+                maxlength="15" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9@#&]/g,'');" [disabled]="sentotp">
+            </div>
+          </div>
+          <div class="col-lg-12 col-xxl-12">
+            <div class="mb-xl-3">
+              <label class="form-label">Enter Confirm Paasword<span class="text-danger">*</span></label>
+              <input class="form-control" type="text" placeholder="Enter New Paasword" autocomplete="off" id="cnfpass"
+                maxlength="15" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9@#&]/g,'');" [disabled]="sentotp">
+            </div>
+          </div>
+          <ng-container *ngIf="sentotp">
+            <div class="col-lg-1 col-xxl-1"></div>
+            <div class="col-lg-3 col-xxl-3 mt-2">
+              <p class="paydata color1">Enter OTP : </p>
+            </div>
+            <div class="col-lg-6 col-xxl-6 mt-2">
+              <input class="form-control" type="text" placeholder="Enter here..." autocomplete="off" id="otpval"
+                maxlength="6" onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');">
+            </div>
+            <div class="col-lg-2 col-xxl-2"></div>
+          </ng-container>
+          <div class="col-lg-12 col-xxl-12" style="margin-left: 1ch; margin-top: 1ch; text-align: left;"
+            *ngIf="sentotp">
+            <p>* We've sent an OTP to your registered email ID.</p>
+            <!-- <p style="margin-top: -1ch;">* An OTP has also been sent to your registered ****6789 mobile number.</p> -->
+            <p style="margin-top: -1ch;">* You have {{attemptcount}} attempts remaining to verify your account.</p>
+          </div>
+          <div class="col-lg-12 col-xxl-12 mt-4" *ngIf="!sentotp">
+            <button class="btn btn-success w-50 me-2" (click)="sendOTP()">Send OTP</button>
+          </div>
+          <div class="col-lg-12 col-xxl-12 mt-4 d-flex justify-content-center" *ngIf="sentotp">
+            <button class="btn btn-primary mx-2" style="width: 120px;" (click)="sendOTP()">Re-Send</button>
+            <button class="btn btn-success mx-2" style="width: 120px;" (click)="verifyOTP()">Verify</button>
+            <button class="btn btn-warning mx-2" style="width: 120px;" (click)="closemodal()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="userprofile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  style="margin-top: 10ch;">
+  <div class="modal-dialog" style="max-width: 75%; margin-top: 0;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 25px; color: #388087">
+          <i class="bi bi-file-person-fill me-2"></i>User Profile
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-3">
+            <div>
+              <img src="../../../../assets/img/hello.png" alt="user profile" height="90px" width="80px"
+                style="margin-left: 1ch;">
+            </div>
+          </div>
+          <div class="col-9" style="font-weight: 600;">
+            <p><span class="color1">Name : </span>{{this.user.fullName}}</p>
+            <p><span class="color1">Mobile No : </span>{{this.user.phoneNo}}</p>
+            <p><span class="color1">Email id : </span>{{this.user.email}}</p>
+          </div>
+        </div>
+        <div [ngClass]="{'example-container1': userhousedatalist.length > 1}">
+          <ng-container *ngFor="let item of userhousedatalist">
+            <hr>
+            <div class="row paydata" style="font-weight: 600;">
+              <div class="col-6">
+                <p><span class="color1">House Name : </span>{{item.houseName}}</p>
+              </div>
+              <div class="col-6" style="text-align:end;">
+                <p><span class="color1">Room Name : </span>{{item.roomNo}}</p>
+              </div>
+              <div class="col-12">
+                <p><span class="color1">Owner Name : </span>{{item.ownerName}}</p>
+              </div>
+              <div class="col-6">
+                <p><span class="color1">Contact No : </span>{{item.ownerMobile}}</p>
+              </div>
+              <div class="col-6" style="text-align:end;">
+                <p><span class="color1">Staying From : </span>{{item.efectdate}}</p>
+              </div>
+              <div class="col-6">
+                <p><span class="color1">Rent Amount : </span>₹ {{item.rentAmount | currency:"":""}}</p>
+              </div>
+              <div class="col-6" style="text-align:end;">
+                <p><span class="color1">Advance Amount: </span>₹ {{item.advAmount | currency:"":""}}</p>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

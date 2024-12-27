@@ -12,6 +12,7 @@ declare let $: any;
 })
 export class UserDashbordComponent implements OnInit {
   user:any;
+  mobileformat = /[6-9][0-9]{9}$/;
 
   constructor(private readonly router:Router,
               private readonly commserv:CommenService,
@@ -48,6 +49,11 @@ export class UserDashbordComponent implements OnInit {
       Swal.fire("Error","Please Enter your Mobile No. ","error");
       return;
     }
+    if (!(phoneno.toString()).match(this.mobileformat)) {
+      $('#mobileno').focus();
+      Swal.fire("Error","Please provide Valid MobileNo. ","error");
+      return;
+    }
     this.commserv.sendOTPforaddmobileno(phoneno).subscribe((data:any) =>{
       if(data.status == 200){
         this.sentotp=true;
@@ -65,6 +71,11 @@ export class UserDashbordComponent implements OnInit {
       Swal.fire("Error","Please Enter your Mobile No. ","error");
       return;
     }
+    if (!(phoneno.toString()).match(this.mobileformat)) {
+      $('#mobileno').focus();
+      Swal.fire("Error","Please provide Valid MobileNo. ","error");
+      return;
+    }
     if(otpval == "" || otpval == undefined || otpval == null){
       $('#otpval').focus();
       Swal.fire("Error","Please Enter OTP ","error");
@@ -79,7 +90,7 @@ export class UserDashbordComponent implements OnInit {
       }else if(data.status == 401){
         if(data.record == 0){
         Swal.fire("Error","Maximum verification attempts reached. Please try again later.","error");
-          this.closemodal();          
+          this.closemodal();
         } else {
           Swal.fire("Error","Otp Not matched ! you have "+data.record+" attempts now","error");
           this.attemptcount=data.record;
