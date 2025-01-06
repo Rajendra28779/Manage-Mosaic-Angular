@@ -5,8 +5,7 @@ import { EncryptService } from '../services/encrypt.service';
 import { GoogleloginService } from '../services/googlelogin.service';
 import { LoginserviceService } from '../services/loginservice.service';
 import Swal from 'sweetalert2';
-import { CommenService } from '../homerent/services/commen.service';
-import { HttpClient } from '@angular/common/http';
+import { CommenService } from '../userpanel/services/commen.service';
 declare let $: any;
 declare const gapi: any;
 

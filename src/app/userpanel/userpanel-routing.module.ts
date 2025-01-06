@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
-import { EventManager } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { EventmanageComponent } from './eventmanage/eventmanage.component';
-import { HomerentComponent } from './homerent.component';
 import { TripmanageComponent } from './tripmanage/tripmanage.component';
 import { UserDashbordComponent } from './user-dashbord/user-dashbord.component';
+import { UserpanelComponent } from './userpanel.component';
 
 const routes: Routes =[{
-  path: '', component: HomerentComponent, children: [
+  path: '', component: UserpanelComponent, children: [
   { path: 'userdashboard', component:UserDashbordComponent  },
   { path: 'tripmanage', component:TripmanageComponent  },
   { path: 'eventmanage', component:EventmanageComponent  },
@@ -19,4 +18,4 @@ const routes: Routes =[{
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HomerentRoutingModule { }
+export class UserpanelRoutingModule { }

@@ -29,7 +29,7 @@ export class UserDashbordComponent implements OnInit {
     if(this.user?.phoneNo == null || this.user?.phoneNo == undefined || this.user?.phoneNo == ""){
       $('#tenantmobile').show();
     }else {
-      this.router.navigate(['/rentmanage/homerentmanage/tenantdashbord']);
+      this.router.navigate(['/userpanel/homerentmanage/tenantdashbord']);
     }
   }
 

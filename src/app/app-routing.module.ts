@@ -17,7 +17,7 @@ const routes: Routes = [
 
 
   { path: 'application', loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule) },
-  { path: 'rentmanage', loadChildren: () => import('./homerent/homerent.module').then(h => h.HomerentModule),canActivate: [AuthgardService] },
+  { path: 'userpanel', loadChildren: () => import('./userpanel/userpanel.module').then(h => h.UserpanelModule),canActivate: [AuthgardService] },
   { path: '**', component: PagenotfoundComponent }
 ];
 

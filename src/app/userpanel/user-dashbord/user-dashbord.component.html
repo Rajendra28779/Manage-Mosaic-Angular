@@ -8,7 +8,103 @@
         <h2>Hello, <span>{{this.user?.firstName==null?'User':this.user?.firstName}}</span> ! Welcome to <span>Manage Mosaic.</span></h2>
       </div>
 
-      <div class="d-flex col-md-12 col-lg-12 col-sm-6 col-12 px-0" style="margin-top: 10ch;">
+      <div class="explore-section">
+        <h5 class="heading" >Explore Rooms in All Cities</h5>
+
+        <div class="search-bar">
+          <input type="text" placeholder="Search for a city...">
+          <button>Search</button>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-md-2">
+            <div class="city-tabs">
+              <div class="tab">
+                <img src="../../../assets/img/lord-jagannath.png" alt="Odisha" class="city-image">
+                <div class="city-name">ODISHA</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="city-tabs">
+              <div class="tab">
+                <img src="../../../assets/img/hyderabad-charminar.png" alt="Odisha" class="city-image">
+                <div class="city-name">HYDRABAD</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="city-tabs">
+              <div class="tab">
+                <img src="../../../assets/img/MUMBAIgate-of-india.png" alt="Odisha" class="city-image">
+                <div class="city-name">MUMBAI</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="city-tabs">
+              <div class="tab">
+                <img src="../../../assets/img/DELHIbuilding.png" alt="Odisha" class="city-image">
+                <div class="city-name">DELHI</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="city-tabs">
+              <div class="tab">
+                <img src="../../../assets/img/JAIPURjawahar-circle.png" alt="Odisha" class="city-image">
+                <div class="city-name">JAIPUR</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="city-tabs">
+              <div class="tab">
+                <img src="../../../assets/img/kolkata.png" alt="Odisha" class="city-image">
+                <div class="city-name">KOLKATA</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-4">
+            <div class="rntcard rent-room">
+              <img src="../../../assets/img/rent.png" class="rntcardimg" alt="rentcard">
+              <div class="card-text">
+                <h3>Offer Your House for Rent</h3>
+                <p>Quickly list your room and find tenants easily within days.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="rntcard rent-property">
+              <img src="../../../assets/img/rental-agreement.png" class="rntcardimg" alt="rentcard">
+              <div class="card-text">
+                <h3>Lease your property</h3>
+                <p>Manage and rent entire properties to potential clients online.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="rntcard rent-pg">
+              <img src="../../../assets/img/rental.png" class="rntcardimg" alt="rentcard">
+              <div class="card-text">
+                <h3>Locate PG or Room Nearby</h3>
+                <p>Browse available options close to your location for easy living.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <h5 class="heading mb-3 mt-5" >Explore Our Services</h5>
+      <div class="d-flex col-md-12 col-lg-12 col-sm-6 col-12 px-0 mt-3">
         <div class="card-tab">
           <a class="card1" data-bs-toggle="modal" data-bs-target="#redirectpage"  routerLinkActive="router-link-active"
             title="Rent Management">
@@ -25,8 +121,8 @@
         </div>
         <!-- [routerLink]="['/rentmanage/homerentmanage/dashboard']" -->
         <div class="card-tab">
-          <a class="card1" [routerLink]="['/rentmanage/tripmanage']" routerLinkActive="router-link-active"
-            title="Unblock Package">
+          <a class="card1" [routerLink]="['/userpanel/tripmanage']" routerLinkActive="router-link-active"
+            title="Trip Manage">
             <div class="d-flex f-col">
               <div class="icon_tabp"> <span><i class="fa fa-cab"></i></span> </div>
               <div class="cardpk-txt"> Trip Management </div>
@@ -39,8 +135,8 @@
           </a>
         </div>
         <div class="card-tab">
-          <a class="card1" [routerLink]="['/rentmanage/eventmanage']" routerLinkActive="router-link-active"
-            title="Unblock Package">
+          <a class="card1" [routerLink]="['/userpanel/eventmanage']" routerLinkActive="router-link-active"
+            title="Event Manage">
             <div class="d-flex f-col">
               <div class="icon_tabp"> <span><i class="fa fa-calendar"></i></span> </div>
               <div class="cardpk-txt"> Event Management </div>
@@ -274,7 +370,7 @@
           <span style="font-size: 14px; color: #f9f9f9;">Select this option if you are a tenant looking to manage your rental details.</span>
         </button>
 
-        <button type="button" class="btn btn-success modalbutton" [routerLink]="['/rentmanage/homerentmanage/dashboard']" aria-label="Close" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-success modalbutton" [routerLink]="['/userpanel/homerentmanage/dashboard']" aria-label="Close" data-bs-dismiss="modal">
           <span style="font-size: 22px; font-weight: 600;">As a House Owner</span>
           <br>
           <span style="font-size: 14px; color: #f9f9f9;">Select this option if you are a house owner managing property or tenant records.</span>

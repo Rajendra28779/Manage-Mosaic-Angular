@@ -1,6 +1,5 @@
 <app-sidebar></app-sidebar>
 <div class="content">
-
   <div class="row">
     <div class="col-md-12 col-lg-5 col-sm-12">
       <div class="card" style="height: 400px;">
@@ -17,7 +16,7 @@
           <div class="tab-container" *ngFor="let tenant of tenantUser | filter:txtsearchDate">
             <div class="tab-row">
               <div class="tab-left">
-                <span class="name" data-bs-toggle="modal" data-bs-target="#userdetails" 
+                <span class="name" data-bs-toggle="modal" data-bs-target="#userdetails"
                 title={{tenant.fullName}} data-bs-toggle="modal" data-bs-target="#userdetails" (click)="getdetails(tenant)">{{tenant?.fullName}}</span><br>
                 <span class="me-5">{{tenant?.roomNo}}</span>
                 <span>{{tenant?.houseName}}</span>

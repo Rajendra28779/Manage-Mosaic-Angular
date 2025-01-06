@@ -2,9 +2,9 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { CommenService } from '../homerent/services/commen.service';
-import { CompliantService } from '../homerent/services/compliant.service';
 import { EncryptService } from '../services/encrypt.service';
+import { CommenService } from '../userpanel/services/commen.service';
+import { CompliantService } from '../userpanel/services/compliant.service';
 declare let $ : any;
 
 @Component({
@@ -13,7 +13,7 @@ declare let $ : any;
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  notifications: any;
+  notifications: any=[];
   user:any;
   userhousedatalist:any;
 
@@ -23,9 +23,6 @@ export class HeaderComponent implements OnInit {
               private readonly compliantserv:CompliantService) { }
 
   ngOnInit(): void {
-    let userdata:any=sessionStorage.getItem('user');
-    this.user=JSON.parse(userdata);
-
     this.notifications = [
       { message: "You have a new message from John Doe.", status: "1" },
       { message: "Room 101 will be vacant starting from 2024-10-20.", status: "2" },
@@ -38,6 +35,8 @@ export class HeaderComponent implements OnInit {
       { message: "Check out our latest offers on rooms and accommodations!", status: "3" },
       { message: "Scheduled maintenance will occur on 2024-11-01 from 2:00 AM to 4:00 AM. Please save your work.", status: "1" }
     ];
+    // let userdata:any=sessionStorage.getItem('user');
+    // this.user=JSON.parse(userdata);
   }
 
   back(){

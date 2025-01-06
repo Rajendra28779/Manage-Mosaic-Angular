@@ -32,7 +32,7 @@
           <div class="card-details" data-bs-toggle="modal" data-bs-target="#payment" title="Calculate Payment" (click)="calculatepayment(record)">
             <div class="info-row">
               <h4>{{ record.fullName }}</h4>
-              <i class="bi bi-person-vcard" style="font-size: 25px; color: #2a6f73; cursor: pointer;" 
+              <i class="bi bi-person-vcard" style="font-size: 25px; color: #2a6f73; cursor: pointer;"
               data-bs-toggle="modal" data-bs-target="#userdetails" title="Tenent Details" (click)="gettenantdetails(record.tenantId)"></i>
             </div>
             <div class="info-row">
@@ -227,12 +227,12 @@
                 onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" [(ngModel)]="totalpayment">
           </div>
           <div class="col-12 mt-4 text-center">
-            <button class="btn btn-success w-40 me-2" data-bs-dismiss="modal" 
+            <button class="btn btn-success w-40 me-2" data-bs-dismiss="modal"
                     aria-label="Close" (click)="submitPayment()">Submit</button>
-            <button class="btn btn-primary w-40" data-bs-dismiss="modal" 
+            <button class="btn btn-primary w-40" data-bs-dismiss="modal"
                     aria-label="Close" (click)="closeModal()">Cancel</button>
           </div>
-        </div>        
+        </div>
       </div>
     </div>
   </div>

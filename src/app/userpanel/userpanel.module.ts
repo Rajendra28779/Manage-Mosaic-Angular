@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomerentRoutingModule } from './homerent-routing.module';
+
+import { UserpanelRoutingModule } from './userpanel-routing.module';
 import { UserDashbordComponent } from './user-dashbord/user-dashbord.component';
 import { RentmanageComponent } from './rentmanage/rentmanage.component';
 import { TripmanageComponent } from './tripmanage/tripmanage.component';
@@ -16,7 +17,7 @@ import { EventmanageComponent } from './eventmanage/eventmanage.component';
   ],
   imports: [
     CommonModule,
-    HomerentRoutingModule
+    UserpanelRoutingModule
   ]
 })
-export class HomerentModule { }
+export class UserpanelModule { }

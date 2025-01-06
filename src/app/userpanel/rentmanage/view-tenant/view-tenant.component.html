@@ -5,10 +5,10 @@
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a routerLink="/rentmanage/homerentmanage/addtenent" routerLinkActive="active" class="nav-link  color1">Add Tenant</a>
-        </li>   
+        </li>
         <li class="nav-item">
           <a routerLink="/rentmanage/homerentmanage/viewtenent" routerLinkActive="active" class="nav-link active color1">View Tenant</a>
-        </li>   
+        </li>
         <!-- <li class="nav-item">
           <a routerLink="/rentmanage/homerentmanage/managetenent" routerLinkActive="active" class="nav-link color1">Manage Tenant</a>
         </li>    -->
@@ -74,7 +74,7 @@
           <td>{{ tenant.roomNo }}</td>
           <td>{{ tenant.rentAmount | currency:'':''}}</td>
           <td>{{ tenant.effectiveDate }}</td>
-          <td><a style="color:#388087;" data-bs-toggle="modal" data-bs-target="#userdetails" 
+          <td><a style="color:#388087;" data-bs-toggle="modal" data-bs-target="#userdetails"
             title="Tenent Details"  (click)="getdetails(tenant)"><i class="bi bi-info-circle-fill"></i></a></td>
           <!-- <td><a style="color:red;"><i class="bi bi-pencil-square"></i></a></td> -->
         </tr>
