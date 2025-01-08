@@ -425,6 +425,22 @@
   transform: scale(1.05);
 }
 
+.why-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: #f8e9e2;
+  border-radius: 10px;
+}
+
+.whytab{
+  width: 100%;
+  text-align: left;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 10px 30px 15px 30px ;
+}
+
 .city-image {
   width: 50%;
   height: 50%;
@@ -465,6 +481,8 @@
 .card-text h3 {
   text-align: left;
   font-size: 20px;
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
 }
 
 .card-text{
@@ -482,4 +500,38 @@
   width: 17%;
   height: 20%;
   object-fit: cover;
+}
+
+.parkcover-img {
+  background-image: url('../../../assets/img/park-cover-image.png');
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 5ch;
+  border-radius: 15px;
+}
+
+
+.carousel-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-card {
+  flex: 0 0 33%;  /* Show 2 cards at a time */
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.card-content {
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px 0 15px 0;
+  text-align: center;
 }

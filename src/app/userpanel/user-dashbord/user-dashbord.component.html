@@ -98,9 +98,7 @@
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
 
       <h5 class="heading mb-3 mt-5" >Explore Our Services</h5>
@@ -119,7 +117,7 @@
             </div>
           </a>
         </div>
-        <!-- [routerLink]="['/rentmanage/homerentmanage/dashboard']" -->
+
         <div class="card-tab">
           <a class="card1" [routerLink]="['/userpanel/tripmanage']" routerLinkActive="router-link-active"
             title="Trip Manage">
@@ -147,6 +145,30 @@
               </div>
             </div>
           </a>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <div class="why-tabs">
+            <div class="whytab">
+              <h4 style="color: #7a2c18;">Why Use Manage Mosaic ?</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="why-tabs">
+            <div class="whytab">
+              <h4 style="color: #7a2c18;">How to Use Manage Mosaic ?</h4>
+              <div class="text-center mt-3">
+                <iframe width="80%" height="180" src="https://www.youtube.com/embed/VuDEKak4amg"
+                  title="YouTube video player" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -328,7 +350,26 @@
       </div>
 
     </div>
+    <!-- <img src="../../../assets/img/park-cover-image.png" alt="coverimage" class="parkcover-img"> -->
+    <div class="parkcover-img">
+
+      <div class="carousel-container">
+        <div class="carousel-wrapper" [style.transform]="'translateX(-' + currentSlide * 33 + '%)'">
+          <div *ngFor="let testimonial of testimonials" class="carousel-card">
+            <div class="card-content">
+              <p>{{ testimonial.text }}</p>
+              <h4>{{ testimonial.author }}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+
+
+
+
   <div class="bgstickimg">
     <img src="../../../assets/img/m2-logo.png" alt="Download Soon" height="140px" width="210px">
     <p>Your All-in-One Solution for Stress-Free Living and Enjoyable Experiences</p>

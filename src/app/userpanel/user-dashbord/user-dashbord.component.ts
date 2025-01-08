@@ -13,6 +13,14 @@ declare let $: any;
 export class UserDashbordComponent implements OnInit {
   user:any;
   mobileformat = /[6-9][0-9]{9}$/;
+  testimonials = [
+    { text: "Testimonial 1", author: "John Doe" },
+    { text: "Testimonial 2", author: "Jane Smith" },
+    { text: "Testimonial 3", author: "Michael Johnson" },
+    { text: "Testimonial 4", author: "Emily Davis" },
+    { text: "Testimonial 5", author: "Daniel Lee" }
+  ];
+  currentSlide = 0;
 
   constructor(private readonly router:Router,
               private readonly commserv:CommenService,
@@ -21,6 +29,13 @@ export class UserDashbordComponent implements OnInit {
   ngOnInit(): void {
     let user:any=sessionStorage.getItem("user");
     this.user=JSON.parse(user);
+    setInterval(() => {
+      this.nextSlide();
+    }, 5000);
+  }
+
+  nextSlide() {
+    this.currentSlide = (this.currentSlide + 1) % this.testimonials.length;
   }
 
   tenantpage(){
