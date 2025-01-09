@@ -14,11 +14,11 @@ export class UserDashbordComponent implements OnInit {
   user:any;
   mobileformat = /[6-9][0-9]{9}$/;
   testimonials = [
-    { text: "Testimonial 1", author: "John Doe" },
-    { text: "Testimonial 2", author: "Jane Smith" },
-    { text: "Testimonial 3", author: "Michael Johnson" },
-    { text: "Testimonial 4", author: "Emily Davis" },
-    { text: "Testimonial 5", author: "Daniel Lee" }
+    { text: "Great implementation! The dynamic star rendering approach is clean and effective. It ensures flexibility and handles undefined values gracefully. Keep up the excellent work!", author: "John Doe" ,star : 4 },
+    { text: "Smart solution! Leveraging array constructors for iteration is a clever approach. It keeps the template concise and adaptable. Excellent coding practices here!", author: "Rajendra Prsasad Sahoo" ,star : 5},
+    { text: "Good job! Your implementation is efficient and ensures the UI remains consistent even with undefined or zero values. Great attention to detail!", author: "Michael Johnson" ,star : 4 },
+    { text: "Well-executed! The dynamic array generation is intuitive and clean. It's a great example of how to handle conditional rendering in Angular templates effectively.", author: "Emily Davis" , star : 5 },
+    { text: "Fantastic approach! This solution balances simplicity and functionality, ensuring the code is both readable and robust. A solid implementation all around!", author: "Daniel Lee" , star : 5 }
   ];
   currentSlide = 0;
 

@@ -153,9 +153,37 @@
           <div class="why-tabs">
             <div class="whytab">
               <h4 style="color: #7a2c18;">Why Use Manage Mosaic ?</h4>
+              <div class="row text-center mt-3">
+                <div class="col-md-4 border-end">
+                <img src="../../../assets/img/manager.png" alt="image" class="use-image">
+                 <p> No Brokerage</p>
+                </div>
+                <div class="col-md-4 border-end">
+                  <img src="../../../assets/img/click.png" alt="image" class="use-image">
+                  <p>Easy to Access</p>
+                </div>
+                <div class="col-md-4">
+                  <img src="../../../assets/img/project-management.png" alt="image" class="use-image">
+                  <p>Smart Management</p>
+                </div>
+                <div><hr></div>
+                <div class="col-md-4 border-end">
+                  <img src="../../../assets/img/adjustment.png" alt="image" class="use-image">
+                  <p>Customized Tips</p>
+                </div>
+                <div class="col-md-4 border-end">
+                  <img src="../../../assets/img/reduce-cost.png" alt="image" class="use-image">
+                  <p>Expense Reduction</p>
+                </div>
+                <div class="col-md-4">
+                  <img src="../../../assets/img/24-hours-support.png" alt="image" class="use-image">
+                  <p>24x7 Service</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
         <div class="col-md-6">
           <div class="why-tabs">
             <div class="whytab">
@@ -167,12 +195,25 @@
                   allowfullscreen>
                 </iframe>
               </div>
+              <div class="cta-section">
+                <p >
+                    To know more about us, please
+                    <a href="https://www.youtube.com/channel/YOUR_CHANNEL_LINK" target="_blank" style="color: rgb(194, 19, 19); text-decoration: underline; font-weight: bold;">
+                        subscribe
+                    </a> to our YouTube channel
+                    and follow us on &nbsp;
+                    <a href="" style="text-decoration: none; font-size:25px; color: #388087;"><i class="bi bi-facebook me-2"></i></a>
+                    <a href="" style="text-decoration: none; font-size:25px; color: #388087;"><i class="bi bi-instagram me-2"></i></a>
+                    <a href="" style="text-decoration: none; font-size:25px; color: #388087;"><i class="bi bi-twitter me-2"></i></a>
+                    <a href="" style="text-decoration: none; font-size:25px; color: #388087;"><i class="bi bi-linkedin me-2"></i></a>
+                </p>
+            </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-md-6 col-lg-3 col-sm-12">
           <div class="card">
             <div class="card-body">
@@ -350,25 +391,41 @@
       </div>
 
     </div>
-    <!-- <img src="../../../assets/img/park-cover-image.png" alt="coverimage" class="parkcover-img"> -->
-    <div class="parkcover-img">
 
-      <div class="carousel-container">
-        <div class="carousel-wrapper" [style.transform]="'translateX(-' + currentSlide * 33 + '%)'">
-          <div *ngFor="let testimonial of testimonials" class="carousel-card">
-            <div class="card-content">
-              <p>{{ testimonial.text }}</p>
-              <h4>{{ testimonial.author }}</h4>
+    <div class="image-containerlst mb-5">
+      <img src="../../../assets/img/park-cover-image.png" alt="park image" class="parkcover-img">
+      <div class="image-card">
+        <div class="testmonial" style="width: 50%;">
+          <h4>Our Costumer Loves Us </h4>
+        </div>
+
+          <div class="carousel-container mt-3">
+            <div class="carousel-wrapper" [style.transform]="'translateX(-' + currentSlide * 50 + '%)'">
+              <div *ngFor="let testimonial of testimonials" class="carousel-card">
+                <div class="card-content">
+                  <div class="row">
+                    <div class="col-lg-8" style="text-align: left; font-weight: 700; font-size: 20px;">
+                      <p>{{ testimonial.author }}</p>
+                    </div>
+                    <div class="col-lg-4" >
+                      <ng-container *ngFor="let v of [].constructor(testimonial?.star || 0)">
+                        <i class="bi bi-star-fill" style="color: #186e18;"></i>
+                      </ng-container>
+                    </div>
+                    <div class="col-lg-12" >
+                      <p style="margin-top: -1ch; padding-left: 20px; padding-right: 20px; text-align: justify;">{{ testimonial.text }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+          <div class="testmonial " style="margin-top: 6ch;width: 30%; color: #388087;">
+            <h4>View Testimonials &nbsp;&nbsp; <i class="bi bi-arrow-right-circle" style="font-size: 19px;"></i></h4>
+          </div>
       </div>
-
     </div>
   </div>
-
-
-
 
   <div class="bgstickimg">
     <img src="../../../assets/img/m2-logo.png" alt="Download Soon" height="140px" width="210px">
