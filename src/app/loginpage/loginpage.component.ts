@@ -36,7 +36,7 @@ export class LoginpageComponent implements OnInit {
     try{
       this.googleAuthService.renderButton('google-signin-btn');
     } catch (error){
-      window.location.reload();
+      // window.location.reload();
     }
   }
 
@@ -89,7 +89,7 @@ export class LoginpageComponent implements OnInit {
       if(this.rslt.status==200){
         sessionStorage.setItem('user', JSON.stringify(this.rslt.userdata));
         sessionStorage.setItem('token', this.rslt.token);
-        this.router.navigate(['/rentmanage/userdashboard']);
+        this.router.navigate(['/userpanel/userdashboard']);
       }else if(this.rslt.status==400){
         this.swal("Error",this.rslt.message,"error");
         return;
@@ -171,7 +171,7 @@ export class LoginpageComponent implements OnInit {
       if(data.status == 200){
         sessionStorage.setItem('user', JSON.stringify(data.record.userdata));
         sessionStorage.setItem('token', data.record.token);
-        this.router.navigate(['/rentmanage/userdashboard']);
+        this.router.navigate(['/userpanel/userdashboard']);
       }else if(data.status == 401){
         if(data.record == 0){
         Swal.fire("Error","Maximum verification attempts reached. Please try again later.","error");

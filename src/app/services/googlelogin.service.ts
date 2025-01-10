@@ -37,7 +37,7 @@ export class GoogleloginService {
       if(response.status==200){
         sessionStorage.setItem('user', JSON.stringify(response.userdata));
         sessionStorage.setItem('token', response.token);
-        this.router.navigate(['/rentmanage/userdashboard']);
+        this.router.navigate(['/userpanel/userdashboard']);
       }else{
         this.swal("Error",response.message,"error")
       }

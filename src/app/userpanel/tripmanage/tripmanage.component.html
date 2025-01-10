@@ -1,7 +1,11 @@
 <div class="main-tab px-0 mb-2">
   <div class="container" style="margin-top: 3ch;">
     <div class="dashboard-text">
-      <h1>Hello, <span>{{this.user?.firstName==null?'User':this.user?.firstName}}</span>! Welcome to <span>Manage Mosaic.</span></h1>
+      <h1>Hello, <span>{{this.user?.firstName==null?'User':this.user?.firstName}}</span> ! Welcome to <span>Manage Mosaic.</span></h1>
+      <div style="text-align: end;">
+        <a (click)="backhome()" class="btn btn-success btn-lg"><i class="bi bi-house-door"></i> Back to Home</a>
+      </div>
+
       <p class="head">Trip Management</p>
       <p class="data" style="margin-left: 5ch; margin-top: -2ch;">Trip Management refers to the process of organizing, planning, and coordinating all aspects
          of a trip or journey. It typically includes tasks like booking transportation, arranging accommodation,
@@ -40,9 +44,13 @@
         getaway, or holiday vacation, the app offers a comprehensive solution for planning, managing expenses,
         and providing recommendations tailored to each type of trip.</p>
 
-      <p class="data" style="margin-left: 5ch; margin-top: -1ch;">Manage Mosaic simplifies travel planning with an easy-to-use platform for both group and solo trips.
+      <p class="data">Manage Mosaic simplifies travel planning with an easy-to-use platform for both group and solo trips.
         It helps manage itineraries, track expenses, and offers tailored recommendations for destinations, hotels,
         and dining.  Whether it's a corporate trip or holiday getaway, the app ensures a stress-free experience.</p>
+
+      <p class="data" >At Manage Mosaic, we are committed to making your Trip memorable and enjoyable.
+        For further assistance, please contact us at <a routerLink="/contactus" style="font-weight: 500; color: red;">Contact Us</a>. Let us help you create unforgettable experiences!</p>
+
       <div class="download-app" style="display: flex; align-items: center;">
         <p style="font-size: 20px; font-weight: 500; margin-right: 10px;">Download now to use this feature!</p>
         <img src="../../../assets/img/download-app-apple.png" alt="">
@@ -50,6 +58,35 @@
       </div>
     </div>
   </div>
+
+  <div class="bgstickimg mt-4">
+    <img src="../../../assets/img/m2-logo.png" alt="Download Soon" height="140px" width="210px">
+    <p>Your All-in-One Solution for Stress-Free Living and Enjoyable Experiences</p>
+    <p style="font-family: 'Times New Roman', Times, serif;"><i class="bi bi-telephone-forward-fill me-2"></i>6370178554</p>
+    <p style="margin-top: -1ch; font-family: 'Times New Roman', Times, serif;"><i class="bi bi-envelope-at-fill me-2"></i>managemosaic@gmail.com</p>
+    <p style="margin-top: -1ch; font-family: 'Times New Roman', Times, serif;"><i class="bi bi-geo-alt-fill me-2"></i>Hanspal Bhubaneswar, Odisha-752115</p>
+    <p style="letter-spacing: 15px;">
+      <a href="" style="text-decoration: none; font-size:25px; color: white;"><i class="bi bi-facebook"></i></a>
+      <a href="" style="text-decoration: none; font-size:25px; color: white;"><i class="bi bi-instagram"></i></a>
+      <a href="" style="text-decoration: none; font-size:25px; color: white;"><i class="bi bi-twitter"></i></a>
+      <a href="" style="text-decoration: none; font-size:25px; color: white;"><i class="bi bi-youtube"></i></a>
+      <a href="" style="text-decoration: none; font-size:25px; color: white;"><i class="bi bi-linkedin"></i></a>
+    </p>
+    <div class="download-app">
+      <p style="font-family: 'Times New Roman', Times, serif; font-size: 18px; letter-spacing: 3px;">Download It Now</p>
+      <img src="../../../assets/img/download-app-apple.png" alt="Download From Playstore">
+      <img src="../../../assets/img/download-app-google.png" alt="Download From Appstore">
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <p style="font-family: 'Times New Roman', Times, serif; text-align: left; font-size: 13px;">Copyright © 2024 Manage Mosaic. All Rights Reserved.</p>
+      </div>
+      <div class="col-md-6">
+        <p style="font-family: 'Times New Roman', Times, serif; text-align: end; font-size: 13px;">Created and Managed by Prasad Softtech Solution Ltd.</p>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <div class="modal" id="openswal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="backdrop-filter: blur(10px); ">

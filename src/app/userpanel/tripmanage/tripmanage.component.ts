@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 declare let $: any;
@@ -9,12 +10,19 @@ declare let $: any;
 })
 export class TripmanageComponent implements OnInit {
   user:any;
+  landing:any=true;
 
-  constructor() { }
+  constructor(private location:Location) { }
 
   ngOnInit(): void {
     let user:any=sessionStorage.getItem("user");
     this.user=JSON.parse(user);
+
+    if(this.user == null || this.user == undefined){
+      this.landing = false;
+    }else{
+      this.landing = true;
+    }
 
     setTimeout(() => {
       this.showswal();
@@ -27,6 +35,9 @@ export class TripmanageComponent implements OnInit {
 
   closemodal(){
     $('#openswal').hide();
+  }
+  backhome(){
+    this.location.back();
   }
 
 }

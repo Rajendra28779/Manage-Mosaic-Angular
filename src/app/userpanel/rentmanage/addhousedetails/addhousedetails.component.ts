@@ -36,7 +36,7 @@ export class AddhousedetailsComponent implements OnInit {
             houseId:houseId
           }
         }
-    this.route.navigate(['/rentmanage/homerentmanage/hosmedetails'],navigation);
+    this.route.navigate(['/userpanel/homerentmanage/hosmedetails'],navigation);
   }
 
 }

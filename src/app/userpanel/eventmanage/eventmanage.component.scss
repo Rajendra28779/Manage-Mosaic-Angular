@@ -1,6 +1,6 @@
 .dashboard-text{
   text-align: center;
-  background: #ffffff url(../../../assets/img/services-left-dec.png) center no-repeat;
+  // background: #ffffff url(../../../assets/img/services-left-dec.png) center no-repeat;
   background-size: cover;
 }
 .dashboard-text h1{
@@ -36,3 +36,24 @@ download-app {
   height: auto;
 }
 
+.bgstickimg{
+  background-image: url('../../../assets/img/overlay-bg.jpg'); /* Replace with your image path */
+  background-size: cover; /* Adjusts the image to cover the entire section */
+  background-position: center;
+  backdrop-filter: blur(35px); /* Blur effect */
+  padding: 20px;
+  width: 100%; /* Adjust width as needed */
+  // display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-attachment: fixed; /* Keeps the background fixed as the user scrolls */
+  text-align: center;
+
+  p{
+    font-weight: 500;
+    color: white;
+    font-size: 25px;
+    font-family: 'Playfair Display', serif;
+  }
+
+}

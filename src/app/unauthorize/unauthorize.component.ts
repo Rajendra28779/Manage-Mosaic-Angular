@@ -15,7 +15,7 @@ export class UnauthorizeComponent implements OnInit {
 
   logout() {
     sessionStorage.clear();
-    this.route.navigateByUrl('/login');
+    this.route.navigateByUrl('/');
   }
 
 

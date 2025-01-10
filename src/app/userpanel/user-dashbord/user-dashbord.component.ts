@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CommenService } from '../services/commen.service';
 import { EncryptService } from 'src/app/services/encrypt.service';
+import { GoogleloginService } from 'src/app/services/googlelogin.service';
 declare let $: any;
 
 @Component({
@@ -21,14 +22,21 @@ export class UserDashbordComponent implements OnInit {
     { text: "Fantastic approach! This solution balances simplicity and functionality, ensuring the code is both readable and robust. A solid implementation all around!", author: "Daniel Lee" , star : 5 }
   ];
   currentSlide = 0;
+  landing:any=true;
 
   constructor(private readonly router:Router,
+    private readonly googleAuthService: GoogleloginService,
               private readonly commserv:CommenService,
               private readonly enctserv:EncryptService) {}
 
   ngOnInit(): void {
     let user:any=sessionStorage.getItem("user");
     this.user=JSON.parse(user);
+    if(this.user == null || this.user == undefined){
+      this.landing = false;
+    }else{
+      this.landing = true;
+    }
     setInterval(() => {
       this.nextSlide();
     }, 5000);
@@ -50,6 +58,8 @@ export class UserDashbordComponent implements OnInit {
 
   closemodal(){
     $('#tenantmobile').hide();
+    $('#redirectpage').hide();
+    $('#loginmodal').hide();
     this.sentotp=false;
     $('#mobileno').val('');
     $('#otpval').val('');
@@ -114,6 +124,28 @@ export class UserDashbordComponent implements OnInit {
         Swal.fire("Error","Something Went Wrong ! OTP Can't Verify ,Please Trye After Sometime . ","error");
       }
     });
+  }
+
+  checkpage(no:any){
+    // alert(this.landing);alert(no);
+    if(this.landing){
+      if(no == 1){
+        $('#redirectpage').show();
+      }else if(no == 2){
+        this.router.navigate(['/userpanel/tripmanage']);
+      }else if(no == 3){
+        this.router.navigate(['/userpanel/eventmanage']);
+      }
+    }else{
+      if(no == 1){
+        this.googleAuthService.renderButton('google-signin-btn');
+        $('#loginmodal').show();
+      }else if(no == 2){
+        this.router.navigate(['/tripmanage']);
+      }else if(no == 3){
+        this.router.navigate(['/eventmanage']);
+      }
+    }
   }
 
 }

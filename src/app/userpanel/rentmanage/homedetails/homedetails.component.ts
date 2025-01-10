@@ -102,7 +102,7 @@ export class HomedetailsComponent implements OnInit {
         this.homerentserv.addnewhome(object).subscribe((result:any)=>{
           if(result.status == 200){
             Swal.fire('Saved!', 'Your details have been saved.','success');
-            this.route.navigate(['/rentmanage/homerentmanage/housedetails']);
+            this.route.navigate(['/userpanel/homerentmanage/housedetails']);
           }else{
             Swal.fire('Failed!', 'Failed to save your details. Please try again.', 'error');
           }
@@ -155,7 +155,7 @@ export class HomedetailsComponent implements OnInit {
     formData.append('image5', this.image4);
 
     console.log(formData);
-    
+
 
     Swal.fire({
       title: 'Are you sure?',
@@ -231,7 +231,7 @@ export class HomedetailsComponent implements OnInit {
     this.roomdata = item;
   }
 
-  addtenant(no:any,roomId:any){    
+  addtenant(no:any,roomId:any){
     let navigation:NavigationExtras ={
       state:{
         roomId:roomId,
@@ -239,7 +239,7 @@ export class HomedetailsComponent implements OnInit {
       }
     }
     if(no==1){
-      this.route.navigate(['/rentmanage/homerentmanage/addtenent'],navigation);
+      this.route.navigate(['/userpanel/homerentmanage/addtenent'],navigation);
     }else{
       let amount:any=0;
       this.homerentserv.checkpendingbalanace(roomId).subscribe((data:any) => {
@@ -247,7 +247,7 @@ export class HomedetailsComponent implements OnInit {
           amount = data.record.val;
           let htmldata
                   if(amount > 0) {
-                      htmldata=`<p style="font-weight:500;">The Tenant currently has a pending amount of <br><span 
+                      htmldata=`<p style="font-weight:500;">The Tenant currently has a pending amount of <br><span
                         style="font-weight:bold;font-size:30px; color:red">₹ `+amount+ `</span>.</p>`;
                   }else{
                       htmldata=`<p style="font-weight:500;">The Tenant currently has No pending amount.</p>`;
@@ -261,7 +261,7 @@ export class HomedetailsComponent implements OnInit {
                     cancelButtonText: "No",
                   }).then((result) => {
                     if (result.isConfirmed) {
-                      this.route.navigate(['/rentmanage/homerentmanage/addtenent'],navigation);
+                      this.route.navigate(['/userpanel/homerentmanage/addtenent'],navigation);
                     }
                   });
         }else{
@@ -271,7 +271,7 @@ export class HomedetailsComponent implements OnInit {
       (error:any) => {
         console.log(error)
         Swal.fire("Error","Something Went Wrong!", "error");
-      });      
+      });
     }
   }
 
