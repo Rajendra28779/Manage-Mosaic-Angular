@@ -35,8 +35,8 @@ export class HeaderComponent implements OnInit {
       { message: "Check out our latest offers on rooms and accommodations!", status: "3" },
       { message: "Scheduled maintenance will occur on 2024-11-01 from 2:00 AM to 4:00 AM. Please save your work.", status: "1" }
     ];
-    // let userdata:any=sessionStorage.getItem('user');
-    // this.user=JSON.parse(userdata);
+    let userdata:any=sessionStorage.getItem('user');
+    this.user=JSON.parse(userdata);
   }
 
   back(){

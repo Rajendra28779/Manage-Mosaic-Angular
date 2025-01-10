@@ -127,7 +127,6 @@ export class UserDashbordComponent implements OnInit {
   }
 
   checkpage(no:any){
-    // alert(this.landing);alert(no);
     if(this.landing){
       if(no == 1){
         $('#redirectpage').show();
