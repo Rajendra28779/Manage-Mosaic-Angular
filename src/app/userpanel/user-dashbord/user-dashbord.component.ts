@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { CommenService } from '../services/commen.service';
 import { EncryptService } from 'src/app/services/encrypt.service';
 import { GoogleloginService } from 'src/app/services/googlelogin.service';
+import { GeonamesService } from 'src/app/services/geonames.service';
 declare let $: any;
 
 @Component({
@@ -14,6 +15,8 @@ declare let $: any;
 export class UserDashbordComponent implements OnInit {
   user:any;
   mobileformat = /[6-9][0-9]{9}$/;
+  cities:any=[];
+  keyword = 'name';
   testimonials = [
     { text: "Great implementation! The dynamic star rendering approach is clean and effective. It ensures flexibility and handles undefined values gracefully. Keep up the excellent work!", author: "John Doe" ,star : 4 },
     { text: "Smart solution! Leveraging array constructors for iteration is a clever approach. It keeps the template concise and adaptable. Excellent coding practices here!", author: "Rajendra Prsasad Sahoo" ,star : 5},
@@ -27,11 +30,21 @@ export class UserDashbordComponent implements OnInit {
   constructor(private readonly router:Router,
     private readonly googleAuthService: GoogleloginService,
               private readonly commserv:CommenService,
-              private readonly enctserv:EncryptService) {}
+              private readonly enctserv:EncryptService,
+              private geonamesService: GeonamesService) {}
 
   ngOnInit(): void {
     let user:any=sessionStorage.getItem("user");
     this.user=JSON.parse(user);
+    this.geonamesService.getCitiesInIndia().subscribe(
+      (data) => {
+        this.cities = data.elements;
+        console.log('Cities:', this.cities);
+      },
+      (error) => {
+        console.error('Error fetching cities:', error);
+      }
+    );
     if(this.user == null || this.user == undefined){
       this.landing = false;
     }else{
@@ -40,6 +53,15 @@ export class UserDashbordComponent implements OnInit {
     setInterval(() => {
       this.nextSlide();
     }, 5000);
+  }
+
+  selectEvent(item:any){
+console.log(item);
+
+  }
+
+  onReset(){
+
   }
 
   nextSlide() {
@@ -146,5 +168,6 @@ export class UserDashbordComponent implements OnInit {
       }
     }
   }
+
 
 }
