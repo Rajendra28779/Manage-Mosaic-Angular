@@ -14,10 +14,9 @@ export class AuthgardService implements CanActivate{
     if (user) {
       return true;
     } else {
-      // this.router.navigate(['/']);
-      // this.router.navigate(['/unauthorize'], { queryParams: { unAuthrized: state.url } });
-      // return false;
-      return true;
+      this.router.navigate(['/']);
+      this.router.navigate(['/unauthorize'], { queryParams: { unAuthrized: state.url } });
+      return false;
     }
   }
 }

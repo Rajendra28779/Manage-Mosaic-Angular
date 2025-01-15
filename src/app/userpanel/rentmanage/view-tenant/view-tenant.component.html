@@ -1,0 +1,157 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <div class="main-tab">
+    <div class="col-lg-12">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a routerLink="/userpanel/homerentmanage/addtenent" routerLinkActive="active" class="nav-link  color1">Add Tenant</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/userpanel/homerentmanage/viewtenent" routerLinkActive="active" class="nav-link active color1">View Tenant</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a routerLink="/userpanel/homerentmanage/managetenent" routerLinkActive="active" class="nav-link color1">Manage Tenant</a>
+        </li>    -->
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3 col-xxl-3">
+      <div class="mb-xl-3">
+          <label class="form-label">Select House<span class="text-danger"></span></label>
+          <select class="form-select" name="house" id="house" (change)="onChangeHouse($event)" [(ngModel)]="houseId">
+              <option value="" selected >Select House</option>
+              <ng-container *ngFor="let item of houselist">
+                  <option value={{item.homeId}}>{{item.homeName}}</option>
+              </ng-container>
+          </select>
+      </div>
+    </div>
+    <div class="col-lg-3 col-xxl-3">
+      <div class="mb-xl-3">
+          <label class="form-label">Select Room<span class="text-danger"></span></label>
+          <select class="form-select" name="room" id="room" [(ngModel)]="roomId" (change)="gettenantdetails()">
+            <option value="" selected >Select Room</option>
+            <ng-container *ngFor="let item of roomlist">
+                <option value={{item.roomId}}>{{item.roomNo}}</option>
+            </ng-container>
+        </select>
+      </div>
+    </div>
+    <div class="col-lg-2 col-xxl-2" style="font-style: italic; font-size: 19px; margin-top: 3ch;">
+      <b>Total No : <span class="color1">{{tenantdetails.length}}</span></b>
+    </div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="search-bar form-control" style="max-width: 400px; margin-top: 3ch;">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text" placeholder="Search..." id="txtsearchDate " name="txtsearchDate " autocomplete="off"
+        [(ngModel)]="txtsearchDate" maxlength="20 " (input)="onSearch($event)" />
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container example-container">
+    <table class="custom-table">
+      <caption></caption>
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Mobile No</th>
+          <th>House Name</th>
+          <th>Room Name</th>
+          <th>Room Rent</th>
+          <th>Room Allocation</th>
+          <th>Info</th>
+          <!-- <th>Edit</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tenant of tenantdetails | filter:txtsearchDate">
+          <td style="color:#388087; font-weight: 600;" >{{ tenant.fullName }}</td>
+          <td >{{tenant.mobileNo}}</td>
+          <td>{{ tenant.houseName }}</td>
+          <td>{{ tenant.roomNo }}</td>
+          <td>{{ tenant.rentAmount | currency:'':''}}</td>
+          <td>{{ tenant.effectiveDate }}</td>
+          <td><a style="color:#388087;" data-bs-toggle="modal" data-bs-target="#userdetails"
+            title="Tenent Details"  (click)="getdetails(tenant)"><i class="bi bi-info-circle-fill"></i></a></td>
+          <!-- <td><a style="color:red;"><i class="bi bi-pencil-square"></i></a></td> -->
+        </tr>
+        <tr *ngIf="tenantdetails?.length==0">
+          <td colspan="10" style="text-align:center;"><strong class="text-danger">No data found</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- User Details-->
+<div class="modal fade" id="userdetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 10ch;">
+    <div class="modal-dialog" style="max-width: 35%; margin-top: 0;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="font-size: 25px; color: #388087">
+            <i class="bi bi-file-person-fill me-2"></i>{{gettenantdata?.fullName}}
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="tenant-card">
+            <div class="detail">
+              <span>Mobile No:</span>
+              <p>{{gettenantdata?.mobileNo}}</p>
+            </div>
+            <div class="detail">
+              <span>Additional Mobile No:</span>
+              <p>{{gettenantdata?.altMobileNo}}</p>
+            </div>
+            <div class="detail">
+              <span>Room No:</span>
+              <p>{{gettenantdata?.roomNo}}</p>
+            </div>
+            <div class="detail">
+              <span>House Name:</span>
+              <p>{{gettenantdata?.houseName}}</p>
+            </div>
+            <div class="detail">
+              <span>Family Members:</span>
+              <p>{{gettenantdata?.noOfMember}}</p>
+            </div>
+            <div class="detail">
+              <span>Members Mobile No:</span>
+              <p>{{gettenantdata?.memberMobileNo}}</p>
+            </div>
+            <div class="detail">
+              <span>Rent Amount:</span>
+              <p>₹ {{gettenantdata?.rentAmount | currency:'':''}}</p>
+            </div>
+            <div class="detail">
+              <span>Adv Amount:</span>
+              <p>₹ {{gettenantdata?.advAmount | currency:'':''}}</p>
+            </div>
+            <div class="detail">
+              <span>Allocation Date:</span>
+              <p>{{gettenantdata?.effectiveDate}}</p>
+            </div>
+            <div class="detail">
+              <span>Aadhar Doc:</span>
+              <p *ngIf="gettenantdata?.aadharDetails!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.aadharDetails)"></i></p>
+              <p *ngIf="gettenantdata?.aadharDetails==null">N/A</p>
+            </div>
+            <div class="detail">
+              <span>Rent Aggrement:</span>
+              <p *ngIf="gettenantdata?.agreementDoc!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.agreementDoc)"></i></p>
+              <p *ngIf="gettenantdata?.agreementDoc==null">N/A</p>
+            </div>
+            <div class="detail">
+              <span>Other Document:</span>
+              <p *ngIf="gettenantdata?.otherDoc!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(gettenantdata?.otherDoc)"></i></p>
+              <p *ngIf="gettenantdata?.otherDoc==null">N/A</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- userdetails -->

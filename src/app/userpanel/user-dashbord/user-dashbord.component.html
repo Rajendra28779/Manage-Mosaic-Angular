@@ -1,0 +1,610 @@
+<div class="main-tab px-0 mb-2">
+  <div class="image-container">
+    <img src="../../../assets/img/bgimagee.jpg" alt="Download Soon">
+  </div>
+  <div class="container" style="margin-top: -3ch;">
+    <div class="dashboard-text">
+      <div class="headcard">
+        <h2>Hello, <span>{{this.user?.firstName==null?'User':this.user?.firstName}}</span> ! Welcome to <span>Manage
+            Mosaic.</span></h2>
+      </div>
+
+      <div class="explore-section">
+        <h5 class="heading">Explore Rooms in All Cities</h5>
+
+        <div class="search-bar">
+          <!-- <input type="text" placeholder="Search for a city..."> -->
+          <select>
+            <option value="">Select City</option>
+            <option *ngFor="let city of cities" [value]="city.tags.name">{{ city.tags.name }}</option>
+          </select>
+          <button>Search</button>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-md-2">
+            <div class="city-tabs">
+              <div class="tab">
+                <img src="../../../assets/img/lord-jagannath.png" alt="Odisha" class="city-image">
+                <div class="city-name">ODISHA</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="city-tabs">
+              <div class="tab">
+                <img src="../../../assets/img/hyderabad-charminar.png" alt="Odisha" class="city-image">
+                <div class="city-name">HYDRABAD</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="city-tabs">
+              <div class="tab">
+                <img src="../../../assets/img/MUMBAIgate-of-india.png" alt="Odisha" class="city-image">
+                <div class="city-name">MUMBAI</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="city-tabs">
+              <div class="tab">
+                <img src="../../../assets/img/DELHIbuilding.png" alt="Odisha" class="city-image">
+                <div class="city-name">DELHI</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="city-tabs">
+              <div class="tab">
+                <img src="../../../assets/img/JAIPURjawahar-circle.png" alt="Odisha" class="city-image">
+                <div class="city-name">JAIPUR</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="city-tabs">
+              <div class="tab">
+                <img src="../../../assets/img/kolkata.png" alt="Odisha" class="city-image">
+                <div class="city-name">KOLKATA</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-md-4">
+            <div class="rntcard rent-room">
+              <img src="../../../assets/img/rent.png" class="rntcardimg" alt="rentcard">
+              <div class="card-text">
+                <h3>Offer Your House for Rent</h3>
+                <p>Quickly list your room and find tenants easily within days.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="rntcard rent-property">
+              <img src="../../../assets/img/rental-agreement.png" class="rntcardimg" alt="rentcard">
+              <div class="card-text">
+                <h3>Lease your property</h3>
+                <p>Manage and rent entire properties to potential clients online.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="rntcard rent-pg">
+              <img src="../../../assets/img/rental.png" class="rntcardimg" alt="rentcard">
+              <div class="card-text">
+                <h3>Locate PG or Room Nearby</h3>
+                <p>Browse available options close to your location for easy living.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h5 class="heading mb-3 mt-5">Explore Our Services</h5>
+      <!--data-bs-toggle="modal" data-bs-target="#redirectpage"  -->
+      <div class="d-flex col-md-12 col-lg-12 col-sm-6 col-12 px-0 mt-3">
+        <div class="card-tab">
+          <a class="card1" (click)="checkpage(1)" routerLinkActive="router-link-active" title="Rent Management">
+            <div class="d-flex f-col">
+              <div class="icon_tabp"> <span><i class="fa fa-building"></i></span> </div>
+              <div class="cardpk-txt"> HomeRent Management </div>
+            </div>
+            <div class="go-corner">
+              <div class="go-arrow">
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card-tab">
+          <a class="card1" (click)="checkpage(2)" routerLinkActive="router-link-active" title="Trip Manage">
+            <div class="d-flex f-col">
+              <div class="icon_tabp"> <span><i class="fa fa-cab"></i></span> </div>
+              <div class="cardpk-txt"> Trip Management </div>
+            </div>
+            <div class="go-corner">
+              <div class="go-arrow">
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="card-tab">
+          <a class="card1" (click)="checkpage(3)" routerLinkActive="router-link-active" title="Event Manage">
+            <div class="d-flex f-col">
+              <div class="icon_tabp"> <span><i class="fa fa-calendar"></i></span> </div>
+              <div class="cardpk-txt"> Event Management </div>
+            </div>
+            <div class="go-corner">
+              <div class="go-arrow">
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <div class="why-tabs">
+            <div class="whytab">
+              <h4 style="color: #7a2c18;">Why Use Manage Mosaic ?</h4>
+              <div class="row text-center mt-3">
+                <div class="col-md-4 border-end">
+                  <img src="../../../assets/img/manager.png" alt="image" class="use-image">
+                  <p> No Brokerage</p>
+                </div>
+                <div class="col-md-4 border-end">
+                  <img src="../../../assets/img/click.png" alt="image" class="use-image">
+                  <p>Easy to Access</p>
+                </div>
+                <div class="col-md-4">
+                  <img src="../../../assets/img/project-management.png" alt="image" class="use-image">
+                  <p>Smart Management</p>
+                </div>
+                <div>
+                  <hr>
+                </div>
+                <div class="col-md-4 border-end">
+                  <img src="../../../assets/img/adjustment.png" alt="image" class="use-image">
+                  <p>Customized Tips</p>
+                </div>
+                <div class="col-md-4 border-end">
+                  <img src="../../../assets/img/reduce-cost.png" alt="image" class="use-image">
+                  <p>Expense Reduction</p>
+                </div>
+                <div class="col-md-4">
+                  <img src="../../../assets/img/24-hours-support.png" alt="image" class="use-image">
+                  <p>24x7 Service</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="why-tabs">
+            <div class="whytab">
+              <h4 style="color: #7a2c18;">How to Use Manage Mosaic ?</h4>
+              <div class="text-center mt-3">
+                <iframe width="80%" height="180" src="https://www.youtube.com/embed/VuDEKak4amg"
+                  title="YouTube video player" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+              </div>
+              <div class="cta-section">
+                <p>
+                  To know more about us, please
+                  <a href="https://www.youtube.com/channel/YOUR_CHANNEL_LINK" target="_blank"
+                    style="color: rgb(194, 19, 19); text-decoration: underline; font-weight: bold;">
+                    subscribe
+                  </a> to our YouTube channel
+                  and follow us on &nbsp;
+                  <a href="" style="text-decoration: none; font-size:25px; color: #388087;"><i
+                      class="bi bi-facebook me-2"></i></a>
+                  <a href="" style="text-decoration: none; font-size:25px; color: #388087;"><i
+                      class="bi bi-instagram me-2"></i></a>
+                  <a href="" style="text-decoration: none; font-size:25px; color: #388087;"><i
+                      class="bi bi-twitter me-2"></i></a>
+                  <a href="" style="text-decoration: none; font-size:25px; color: #388087;"><i
+                      class="bi bi-linkedin me-2"></i></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-6 col-lg-3 col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <img src="../../../assets/img/multiuser.png" height="100" width="160" alt="Download Soon">
+              <div class="tebtext">
+                <h3>10K +</h3>
+                <h5>Satisfied Users</h5>
+                <p>People across India are using our app to simplify their lives.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 col-sm-12 ">
+          <div class="card">
+            <div class="card-body">
+              <img src="../../../assets/img/landlord2.png" height="130" width="160" alt="Download Soon">
+              <div class="tebtext">
+                <h3>1200 +</h3>
+                <h5>Landlords Empowered</h5>
+                <p>Landlords are always prepared to rent out their properties.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <img src="../../../assets/img/eventmanage1.png" height="150" width="200" alt="Download Soon">
+              <div class="tebtext">
+                <h3>800 +</h3>
+                <h5>Event Planners</h5>
+                <p>5K+ successful events planned, all with a 5-star rating across India.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <img src="../../../assets/img/town_2942593.png" height="100" width="100" alt="Download Soon">
+              <div class="tebtext">
+                <h3>300 +</h3>
+                <h5>Cities Covered</h5>
+                <p>Our app is enhancing lives in over 250 cities across India.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row about">
+        <div class="col-lg-7">
+          <h1>About <span style="color: #4295ec;">What We Do</span> & Who We Are</h1>
+          <p>Manage Mosaic is a versatile mobile app designed to simplify and enhance the way people manage various
+            aspects of their lives. We understand that balancing everyday tasks like rental management,
+            trip planning, and event organization can be overwhelming. That’s why we created Manage Mosaic a single
+            platform that brings together all these essential tools, allowing you to stay organized, reduce stress,
+            and enjoy more time with the things that matter most.
+          </p>
+          <p>
+            We aim to make life easier by providing an all-in-one solution that helps you manage key tasks with ease.
+            By reducing the time spent on organizing and planning, Manage Mosaic gives you more freedom to enjoy
+            life’s moments while also helping you save on expenses.
+          </p>
+        </div>
+        <div class="col-lg-5 row">
+          <div class="col-lg-6">
+            <img src="../../../assets/img/about-solotrip.jpg" alt="Download Soon" class="aboutimg">
+          </div>
+          <div class="col-lg-6 mt-5">
+            <img src="../../../assets/img/about-renthome.jpg" alt="Download Soon" class="aboutimg">
+          </div>
+        </div>
+      </div>
+
+      <div class="servcnt">
+        <h1>Your One-Stop App for <span style="color: #4295ec;">40+</span> Problem-Solving Solutions</h1>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-lg-4">
+          <img src="../../../assets/img/room01.jpg" alt="Download Soon" class="servimg"
+            style="border-radius: 20px 20px 0 0;">
+          <img src="../../../assets/img/room02.jpg" alt="Download Soon" class="servimg"
+            style="border-radius: 0 0 20px 20px ;">
+        </div>
+        <div class="col-lg-8">
+          <h1 style="text-align: left; font-family: 'Playfair Display', serif; color: #388087; font-weight: bold;">Rent
+            Management</h1>
+          <p style="text-align: justify;">Manage Mosaic streamlines rental property management by tracking tenants,
+            handling payments, and managing room availability. It connects homeowners with potential tenants,
+            supports maintenance requests, and provides real-time updates. With all tasks centralized,
+            Manage Mosaic simplifies operations, saves time, and enhances communication for efficient and organized
+            property management.</p>
+          <div class="d-flex" style="margin-top: -2ch;">
+            <div>
+              <img src="../../../assets/img/building.gif" alt="Download Soon" class="servgif"><br>
+              <p style="font-weight: 500;">Rent with Confidence</p>
+            </div>
+            <div>
+              <img src="../../../assets/img/management.gif" alt="Download Soon" class="servgif"><br>
+              <p style="font-weight: 500;">From Onboarding to Offboarding</p>
+            </div>
+            <div>
+              <img src="../../../assets/img/growth.gif" alt="Download Soon" class="servgif"><br>
+              <p style="font-weight: 500;">Elevate Your Lifestyle</p>
+            </div>
+            <div>
+              <img src="../../../assets/img/paying.gif" alt="Download Soon" class="servgif"><br>
+              <p style="font-weight: 500;">Get Your Perfect Space</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-lg-8">
+          <h1 style="text-align: left; font-family: 'Playfair Display', serif; color: #388087; font-weight: bold;">Trip
+            Management</h1>
+          <p style="text-align: justify;">Manage Mosaic simplifies group travel planning by organizing itineraries,
+            tracking expenses, and providing tailored recommendations for destinations, hotels, and dining options.
+            It enhances collaboration by allowing groups to plan together seamlessly, ensuring everyone stays
+            informed and engaged. With Manage Mosaic, trips become more organized, enjoyable, and stress-free from
+            start to finish.</p>
+          <div class="d-flex" style="margin-top: -2ch;">
+            <div class="me-4">
+              <img src="../../../assets/img/car.gif" alt="Download Soon" class="servgif"><br>
+              <p style="font-weight: 500;">Weekend Wanderlust</p>
+            </div>
+            <div class="me-4">
+              <img src="../../../assets/img/trip.gif" alt="Download Soon" class="servgif"><br>
+              <p style="font-weight: 500;">Explore the World</p>
+            </div>
+            <div class="me-4">
+              <img src="../../../assets/img/honeymoon.gif" alt="Download Soon" class="servgif"><br>
+              <p style="font-weight: 500;">Explore Beyond Borders</p>
+            </div>
+            <div>
+              <img src="../../../assets/img/solo-traveller.gif" alt="Download Soon" class="servgif"><br>
+              <p style="font-weight: 500;">Embrace Adventure</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <img src="../../../assets/img/travel02.jpg" alt="Download Soon" class="servimg"
+            style="border-radius: 20px 20px 0 0;">
+          <img src="../../../assets/img/travel01.jpg" alt="Download Soon" class="servimg"
+            style="border-radius: 0 0 20px 20px ;">
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-lg-4">
+          <img src="../../../assets/img/pooja01.jpg" alt="Download Soon" class="servimg"
+            style="border-radius: 20px 20px 0 0;">
+          <img src="../../../assets/img/event01.jpg" alt="Download Soon" class="servimg"
+            style="border-radius: 0 0 20px 20px ;">
+        </div>
+        <div class="col-lg-8 ">
+          <h1 style="text-align: left; font-family: 'Playfair Display', serif; color: #388087; font-weight: bold;">Event
+            Management</h1>
+          <p style="text-align: justify;">Manage Mosaic streamlines event planning by efficiently managing RSVPs,
+            coordinating logistics, and facilitating communication among participants. Whether for personal
+            gatherings or professional celebrations, it ensures every detail is covered, allowing hosts to focus on
+            creating memorable experiences. With Manage Mosaic, planning events becomes smooth, organized, and
+            stress-free.</p>
+          <div class="d-flex" style="margin-top: -2ch;">
+            <div>
+              <img src="../../../assets/img/event-management.gif" alt="Download Soon" class="servgif"><br>
+              <p style="font-weight: 500;">Event Planning Simplified</p>
+            </div>
+            <div>
+              <img src="../../../assets/img/confetti.gif" alt="Download Soon" class="servgif"><br>
+              <p style="font-weight: 500;">The Joy Never Stops</p>
+            </div>
+            <div>
+              <img src="../../../assets/img/wine.gif" alt="Download Soon" class="servgif"><br>
+              <p style="font-weight: 500;">Navigating the Corporate World</p>
+            </div>
+            <div>
+              <img src="../../../assets/img/family.gif" alt="Download Soon" class="servgif"><br>
+              <p style="font-weight: 500;">Memorable Family Moments</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="image-containerlst mb-5">
+      <img src="../../../assets/img/park-cover-image.png" alt="park image" class="parkcover-img">
+      <div class="image-card">
+        <div class="testmonial" style="width: 50%;">
+          <h4>Our Costumer Loves Us </h4>
+        </div>
+
+        <div class="carousel-container mt-3">
+          <div class="carousel-wrapper" [style.transform]="'translateX(-' + currentSlide * 50 + '%)'">
+            <div *ngFor="let testimonial of testimonials" class="carousel-card">
+              <div class="card-content">
+                <div class="row">
+                  <div class="col-lg-8" style="text-align: left; font-weight: 700; font-size: 20px;">
+                    <p>{{ testimonial.author }}</p>
+                  </div>
+                  <div class="col-lg-4">
+                    <ng-container *ngFor="let v of [].constructor(testimonial?.star || 0)">
+                      <i class="bi bi-star-fill" style="color: #186e18;"></i>
+                    </ng-container>
+                  </div>
+                  <div class="col-lg-12">
+                    <p style="margin-top: -1ch; padding-left: 20px; padding-right: 20px; text-align: justify;">{{
+                      testimonial.text }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testmonial " style="margin-top: 6ch;width: 25%; color: #388087;">
+          <h5>View Testimonials &nbsp;&nbsp; <i class="bi bi-arrow-right-circle" style="font-size: 19px;"></i></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bgstickimg">
+    <img src="../../../assets/img/m2-logo.png" alt="Download Soon" height="140px" width="210px">
+    <p>Your All-in-One Solution for Stress-Free Living and Enjoyable Experiences</p>
+    <p style="font-family: 'Times New Roman', Times, serif;"><i class="bi bi-telephone-forward-fill me-2"></i>6370178554
+    </p>
+    <p style="margin-top: -1ch; font-family: 'Times New Roman', Times, serif;"><i
+        class="bi bi-envelope-at-fill me-2"></i>managemosaic@gmail.com</p>
+    <p style="margin-top: -1ch; font-family: 'Times New Roman', Times, serif;"><i
+        class="bi bi-geo-alt-fill me-2"></i>Hanspal Bhubaneswar, Odisha-752115</p>
+    <p style="letter-spacing: 15px;">
+      <a href="" style="text-decoration: none; font-size:25px; color: white;"><i class="bi bi-facebook"></i></a>
+      <a href="" style="text-decoration: none; font-size:25px; color: white;"><i class="bi bi-instagram"></i></a>
+      <a href="" style="text-decoration: none; font-size:25px; color: white;"><i class="bi bi-twitter"></i></a>
+      <a href="" style="text-decoration: none; font-size:25px; color: white;"><i class="bi bi-youtube"></i></a>
+      <a href="" style="text-decoration: none; font-size:25px; color: white;"><i class="bi bi-linkedin"></i></a>
+    </p>
+    <div class="download-app">
+      <p style="font-family: 'Times New Roman', Times, serif; font-size: 18px; letter-spacing: 3px;">Download It Now</p>
+      <img src="../../../assets/img/download-app-apple.png" alt="Download From Playstore">
+      <img src="../../../assets/img/download-app-google.png" alt="Download From Appstore">
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <p style="font-family: 'Times New Roman', Times, serif; text-align: left; font-size: 13px;">Copyright © 2024
+          Manage Mosaic. All Rights Reserved.</p>
+      </div>
+      <div class="col-md-6">
+        <p style="font-family: 'Times New Roman', Times, serif; text-align: end; font-size: 13px;">Created and Managed
+          by Prasad Softtech Solution Ltd.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal Attendance Details-->
+<div class="modal" id="redirectpage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  style="backdrop-filter: blur(10px); ">
+  <div class="modal-dialog" style="max-width: 50%; margin-top: 100px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-size: 30px; font-weight: 600;">Hello, <span
+            style="color: #4295ec;">{{this.user?.firstName==null?'User':this.user?.firstName}}</span></h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="closemodal()"></button>
+      </div>
+      <div class="modal-body container text-center">
+        <p style="font-size: 18px; font-weight: bold; color: #333; text-align: center; margin-bottom: 20px;">Choose how
+          you want to log in:</p>
+
+        <button type="button" class="btn btn-primary modalbutton" (click)="tenantpage()" aria-label="Close"
+          data-bs-dismiss="modal">
+          <span style="font-size: 22px; font-weight: 600;">As a Tenant User</span>
+          <br>
+          <span style="font-size: 14px; color: #f9f9f9;">Select this option if you are a tenant looking to manage your
+            rental details.</span>
+        </button>
+
+        <button type="button" class="btn btn-success modalbutton" [routerLink]="['/userpanel/homerentmanage/dashboard']"
+          aria-label="Close" data-bs-dismiss="modal" (click)="closemodal()">
+          <span style="font-size: 22px; font-weight: 600;">As a House Owner</span>
+          <br>
+          <span style="font-size: 14px; color: #f9f9f9;">Select this option if you are a house owner managing property
+            or tenant records.</span>
+        </button>
+
+        <p style="font-size: 17px; color: red; text-align: center; margin-top: 10px;">
+          <strong>Note:</strong> Please ensure you select the correct option to access the features tailored to your
+          role.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="loginmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  style="backdrop-filter: blur(10px); ">
+  <div class="modal-dialog" style="max-width: 65%; margin-top: 100px;">
+    <div class="modal-content login-wrapp">
+      <div class="modal-body container text-center">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="right-image">
+              <img src="../../assets/img/phonewithhand-laptop.jpg" alt="" class="responsive-image">
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <p style="text-align: end; margin-top: 1ch;" ><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closemodal()"></button></p>
+            <p style="font-family: 'Playfair Display', serif; font-size:21px ; font-weight: bold; margin-bottom: 1ch; text-align: left;">
+              To continue, please login :</p>
+            <a routerLink="/login" class="btn btn-success mt-1" style="width: 100%;">Login</a>
+            <a routerLink="/signup" class="btn btn-primary mt-3" style="width: 100%;">Don't have An Account? Create
+              Account</a>
+            <div class="mt-3" id="google-signin-btn"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="tenantmobile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  style="backdrop-filter: blur(10px); ">
+  <div class="modal-dialog" style="max-width: 40%; margin-top: 100px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-weight: 500;color: #388087">Update Mobile No</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="closemodal()"></button>
+      </div>
+      <div class="modal-body container text-center">
+        <div class="row">
+          <div class="col-lg-12 col-xxl-12">
+            <p style="font-size: 17px; color: rgb(156, 6, 6);"><strong>Note:</strong> Please enter your mobile number to
+              track your rent and room details.<br> Make sure to use the same mobile number provided to the owner at the
+              time of room booking.</p>
+          </div>
+          <ng-container>
+            <div class="col-lg-1 col-xxl-1"></div>
+            <div class="col-lg-3 col-xxl-3">
+              <p class="paydata color1">Mobile No. : </p>
+            </div>
+            <div class="col-lg-6 col-xxl-6">
+              <input class="form-control" type="text" placeholder="Enter here..." autocomplete="off" id="mobileno"
+                maxlength="10" onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');" [disabled]="sentotp">
+            </div>
+            <div class="col-lg-2 col-xxl-2"></div>
+          </ng-container>
+          <ng-container *ngIf="sentotp">
+            <div class="col-lg-1 col-xxl-1"></div>
+            <div class="col-lg-3 col-xxl-3 mt-2">
+              <p class="paydata color1">Enter OTP : </p>
+            </div>
+            <div class="col-lg-6 col-xxl-6 mt-2">
+              <input class="form-control" type="text" placeholder="Enter here..." autocomplete="off" id="otpval"
+                maxlength="6" onkeyup="this.value=this.value.replace(/[^0-9. ]/g,'');">
+            </div>
+            <div class="col-lg-2 col-xxl-2"></div>
+          </ng-container>
+          <div class="col-lg-12 col-xxl-12" style="margin-left: 1ch; margin-top: 1ch; text-align: left;"
+            *ngIf="sentotp">
+            <p>* We've sent an OTP to your registered email ID.</p>
+            <!-- <p style="margin-top: -1ch;">* An OTP has also been sent to your registered ****6789 mobile number.</p> -->
+            <p style="margin-top: -1ch;">* You have {{attemptcount}} attempts remaining to verify your account.</p>
+          </div>
+          <div class="col-lg-12 col-xxl-12 mt-4" *ngIf="!sentotp">
+            <button class="btn btn-success w-50 me-2" (click)="sendOTP()">Send OTP</button>
+          </div>
+          <div class="col-lg-12 col-xxl-12 mt-4 d-flex justify-content-center" *ngIf="sentotp">
+            <button class="btn btn-primary mx-2" style="width: 120px;" (click)="sendOTP()">Re-Send</button>
+            <button class="btn btn-success mx-2" style="width: 120px;" (click)="verifyOTP()">Verify</button>
+            <button class="btn btn-warning mx-2" style="width: 120px;" (click)="closemodal()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

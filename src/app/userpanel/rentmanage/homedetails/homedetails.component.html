@@ -1,0 +1,233 @@
+
+<app-sidebar></app-sidebar>
+<div class="content" *ngIf="addhouse">
+  <p style="font-weight: 600; font-size: 17px; font-family: 'Playfair Display', serif;">House Details / Add House Details</p><hr>
+  <div class="row">
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+          <label class="form-label">House Name<span class="text-danger">*</span></label>
+          <input class="form-control" type="text" placeholder="Enter House Name" autocomplete="off" id="housename" maxlength="40"
+          onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9. ]/g,'');">
+      </div>
+    </div>
+    <div class="col-lg-2 col-xxl-2">
+      <div class="mb-xl-3">
+          <label class="form-label">Total Floors<span class="text-danger">*</span></label>
+          <input class="form-control" type="text" placeholder="Enter Total Floors" autocomplete="off" id="floors" maxlength="2"
+          onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+      </div>
+    </div>
+    <div class="col-lg-2 col-xxl-2">
+      <div class="mb-xl-3">
+          <label class="form-label">Total Rooms<span class="text-danger">*</span></label>
+          <input class="form-control" type="text" placeholder="Enter Total Rooms" autocomplete="off" id="rooms" maxlength="3" >
+      </div>
+    </div>
+    <div class="col-lg-8 col-xxl-8">
+      <div class="mb-xl-3">
+          <label class="form-label">Address<span class="text-danger">*</span></label>
+          <textarea class="form-control" placeholder="Enter House Address" autocomplete="off" id="address" maxlength="100"></textarea>
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-4"></div>
+    <div class="col-lg-4 col-xxl-4">
+      <div class="mb-xl-3">
+        <button class="btn btn-success me-2" style="width: 48%;" id="loginBtn" (click)="submithousedetails()">Submit</button>
+        <button class="btn btn-primary" style="width: 48%;">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content" *ngIf="!addhouse">
+  <p style="font-weight: 600; font-size: 17px; font-family: 'Playfair Display', serif;">House Details / Modify Details</p><hr>
+  <div class="backtab-container">
+    <img src="../../../../assets/img/buy-a-house.gif" alt="house" class="img1stimg">
+    <div>
+      <h2 style="font-family: 'Playfair Display', serif; font-weight: bold; width: 290px;">{{this.displayhousedetails?.houseName}}</h2>
+      <p style="width: 230px;"><i class="bi bi-geo-alt-fill me-2"></i>{{this.displayhousedetails?.address}}</p>
+    </div>
+    <div class="tabdata" style="margin-left: 5ch;">
+      <img src="../../../../assets/img/living-room.gif" alt="home" class="housedimg">
+      <div class="housed-text" style="font-size: 22px;font-family: 800;">{{this.displayhousedetails?.roomCount}}</div>
+      <div class="housed-text">Total No Of Room</div>
+    </div>
+    <div class="tabdata" style="margin-left: 5ch;">
+      <img src="../../../../assets/img/family.gif" alt="house" class="housedimg">
+      <div class="housed-text" style="font-size: 22px;font-family: 800;">{{this.displayhousedetails?.memberCount}}</div>
+      <div class="housed-text">Total No Of Tenants</div>
+    </div>
+    <div class="tabdata" style="margin-left: 5ch;">
+      <img src="../../../../assets/img/coins.gif" alt="house" class="housedimg">
+      <div class="housed-text" style="font-size: 22px;font-family: 800;">₹ {{this.displayhousedetails?.totalamount}}</div>
+      <div class="housed-text">Total Revenue to Date</div>
+    </div>
+  </div>
+
+  <div class="accordion" id="accordionExample" style="margin-top: 1ch;">
+      <div class="accordion-item">
+          <div class="accordion-button collapsed" id="headingVital" data-bs-toggle="collapse" data-bs-target="#collapseVital" aria-expanded="false" aria-controls="collapseVital">
+              <h5 class="mb-0">Add Room</h5>
+          </div>
+          <div id="collapseVital" class="accordion-collapse collapse" aria-labelledby="headingVital" data-bs-parent="#accordionExample">
+              <div class="card-body col-11" style="padding: 20px;">
+                <div class="row  ">
+                  <div class="col-lg-3 col-xxl-3">
+                    <div class="mb-xl-3">
+                        <label class="form-label">Room No<span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" placeholder="Enter Room No" autocomplete="off" id="roomno" maxlength="20"
+                        onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9. ]/g,'');">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-xxl-3">
+                    <div class="mb-xl-3">
+                        <label class="form-label">Floor Count<span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" placeholder="Enter Floor Count" autocomplete="off" id="floor" maxlength="20"
+                        onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9. ]/g,'');">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-xxl-3">
+                    <div class="mb-xl-3">
+                        <label class="form-label">Last Metter Riding<span class="text-danger"></span></label>
+                        <input class="form-control" type="text" placeholder="Last Metter Riding" autocomplete="off" id="mtrreding" maxlength="20"
+                        onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-xxl-3">
+                    <!-- <div class="mb-xl-3">
+                        <label class="form-label">Unit Per price (₹)<span class="text-danger"></span></label>
+                        <input class="form-control" type="text" placeholder="Unit Per price (₹)" autocomplete="off" id="unitprice" maxlength="3"
+                        onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+                    </div> -->
+                  </div>
+                  <div class="col-lg-4 col-xxl-4">
+                    <div class="mb-xl-3">
+                        <label class="form-label">Image No1<span class="text-danger">*</span></label>
+                        <input type="file" id="image1" class="form-control" accept=".jpg,.jpeg" (change)="handleFileInput($event,1)">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xxl-4">
+                    <div class="mb-xl-3">
+                        <label class="form-label">Image No2<span class="text-danger">*</span></label>
+                        <input type="file" id="image2" class="form-control" accept=".jpg,.jpeg" (change)="handleFileInput($event,2)">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xxl-4">
+                    <div class="mb-xl-3">
+                        <label class="form-label">Image No3<span class="text-danger"></span></label>
+                        <input type="file" id="image3" class="form-control" accept=".jpg,.jpeg" (change)="handleFileInput($event,3)">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xxl-4">
+                    <div class="mb-xl-3">
+                        <label class="form-label">Image No4<span class="text-danger"></span></label>
+                        <input type="file" id="image4" class="form-control" accept=".jpg,.jpeg" (change)="handleFileInput($event,4)">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xxl-4">
+                    <div class="mb-xl-3">
+                        <label class="form-label">Image No5<span class="text-danger"></span></label>
+                        <input type="file" id="image5" class="form-control" accept=".jpg,.jpeg" (change)="handleFileInput($event,5)">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xxl-4" style="margin-top:30px;">
+                    <div class="mb-xl-3">
+                      <button class="btn btn-success me-2" style="width: 48%;" id="loginBtn" (click)="submitroomdetails()">Submit</button>
+                      <button class="btn btn-primary" style="width: 48%;" (click)="addroomforhome()">Reset</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+</div>
+
+    <div class="row ">
+      <ng-container *ngFor="let item of roomlist">
+        <div class="col-6">
+          <div class="card bord">
+            <div class="roomdata row" >
+              <div class="col-lg-5" style="color: rgb(238, 49, 49);"><h5>{{item.rommNo}}</h5></div>
+              <div class="col-lg-5" style="text-align: end;"><h5><i class="bi bi-lightbulb me-2"></i>{{item.lastmtrRead}}</h5></div>
+              <div class="col-lg-2" style="text-align: end;" title="edit">
+                <a style="color:#388087;" data-bs-toggle="modal" data-bs-target="#roomdetails"
+                (click)="getroomdetails(item)"><i class="bi bi-info-circle-fill"></i></a>
+              </div>
+            </div>
+            <hr>
+            <div class="row userdata" *ngIf="item.tenantId!=0">
+              <div class="col-lg-8" style="color: #388087; font-weight: 800;"><h5>{{item.tenantName}}</h5></div>
+              <div class="col-lg-4" style="text-align: end;"><h5><i class="bi bi-telephone me-1"></i>{{item.mobileNo}}</h5></div>
+            </div>
+            <div class="row mt-2 userdata" *ngIf="item.tenantId!=0">
+              <div class="col-lg-4" ><h6><i class="bi bi-calendar-check me-2"></i>{{item.effectiveDate}}</h6></div>
+              <div class="col-lg-4" style="text-align: end;"><h6><i class="bi bi-currency-rupee me-1"></i>Adv : {{item.advamt}}</h6></div>
+              <div class="col-lg-4" style="text-align: end;" ><h6><i class="bi bi-currency-rupee me-1"></i>Rent : {{item.rentamount}}</h6></div>
+            </div>
+            <div class="row mt-2 editopt" *ngIf="item.tenantId!=0" >
+              <div class="col-lg-12" (click)="addtenant(2,item.roomId)"><h5><img src="../../../../assets/img/change-user.png" alt="change user" height="28px" width="30px" class="me-3">  Change Tenent</h5></div>
+            </div>
+            <div style="text-align: center; color: #b1adad; margin-top: -22px;" *ngIf="item.tenantId==0">
+              <i class="bi bi-person-slash" style="font-size: 35px;"></i>
+              <h4>User not allocated</h4>
+            </div>
+            <div class="row mt-2 editopt" *ngIf="item.tenantId==0">
+              <div class="col-lg-12" (click)="addtenant(1,item.roomId)"><h5><i class="bi bi-person-add me-3" style="font-size: 23px; color: blue;"></i>Add Tenent</h5></div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+</div>
+
+<!-- User Details-->
+<div class="modal fade" id="roomdetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 10ch;">
+  <div class="modal-dialog" style="max-width: 35%; margin-top: 0;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 25px; color: #388087">
+          <i class="bi bi-file-person-fill me-2"></i>{{roomdata?.rommNo}}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="tenant-card">
+          <div class="detail">
+            <span>Floor No:</span>
+            <p>{{roomdata?.floorNo}}</p>
+          </div>
+          <div class="detail">
+            <span>Meter Reading:</span>
+            <p>{{roomdata?.lastmtrRead}}</p>
+          </div>
+          <div class="detail">
+            <span>Image No1 :</span>
+            <p *ngIf="roomdata?.roomimg1!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(roomdata?.roomimg1)"></i></p>
+            <p *ngIf="roomdata?.roomimg1==null">N/A</p>
+          </div>
+          <div class="detail">
+            <span>Image No2:</span>
+            <p *ngIf="roomdata?.roomimg2!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(roomdata?.roomimg2)"></i></p>
+            <p *ngIf="roomdata?.roomimg2==null">N/A</p>
+          </div>
+          <div class="detail">
+            <span>Image No3 :</span>
+            <p *ngIf="roomdata?.roomimg3!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(roomdata?.roomimg3)"></i></p>
+            <p *ngIf="roomdata?.roomimg3==null">N/A</p>
+          </div>
+          <div class="detail">
+            <span>Image No4 :</span>
+            <p *ngIf="roomdata?.roomimg4!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(roomdata?.roomimg4)"></i></p>
+            <p *ngIf="roomdata?.roomimg4==null">N/A</p>
+          </div>
+          <div class="detail">
+            <span>Image No5 :</span>
+            <p *ngIf="roomdata?.roomimg5!=null"><i class="bi bi-file-earmark-arrow-down-fill" (click)="downloadTenantDoc(roomdata?.roomimg5)"></i></p>
+            <p *ngIf="roomdata?.roomimg5==null">N/A</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

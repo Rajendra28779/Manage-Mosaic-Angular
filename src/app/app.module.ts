@@ -8,14 +8,13 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { SignupComponent } from './signup/signup.component';
 import { OtpverifyComponent } from './otpverify/otpverify.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { AddComponent } from './add/add.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
-import { HomerentComponent } from './homerent/homerent.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { UnauthorizeComponent } from './unauthorize/unauthorize.component';
 import { ErrorInterceptor } from './services/error.interceptor';
+import { UserpanelComponent } from './userpanel/userpanel.component';
 
 
 @NgModule({
@@ -26,12 +25,11 @@ import { ErrorInterceptor } from './services/error.interceptor';
     SignupComponent,
     OtpverifyComponent,
     PagenotfoundComponent,
-    AddComponent,
-    HomerentComponent,
     HeaderComponent,
     FooterComponent,
     ContactusComponent,
     UnauthorizeComponent,
+    UserpanelComponent,
   ],
   imports: [
     BrowserModule,

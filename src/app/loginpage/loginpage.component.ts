@@ -5,8 +5,7 @@ import { EncryptService } from '../services/encrypt.service';
 import { GoogleloginService } from '../services/googlelogin.service';
 import { LoginserviceService } from '../services/loginservice.service';
 import Swal from 'sweetalert2';
-import { CommenService } from '../homerent/services/commen.service';
-import { HttpClient } from '@angular/common/http';
+import { CommenService } from '../userpanel/services/commen.service';
 declare let $: any;
 declare const gapi: any;
 
@@ -90,7 +89,7 @@ export class LoginpageComponent implements OnInit {
       if(this.rslt.status==200){
         sessionStorage.setItem('user', JSON.stringify(this.rslt.userdata));
         sessionStorage.setItem('token', this.rslt.token);
-        this.router.navigate(['/rentmanage/userdashboard']);
+        this.router.navigate(['/userpanel/userdashboard']);
       }else if(this.rslt.status==400){
         this.swal("Error",this.rslt.message,"error");
         return;
@@ -172,7 +171,7 @@ export class LoginpageComponent implements OnInit {
       if(data.status == 200){
         sessionStorage.setItem('user', JSON.stringify(data.record.userdata));
         sessionStorage.setItem('token', data.record.token);
-        this.router.navigate(['/rentmanage/userdashboard']);
+        this.router.navigate(['/userpanel/userdashboard']);
       }else if(data.status == 401){
         if(data.record == 0){
         Swal.fire("Error","Maximum verification attempts reached. Please try again later.","error");
