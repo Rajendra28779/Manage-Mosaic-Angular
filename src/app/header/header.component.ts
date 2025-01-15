@@ -15,7 +15,7 @@ declare let $ : any;
 export class HeaderComponent implements OnInit {
   notifications: any;
   user:any;
-  userhousedatalist:any;
+  userhousedatalist:any=[];
 
   constructor(private router:Router,private location:Location,
               private readonly commserv:CommenService,

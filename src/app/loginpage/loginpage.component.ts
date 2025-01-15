@@ -37,7 +37,7 @@ export class LoginpageComponent implements OnInit {
     try{
       this.googleAuthService.renderButton('google-signin-btn');
     } catch (error){
-      window.location.reload();
+      // window.location.reload();
     }
   }
 
