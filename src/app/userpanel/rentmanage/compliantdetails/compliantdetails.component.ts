@@ -47,17 +47,23 @@ export class CompliantdetailsComponent implements OnInit {
               if (result.isConfirmed) {
                 this.compliantserv.takeactionagainestrequest(this.actiontype,this.iconItem.rqstId).subscribe((data:any) => {
                   if(data.status == 200){
-                    Swal.fire("Success","Action Taken SuccessFully !", "success");
+                    Swal.fire({
+                      position: "center",
+                      icon: "success",
+                      title: "Action Taken SuccessFully !",
+                      showConfirmButton: false,
+                      timer: 1500
+                    });
                     this.getrequestdetailsForowner();
                   }else if(data.status == 401){
-                    Swal.fire("Success",data.message, "success");
+                    Swal.fire("Error",data.message, "success");
                   }else{
                     Swal.fire("Error","Something Went Wrong !", "error");
                   }
                 },
                 (error:any) => {console.log(error);  Swal.fire("Error","Something Went Wrong !", "error");});
               }
-            });    
+            });
   }
   action(item:any){
     this.actiontype=item;

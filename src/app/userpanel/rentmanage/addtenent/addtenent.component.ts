@@ -235,7 +235,13 @@ export class AddtenentComponent implements OnInit {
       if (result.isConfirmed) {
         this.tenantserv.addtenanttoroom(formData).subscribe((result:any)=>{
           if(result.status == 200){
-            Swal.fire('Saved!', 'Your details have been saved.','success');
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Your details have been saved.",
+              showConfirmButton: false,
+              timer: 1500
+            });
           }else{
             Swal.fire('Failed!', 'Failed to save your details. Please try again.', 'error');
           }

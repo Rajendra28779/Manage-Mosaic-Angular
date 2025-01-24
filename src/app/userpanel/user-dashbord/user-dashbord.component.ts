@@ -130,7 +130,13 @@ console.log(item);
     }
     this.commserv.verifyOTPforaddmobileno(this.enctserv.OnEncrypt(phoneno),otpval).subscribe((data:any) =>{
       if(data.status == 200){
-        Swal.fire("Success","Mobile No. Added Successfully","success");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Mobile No. Added Successfully !",
+          showConfirmButton: false,
+          timer: 1500
+        });
         this.closemodal();
         sessionStorage.removeItem('user');
         sessionStorage.setItem('user', JSON.stringify(data.record));

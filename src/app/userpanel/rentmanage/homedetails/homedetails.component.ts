@@ -101,7 +101,13 @@ export class HomedetailsComponent implements OnInit {
       if (result.isConfirmed) {
         this.homerentserv.addnewhome(object).subscribe((result:any)=>{
           if(result.status == 200){
-            Swal.fire('Saved!', 'Your details have been saved.','success');
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Your details have been saved.",
+              showConfirmButton: false,
+              timer: 1500
+            });
             this.route.navigate(['/userpanel/homerentmanage/housedetails']);
           }else{
             Swal.fire('Failed!', 'Failed to save your details. Please try again.', 'error');
@@ -168,7 +174,13 @@ export class HomedetailsComponent implements OnInit {
       if (result.isConfirmed) {
         this.homerentserv.addroomforhome(formData).subscribe((result:any)=>{
           if(result.status == 200){
-            Swal.fire('Saved!', 'Your details have been saved.','success');
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Your details have been saved.",
+              showConfirmButton: false,
+              timer: 1500
+            });
             this.addroomforhome();
           }else{
             Swal.fire('Failed!', 'Failed to save your details. Please try again.', 'error');

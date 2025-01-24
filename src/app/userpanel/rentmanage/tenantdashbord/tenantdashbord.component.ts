@@ -25,7 +25,7 @@ export class TenantdashbordComponent implements OnInit {
   ngOnInit(): void {
     let userdata:any=sessionStorage.getItem('user');
     this.user=JSON.parse(userdata);
-    this.gethousedetailsforuser();    
+    this.gethousedetailsforuser();
 
     this.maintanceFor = [
       {maintainId: '1',maintainFor:'Room Maintenance'},
@@ -51,7 +51,7 @@ export class TenantdashbordComponent implements OnInit {
         this.tenantData=data.record;
       }else{
         Swal.fire("Error","Something Went Wrong !", "error");
-      }      
+      }
     },
     (error:any) => console.log(error));
   }
@@ -66,14 +66,14 @@ export class TenantdashbordComponent implements OnInit {
             homeName:element.houseName
           }
           this.houselist.push(obj);
-        }        
+        }
       }else{
         Swal.fire("Error","Something Went Wrong !", "error");
-      }      
+      }
     },
     (error:any) => console.log(error));
   }
-  
+
   onChangeHouse($event:any){
     let id=$event.target.value;
     this.commserv.getroommasterData(this.user?.userId,id).subscribe((data:any) => {
@@ -146,14 +146,20 @@ export class TenantdashbordComponent implements OnInit {
           if (result.isConfirmed) {
             this.compliantserv.savehousemaintancerwst(object).subscribe((data:any) => {
               if(data.status == 200){
-                Swal.fire("Success","Data Saved SuccessFully !", "success");
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Data Saved SuccessFully !",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
               }else{
                 Swal.fire("Error","Something Went Wrong !", "error");
               }
             },
             (error:any) => {console.log(error);  Swal.fire("Error","Something Went Wrong !", "error");});
           }
-        });    
+        });
   }
-  
+
 }

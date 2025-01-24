@@ -129,7 +129,13 @@ export class HeaderComponent implements OnInit {
 
     this.commserv.verifyOTPforchangepassword(this.enctserv.OnEncrypt(cnfpassword),otpval).subscribe((data:any) =>{
       if(data.status == 200){
-        Swal.fire("Success","Password Updated Successfully","success");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Password Updated Successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
         this.closemodal();
       }else if(data.status == 401){
         if(data.record == 0){

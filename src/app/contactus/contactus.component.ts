@@ -15,14 +15,6 @@ export class ContactusComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  swal(title:any, text:any, icon:any) {
-    Swal.fire({
-      icon: icon,
-      title: title,
-      text: text
-    });
-  }
-
   message:any="";
   onsubmit(){
     let name=$('#name').val();
@@ -61,10 +53,16 @@ export class ContactusComponent implements OnInit {
       message:message
     }
     this.mainserv.sendmail(object).subscribe((data:any) => {
-      this.swal('Success', data.message, 'success');
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: data.message,
+        showConfirmButton: false,
+        timer: 1500
+      });
       this.reset();
     },(error:any)=>{
-      this.swal('Oops !!', 'Something Wnnt Wrong', 'error');
+      Swal.fire('Oops !!', 'Something Wnnt Wrong', 'error');
     });
   }
 

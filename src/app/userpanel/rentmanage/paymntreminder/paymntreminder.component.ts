@@ -17,7 +17,7 @@ export class PaymntreminderComponent implements OnInit {
   user:any
   houseId:any="";
   gettenantdata:any;
-  
+
 
 
   constructor(private readonly commenserv:CommenService,
@@ -25,7 +25,7 @@ export class PaymntreminderComponent implements OnInit {
     private readonly tenantserv:TenentdetailsService) { }
   ngOnInit(): void {
     let userdata:any=sessionStorage.getItem('user');
-    this.user=JSON.parse(userdata); 
+    this.user=JSON.parse(userdata);
     this.getmsthouseList();
     this.gettenantlistforpaymentprocess();
   }
@@ -151,7 +151,13 @@ export class PaymntreminderComponent implements OnInit {
       if (result.isConfirmed) {
         this.tenantserv.savePaymentdetails(object).subscribe((data:any) => {
           if(data.status == 200){
-            Swal.fire("Success","Payment Process Successful !", "success");
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Payment Process Successful !",
+              showConfirmButton: false,
+              timer: 1500
+            });
             this.gettenantlistforpaymentprocess();
             this.closeModal();
           }else{
@@ -163,7 +169,7 @@ export class PaymntreminderComponent implements OnInit {
            console.log(error);
         });
       }
-    });    
+    });
   }
 
 }

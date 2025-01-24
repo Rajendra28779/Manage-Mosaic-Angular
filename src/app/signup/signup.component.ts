@@ -94,7 +94,13 @@ let object ={
     this.leginsrv.signin(object).subscribe((data:any)=>{
         this.rslt=data;
         if(data.status==200){
-          this.swal("Success","SignUp Successful","success");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "SignUp Successful",
+            showConfirmButton: false,
+            timer: 1500
+          });
           sessionStorage.setItem('user', JSON.stringify(this.rslt.userdata));
           sessionStorage.setItem('token', this.rslt.token);
           this.route.navigate(['/userpanel/userdashboard']);
