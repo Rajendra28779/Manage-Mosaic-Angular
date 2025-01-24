@@ -79,16 +79,31 @@
       </div>
       <div class="modal-body container text-center">
         <div class="row">
-          <div class="col-lg-12 col-xxl-12">
+          <div class="col-lg-12 col-xxl-12" style="margin-left: 1ch;text-align: left;"
+            *ngIf="!sentotp">
+            <p style="margin-top: -1ch;">Your new password must be at least <span style="color: #8f0505;">8 characters</span> long and include:</p>
+            <p style="margin-top: -2ch; margin-left: 1ch;">* At least one uppercase letter <span style="color: #8f0505;">(A-Z)</span></p>
+            <p style="margin-top: -2ch; margin-left: 1ch;">* At least one lowercase letter <span style="color: #8f0505;">(a-z)</span></p>
+            <p style="margin-top: -2ch; margin-left: 1ch;">* At least one number <span style="color: #8f0505;">(0-9)</span></p>
+            <p style="margin-top: -2ch; margin-left: 1ch;">* At least one special character <span style="color: #8f0505;">(e.g., @, #, $)</span>"</p>
+            <p style="margin-top: -2ch;">🔒 For your security, avoid using easily guessed words like your name or birthdate.</p>
+          </div>
+          <div class="col-lg-5 col-xxl-5 mt-1 ">
             <div class="mb-xl-3">
-              <label class="form-label">Enter New Paasword<span class="text-danger">*</span></label>
-              <input class="form-control" type="text" placeholder="Enter New Paasword" autocomplete="off" id="newpass"
-                maxlength="15" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9@#&]/g,'');" [disabled]="sentotp">
+              <label class="form-label">Enter New Paasword<span class="text-danger">*</span></label>              
             </div>
           </div>
-          <div class="col-lg-12 col-xxl-12">
+          <div class="col-lg-7 col-xxl-7">
+            <input class="form-control" type="text" placeholder="Enter New Paasword" autocomplete="off" id="newpass"
+            maxlength="15" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9@#&]/g,'');" [disabled]="sentotp" >
+          </div>
+          <div class="col-lg-5 col-xxl-5 mt-1">
             <div class="mb-xl-3">
               <label class="form-label">Enter Confirm Paasword<span class="text-danger">*</span></label>
+            </div>
+          </div>
+          <div class="col-lg-7 col-xxl-7">
+            <div class="mb-xl-3">
               <input class="form-control" type="text" placeholder="Enter New Paasword" autocomplete="off" id="cnfpass"
                 maxlength="15" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9@#&]/g,'');" [disabled]="sentotp">
             </div>
@@ -127,7 +142,7 @@
 
 <div class="modal fade" id="userprofile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
   style="margin-top: 10ch;">
-  <div class="modal-dialog" style="max-width: 75%; margin-top: 0;">
+  <div class="modal-dialog" style="max-width: 45%; margin-top: 0;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel" style="font-size: 25px; color: #388087">
