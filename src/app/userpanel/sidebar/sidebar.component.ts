@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  sidebarVisible = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible; // Toggle sidebar visibility
   }
 
 }
