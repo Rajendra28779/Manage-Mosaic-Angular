@@ -4,7 +4,8 @@
   <div class="flex-container"></div>
 
   <div class="row">
-    <div class="col-lg-3 col-xxl-3">
+    <div class="col-lg-1 col-xxl-1" ></div>
+    <div class="col-lg-3 col-xxl-3" >
       <select class="form-select me-2" name="house" id="house" style="max-width: 250px;"
       (change)="gettenantlistforpaymentprocess()" [(ngModel)]="houseId">
         <option value="" selected>Select House</option>
@@ -13,12 +14,11 @@
         </ng-container>
       </select>
     </div>
-    <div class="col-lg-2 col-xxl-2" style="font-size: 18px; font-style: italic;">
-      <b>Total No : 678</b>
+    <div class="col-lg-4 col-xxl-4" style="font-size: 18px; font-style: italic;">
+      <b>Total No : {{listOfpayment?.length}}</b>
     </div>
-    <div class="col-lg-2 col-xxl-2"></div>
-    <div class="col-lg-5 col-xxl-5">
-      <div class="search-bar form-control" style="max-width: 400px;">
+    <div class="col-lg-4 col-xxl-4">
+      <div class="search-bar form-control" style="max-width: 100%;">
         <i class="bi bi-search search-icon"></i>
         <input type="text" placeholder="Search..." id="txtsearchDate " name="txtsearchDate " autocomplete="off"
         [(ngModel)]="txtsearchDate" maxlength="20 " (input)="onSearch($event)" />
