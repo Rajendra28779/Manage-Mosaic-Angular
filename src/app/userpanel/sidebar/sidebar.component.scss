@@ -18,6 +18,43 @@
   justify-content: center; /* Center the icon/text inside */
 }
 
+.popup-menu-button1 {
+  position: fixed;
+  //top: 120px; /* Adjust this to position below the header */
+  z-index: 1000;
+  background-color: #388087; /* Transparent background */
+  color: white; /* Text color to match the border */
+  border: 1px solid rgb(187, 186, 186); /* Thin border with color matching the text */
+  border-radius: 0px 0px 12px 0px; /* Optional: Rounded corners */
+  width: 125px;
+  height: 35px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: none; /* Remove shadow if not needed */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the icon/text inside */
+}
+
+.popup-menu-button2 {
+  position: fixed;
+  top: 120px; /* Adjust this to position below the header */
+  z-index: 1000;
+  background-color: #388087; /* Transparent background */
+  color: white; /* Text color to match the border */
+  border: none; /* Thin border with color matching the text */
+  border-radius: 0px 10px 10px 0px; /* Optional: Rounded corners */
+  width: 28px;
+  height: 170px;
+  font-size: 1.2rem;
+  font-family: 'Playfair Display', serif;
+  cursor: pointer;
+  box-shadow: none; /* Remove shadow if not needed */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the icon/text inside */
+}
+
 .sidebar {
   width: 250px;
   height: auto;

@@ -62,7 +62,14 @@
         <a (click)="changePassword()">Change Password</a>
       </div>
     </div>
-    <i class="bi bi-box-arrow-right" (click)="logout()" title="Logout"></i>
+    <div class="profile-dropdown">
+      <i class="bi bi-box-arrow-right" title="Logout"></i>
+      <div class="dropdown-menu">
+        <a (click)="logout()" data-bs-toggle="modal" data-bs-target="#userprofile">Logout</a>
+        <a (click)="referesh()">Referesh</a>
+      </div>
+    </div>
+    <!-- <i class="bi bi-box-arrow-right" (click)="logout()" title="Logout"></i> -->
   </div>
 </header>
 
@@ -90,7 +97,7 @@
           </div>
           <div class="col-lg-5 col-xxl-5 mt-1 ">
             <div class="mb-xl-3">
-              <label class="form-label">Enter New Paasword<span class="text-danger">*</span></label>              
+              <label class="form-label">Enter New Paasword<span class="text-danger">*</span></label>
             </div>
           </div>
           <div class="col-lg-7 col-xxl-7">

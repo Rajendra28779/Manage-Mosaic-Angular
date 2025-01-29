@@ -151,4 +151,8 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  referesh(){
+    window.location.reload();
+  }
+
 }
