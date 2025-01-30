@@ -166,9 +166,9 @@
             </div>
           </div>
           <div class="col-9" style="font-weight: 600;">
-            <p><span class="color1">Name : </span>{{this.user.fullName}}</p>
-            <p><span class="color1">Mobile No : </span>{{this.user.phoneNo}}</p>
-            <p><span class="color1">Email id : </span>{{this.user.email}}</p>
+            <p><span class="color1">Name : </span>{{this.user?.fullName}}</p>
+            <p><span class="color1">Mobile No : </span>{{this.user?.phoneNo}}</p>
+            <p><span class="color1">Email id : </span>{{this.user?.email}}</p>
           </div>
         </div>
         <div [ngClass]="{'example-container1': userhousedatalist.length > 1}">

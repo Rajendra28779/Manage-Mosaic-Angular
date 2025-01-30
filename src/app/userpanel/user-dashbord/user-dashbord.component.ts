@@ -5,6 +5,7 @@ import { CommenService } from '../services/commen.service';
 import { EncryptService } from 'src/app/services/encrypt.service';
 import { GoogleloginService } from 'src/app/services/googlelogin.service';
 import { GeonamesService } from 'src/app/services/geonames.service';
+import { HttpClient } from '@angular/common/http';
 declare let $: any;
 
 @Component({
@@ -26,12 +27,14 @@ export class UserDashbordComponent implements OnInit {
   ];
   currentSlide = 0;
   landing:any=true;
+  query = 'cities in India';
 
   constructor(private readonly router:Router,
     private readonly googleAuthService: GoogleloginService,
               private readonly commserv:CommenService,
               private readonly enctserv:EncryptService,
-              private geonamesService: GeonamesService) {}
+              private geonamesService: GeonamesService,
+              private http: HttpClient) {}
 
   ngOnInit(): void {
     let user:any=sessionStorage.getItem("user");
@@ -39,12 +42,13 @@ export class UserDashbordComponent implements OnInit {
     this.geonamesService.getCitiesInIndia().subscribe(
       (data) => {
         this.cities = data.elements;
-        console.log('Cities:', this.cities);
       },
       (error) => {
         console.error('Error fetching cities:', error);
       }
     );
+    // this.searchLocations();
+
     if(this.user == null || this.user == undefined){
       this.landing = false;
     }else{
@@ -173,6 +177,14 @@ console.log(item);
         this.router.navigate(['/eventmanage']);
       }
     }
+  }
+
+  searchLocations() {
+    const apiUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${this.query}&region=in&key=AIzaSyBuaMXXo3wU1ixlclx3N8g5UrOc_JuUGfg`;
+    this.http.get(apiUrl).subscribe((response: any) => {
+      this.cities = response.results;
+      console.log(this.cities); // Display the list of locations
+    });
   }
 
 
